@@ -101,6 +101,12 @@
 			          </a>
 			        </li>
 
+			        <li class="treeview <?php if($class_name == 'site_inquiry') {echo 'active';} ?>">
+			          <a href="<?php echo base_url(); ?>admin/site_inquiry">
+			            <i class="fa fa-envelope"></i> <span>Enquiries</span>
+			          </a>
+			        </li>
+
 			        <li class="treeview <?php if( ($class_name == 'setting') ) {echo 'active';} ?>">
 			          <a href="<?php echo base_url(); ?>admin/setting">
 			            <i class="fa fa-cog"></i> <span>Settings</span>

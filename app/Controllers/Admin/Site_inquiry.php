@@ -12,6 +12,7 @@ class Site_inquiry extends BaseController
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
+        helper('site_inquiry');
         $this->Model_common = new \App\Models\Admin\Model_common();
         $this->Model_site_inquiry = new \App\Models\Admin\Model_site_inquiry();
     }

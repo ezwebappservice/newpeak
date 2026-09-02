@@ -20,8 +20,8 @@ class CreateSiteInquiriesTable extends Migration
                 'auto_increment' => true,
             ],
             'form_source' => [
-                'type'       => 'ENUM',
-                'constraint' => ['home', 'contact'],
+                'type'       => 'VARCHAR',
+                'constraint' => 50,
             ],
             'first_name' => [
                 'type'       => 'VARCHAR',
@@ -47,6 +47,10 @@ class CreateSiteInquiriesTable extends Migration
             ],
             'message' => [
                 'type' => 'TEXT',
+            ],
+            'form_data' => [
+                'type' => 'TEXT',
+                'null' => true,
             ],
             'status' => [
                 'type'       => 'ENUM',

@@ -140,6 +140,11 @@ class CI3Database
         return $this->connection->insertID();
     }
 
+    public function insertID(): int
+    {
+        return $this->insert_id();
+    }
+
     protected function resetQueryState(): void
     {
         $this->selectFields = '*';

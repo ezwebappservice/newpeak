@@ -6,6 +6,11 @@ class Model_site_inquiry extends \App\Models\CI3Model
 {
     public function show(?string $source = null, ?string $status = null): array
     {
+        $db = \Config\Database::connect();
+
+        if (! $db->tableExists('tbl_site_inquiry')) {
+            return [];
+        }
         $sql = 'SELECT * FROM tbl_site_inquiry WHERE 1=1';
         $params = [];
 
@@ -45,6 +50,12 @@ class Model_site_inquiry extends \App\Models\CI3Model
 
     public function count_new(): int
     {
-        return (int) $this->db->table('tbl_site_inquiry')->where('status', 'New')->countAllResults();
+        $db = \Config\Database::connect();
+
+        if (! $db->tableExists('tbl_site_inquiry')) {
+            return 0;
+        }
+
+        return (int) $db->table('tbl_site_inquiry')->where('status', 'New')->countAllResults();
     }
 }

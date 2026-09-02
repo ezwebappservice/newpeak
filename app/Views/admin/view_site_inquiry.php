@@ -2,10 +2,11 @@
 if(!$this->session->userdata('id')) {
     redirect(base_url().'admin');
 }
+helper('site_inquiry');
 ?>
 <section class="content-header">
     <div class="content-header-left">
-        <h1>Form Inquiries <?php if(($new_count ?? 0) > 0): ?><small class="label label-warning"><?= (int) $new_count ?> new</small><?php endif; ?></h1>
+        <h1>Enquiries <?php if(($new_count ?? 0) > 0): ?><small class="label label-warning"><?= (int) $new_count ?> new</small><?php endif; ?></h1>
     </div>
 </section>
 
@@ -24,8 +25,9 @@ if(!$this->session->userdata('id')) {
                     <label>Source:</label>
                     <select name="source" class="form-control" style="width:auto;margin:0 10px;">
                         <option value="">All</option>
-                        <option value="home" <?= ($filter_source ?? '') === 'home' ? 'selected' : '' ?>>Home Page</option>
+                        <option value="discovery" <?= ($filter_source ?? '') === 'discovery' ? 'selected' : '' ?>>Customer Enquiry Form</option>
                         <option value="contact" <?= ($filter_source ?? '') === 'contact' ? 'selected' : '' ?>>Contact Page</option>
+                        <option value="home" <?= ($filter_source ?? '') === 'home' ? 'selected' : '' ?>>Home Page</option>
                     </select>
                     <label>Status:</label>
                     <select name="status" class="form-control" style="width:auto;margin:0 10px;">
@@ -48,19 +50,26 @@ if(!$this->session->userdata('id')) {
                                 <th>Source</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Phone</th>
                                 <th>Subject</th>
                                 <th>Status</th>
                                 <th width="140">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 0; foreach (($inquiries ?? []) as $row): $i++; ?>
+                            <?php if (empty($inquiries)): ?>
+                                <tr>
+                                    <td colspan="9" class="text-center">No enquiries yet.</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php $i = 0; foreach ($inquiries as $row): $i++; ?>
                                 <tr>
                                     <td><?= $i ?></td>
                                     <td><?= esc($row['created_at'] ?? '') ?></td>
-                                    <td><?= ($row['form_source'] ?? '') === 'home' ? 'Home Page' : 'Contact Page' ?></td>
+                                    <td><?= esc(site_inquiry_source_label($row['form_source'] ?? '')) ?></td>
                                     <td><?= esc(trim(($row['first_name'] ?? '') . ' ' . ($row['last_name'] ?? ''))) ?></td>
                                     <td><a href="mailto:<?= esc($row['email'] ?? '', 'attr') ?>"><?= esc($row['email'] ?? '') ?></a></td>
+                                    <td><?= esc($row['phone'] ?? '—') ?></td>
                                     <td><?= esc($row['subject'] ?? '—') ?></td>
                                     <td>
                                         <?php if(($row['status'] ?? '') === 'New'): ?>
@@ -71,10 +80,11 @@ if(!$this->session->userdata('id')) {
                                     </td>
                                     <td>
                                         <a href="<?= base_url('admin/site_inquiry/view/' . $row['id']) ?>" class="btn btn-primary btn-xs">View</a>
-                                        <a href="<?= base_url('admin/site_inquiry/delete/' . $row['id']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Delete this inquiry?');">Delete</a>
+                                        <a href="<?= base_url('admin/site_inquiry/delete/' . $row['id']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Delete this enquiry?');">Delete</a>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

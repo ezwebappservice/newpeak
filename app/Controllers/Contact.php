@@ -118,14 +118,23 @@ class Contact extends MY_Controller
 
         $displayName = trim($firstName . ' ' . $lastName) ?: $name;
 
-        site_inquiry_save('contact', [
-            'first_name' => $firstName,
-            'last_name'  => $lastName,
-            'phone'      => $phone !== '' ? $phone : null,
-            'email'      => $email,
-            'subject'    => $subject,
-            'message'    => $message,
-        ]);
+        try {
+            site_inquiry_save('contact', [
+                'first_name' => $firstName,
+                'last_name'  => $lastName,
+                'phone'      => $phone !== '' ? $phone : null,
+                'email'      => $email,
+                'subject'    => $subject,
+                'message'    => $message,
+                'form_data'  => [
+                    'interest' => $interest,
+                ],
+            ]);
+        } catch (\Throwable $e) {
+            log_message('error', 'Contact enquiry save failed: ' . $e->getMessage());
+
+            return form_redirect_with_errors($redirectUrl, 'We could not save your message. Please try again.', 'connect_form_error');
+        }
 
         $msg = '<html><head><title>Contact Form</title></head><body>'
             . '<h3>Contact Form – Peak Potential Academy</h3>'
@@ -260,7 +269,30 @@ class Contact extends MY_Controller
                 'email'      => $email,
                 'subject'    => $program,
                 'message'    => $message,
+                'form_data'  => [
+                    'country'         => $country,
+                    'city'            => $city,
+                    'applicant'       => $applicant,
+                    'age'             => $age,
+                    'program'         => $program,
+                    'challenge_focus' => $challengeFocus,
+                    'challenges'      => $challenges,
+                    'other_challenge' => $otherChallenge,
+                    'meeting_date'    => $meetingDate,
+                    'meeting_time'    => $meetingTime,
+                ],
             ]);
+        } catch (\Throwable $e) {
+            log_message('error', 'Discovery enquiry save failed: ' . $e->getMessage());
+
+            return form_redirect_with_errors(
+                $returnUrl,
+                'We could not save your enquiry. Please try again.',
+                'discovery_form_error'
+            );
+        }
+
+        try {
             site_inquiry_notify_admin($setting, 'Discovery Enquiry – ' . $displayName, '<html><head><title>Discovery Enquiry</title></head><body>'
                 . '<h3>Customer Enquiry Form – Peak Potential Academy</h3>'
                 . '<b>Name: </b>' . esc($displayName) . '<br><br>'
@@ -269,7 +301,7 @@ class Contact extends MY_Controller
                 . '<pre>' . esc($message) . '</pre>'
                 . '</body></html>');
         } catch (\Throwable $e) {
-            log_message('error', 'Discovery enquiry save failed: ' . $e->getMessage());
+            log_message('error', 'Discovery enquiry notify failed: ' . $e->getMessage());
         }
 
         return form_redirect_with_success(
