@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="nd" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a4a5c"/>
+      <stop offset="100%" stop-color="#2d7a4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#nd)"/>
+  <polygon points="80,320 200,180 320,260 440,140 520,320" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <rect x="200" y="80" width="200" height="60" rx="4" fill="rgba(118,184,42,0.4)"/>
+  <text x="300" y="250" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="600" fill="#fff">Dahej-III Plant</text>
+  <text x="300" y="278" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="rgba(255,255,255,0.8)">Agro &amp; Specialty Chemicals</text>
+</svg>

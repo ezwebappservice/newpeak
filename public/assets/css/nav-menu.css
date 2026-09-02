@@ -1,0 +1,412 @@
+/* ==========================================================================
+   Multi-level navigation (Sun Pharma style)
+   menu → sub-menu → sub-sub-menu (up to 4 levels)
+   ========================================================================== */
+
+.main-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu .menu-item {
+  list-style: none;
+}
+
+.main-menu .sub-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Caret icons */
+.submenu-caret {
+  font-size: 0.65rem;
+  margin-left: 0.35rem;
+  transition: transform 0.25s ease;
+  vertical-align: middle;
+}
+
+.menu-item-has-children > .menu-parent .submenu-caret--right {
+  float: right;
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* ==========================================================================
+   DESKTOP (≥992px) – hover flyouts
+   ========================================================================== */
+@media (min-width: 992px) {
+  .menu-parent-wrap.d-lg-contents {
+    display: contents;
+  }
+
+  .main-menu > .menu-item-has-children {
+    position: relative;
+  }
+
+  /* Shared dropdown panel */
+  .main-menu .sub-menu {
+    display: none;
+    position: absolute;
+    min-width: 260px;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0;
+    z-index: 1050;
+  }
+
+  /* Level 1 – standard dropdown BELOW top menu item (like Sun Pharma) */
+  .main-menu > .menu-item-has-children > .sub-menu {
+    top: 100%;
+    left: 0;
+    margin-top: 0;
+    padding-top: 0.85rem;
+    margin-left: 0;
+    animation: menuFadeDown 0.2s ease;
+  }
+
+  /* Invisible bridge so pointer never leaves hover zone between link and panel */
+  .main-menu > .menu-item-has-children > .sub-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.85rem;
+  }
+
+  @keyframes menuFadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .main-menu > .menu-item-has-children:hover > .sub-menu,
+  .main-menu > .menu-item-has-children:focus-within > .sub-menu,
+  .main-menu > .menu-item-has-children.is-hover > .sub-menu {
+    display: block;
+  }
+
+  /* Level 2+ – flyout to the RIGHT of parent item */
+  .sub-menu .menu-item-has-children {
+    position: relative;
+  }
+
+  .sub-menu .menu-item-has-children > .sub-menu {
+    top: 0;
+    left: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    padding-left: 0.5rem;
+    animation: menuFlyRight 0.2s ease;
+  }
+
+  /* Horizontal bridge for nested flyouts (prevents gap flicker) */
+  .sub-menu .menu-item-has-children > .sub-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -0.5rem;
+    width: 0.5rem;
+  }
+
+  @keyframes menuFlyRight {
+    from {
+      opacity: 0;
+      transform: translateX(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .sub-menu .menu-item-has-children:hover > .sub-menu,
+  .sub-menu .menu-item-has-children:focus-within > .sub-menu,
+  .sub-menu .menu-item-has-children.is-hover > .sub-menu {
+    display: block;
+  }
+
+  /* Nested menus near viewport edge: open left */
+  .sub-menu .menu-item-has-children.submenu-flip > .sub-menu,
+  .main-menu > .menu-item-has-children:nth-last-child(-n+3) .sub-menu .menu-item-has-children > .sub-menu {
+    left: auto;
+    right: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0.5rem;
+    animation-name: menuFlyLeft;
+  }
+
+  .sub-menu .menu-item-has-children.submenu-flip > .sub-menu::before,
+  .main-menu > .menu-item-has-children:nth-last-child(-n+3) .sub-menu .menu-item-has-children > .sub-menu::before {
+    left: auto;
+    right: -0.5rem;
+  }
+
+  @keyframes menuFlyLeft {
+    from {
+      opacity: 0;
+      transform: translateX(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .main-menu .sub-menu a {
+    display: block;
+    padding: 0.55rem 1.15rem;
+    color: var(--color-dark);
+    font-size: 0.88rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background var(--transition), color var(--transition), padding-left var(--transition);
+  }
+
+  .main-menu .sub-menu a:hover,
+  .main-menu .sub-menu a:focus {
+    background: var(--color-bg-light);
+    color: var(--color-primary);
+    padding-left: 1.35rem;
+  }
+
+  .main-menu .sub-menu .menu-item-has-children > .menu-parent {
+    padding-right: 2rem;
+  }
+
+  /* Top-level: chevron on the RIGHT of label */
+  .main-menu > .menu-item-has-children > .menu-parent-wrap > .nav-link.menu-parent,
+  .main-menu > .menu-item-has-children > .nav-link.menu-parent {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    white-space: nowrap;
+  }
+
+  .submenu-caret-desktop {
+    font-size: 0.6rem;
+    line-height: 1;
+    opacity: 0.85;
+    transition: transform 0.2s ease;
+  }
+
+  .main-menu > .menu-item-has-children:hover > .menu-parent-wrap > .nav-link .submenu-caret-desktop,
+  .main-menu > .menu-item-has-children:focus-within > .menu-parent-wrap > .nav-link .submenu-caret-desktop {
+    transform: rotate(180deg);
+  }
+
+  .sub-menu .menu-item-has-children:hover > .menu-parent .submenu-caret--right,
+  .sub-menu .menu-item-has-children:focus-within > .menu-parent .submenu-caret--right {
+    transform: translateX(2px);
+  }
+
+  /* Hide mobile-only toggle */
+  .submenu-toggle {
+    display: none;
+  }
+
+  .main-menu .menu-parent {
+    cursor: default;
+  }
+
+  /* Nested items: chevron-right inside link (flex) */
+  .sub-menu .menu-item-has-children > .menu-parent-wrap > .menu-parent,
+  .sub-menu .menu-item-has-children > a.menu-parent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .sub-menu .menu-item-has-children > .menu-parent-wrap > .menu-parent::after,
+  .sub-menu .menu-item-has-children > a.menu-parent::after {
+    font-family: "bootstrap-icons";
+    content: "\f285";
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    opacity: 0.55;
+    font-weight: normal;
+    float: none;
+    margin: 0;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .main-menu > .menu-item > .nav-link,
+  .main-menu > .menu-item > .menu-parent-wrap > .nav-link {
+    font-size: 0.82rem !important;
+    padding-left: 0.45rem !important;
+    padding-right: 0.45rem !important;
+  }
+}
+
+/* ==========================================================================
+   MOBILE / TABLET (<992px) – accordion
+   ========================================================================== */
+@media (max-width: 991.98px) {
+  .main-menu {
+    width: 100%;
+  }
+
+  .main-menu > .menu-item {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .site-header:not(.scrolled):not(.menu-open) .main-menu > .menu-item {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .main-menu .menu-parent-wrap {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .main-menu .menu-parent {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1rem !important;
+    width: auto !important;
+    border-radius: 0 !important;
+  }
+
+  .main-menu .submenu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    min-height: 48px;
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: background var(--transition);
+  }
+
+  .site-header:not(.scrolled):not(.menu-open) .main-menu .submenu-toggle {
+    border-left-color: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+
+  .main-menu .submenu-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .site-header:not(.scrolled):not(.menu-open) .main-menu .submenu-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .main-menu .submenu-toggle .submenu-caret {
+    margin: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .main-menu .menu-item-has-children.is-open > .menu-parent-wrap .submenu-toggle .submenu-caret,
+  .main-menu .menu-item-has-children.is-open > .submenu-toggle .submenu-caret {
+    transform: rotate(180deg);
+  }
+
+  /* Nested items without wrap (level 3+) */
+  .sub-menu .menu-item-has-children > .menu-parent {
+    padding-left: 1.5rem !important;
+  }
+
+  .sub-menu .sub-menu .menu-item-has-children > .menu-parent {
+    padding-left: 2rem !important;
+  }
+
+  .sub-menu .sub-menu .sub-menu .menu-item > a {
+    padding-left: 2.5rem !important;
+  }
+
+  .sub-menu .sub-menu .sub-menu .sub-menu .menu-item > a {
+    padding-left: 3rem !important;
+  }
+
+  .main-menu .sub-menu {
+    display: none;
+    position: static;
+    background: rgba(0, 0, 0, 0.04);
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    animation: none;
+  }
+
+  .site-header:not(.scrolled):not(.menu-open) .main-menu .sub-menu {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .main-menu .menu-item-has-children.is-open > .sub-menu {
+    display: block;
+  }
+
+  .main-menu .sub-menu a {
+    display: block;
+    padding: 0.7rem 1rem 0.7rem 1.25rem !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-dark);
+    border-radius: 0 !important;
+    width: 100%;
+  }
+
+  .site-header:not(.scrolled):not(.menu-open) .main-menu .sub-menu a {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .site-header.menu-open .main-menu .sub-menu a,
+  .site-header.scrolled .main-menu .sub-menu a {
+    color: var(--color-dark);
+  }
+
+  .main-menu .sub-menu a:hover {
+    background: rgba(13, 110, 122, 0.08);
+  }
+
+  .site-header:not(.scrolled):not(.menu-open) .main-menu .sub-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .main-menu > .menu-item > .nav-link:not(.menu-parent) {
+    display: block;
+    width: 100%;
+  }
+
+  /* Leaf link only (no children) */
+  .sub-menu .menu-item:not(.menu-item-has-children) > a {
+    padding-left: 1.5rem !important;
+  }
+
+  .sub-menu .sub-menu .menu-item:not(.menu-item-has-children) > a {
+    padding-left: 2rem !important;
+  }
+
+  .sub-menu .sub-menu .sub-menu .menu-item:not(.menu-item-has-children) > a {
+    padding-left: 2.5rem !important;
+  }
+
+  .sub-menu .sub-menu .sub-menu .sub-menu .menu-item:not(.menu-item-has-children) > a {
+    padding-left: 3rem !important;
+  }
+}

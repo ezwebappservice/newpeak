@@ -1,0 +1,44 @@
+<?php
+/**
+ * Shared layout variables for Peak Potential Academy header/footer.
+ */
+
+helper('theme');
+
+$setting = is_array($setting ?? null) ? $setting : [];
+$social = is_array($social ?? null) ? $social : [];
+$comment = is_array($comment ?? null) ? $comment : [];
+
+try {
+    $Model_common = new \App\Models\Model_common();
+    if ($setting === []) {
+        $setting = $Model_common->all_setting() ?: [];
+    }
+    if ($social === []) {
+        $social = $Model_common->all_social() ?: [];
+    }
+    if ($comment === []) {
+        $comment = $Model_common->all_comment() ?: [];
+    }
+} catch (\Throwable $e) {
+    $setting = $setting ?: [];
+    $social = $social ?: [];
+    $comment = $comment ?: [];
+}
+
+$class_name = theme_current_controller();
+$current_page = $current_page ?? peak_page();
+$GLOBALS['peak_current_page'] = $current_page;
+$is_home = theme_is_home();
+
+$logo_url = ! empty($setting['logo'])
+    ? theme_upload($setting['logo'])
+    : peak_img('logo.png');
+
+$site_email = peak_site_email($setting);
+$site_phone = peak_site_phone($setting);
+$site_phone_href = peak_site_phone_href($setting);
+$instagram_url = peak_social_url($social ?? [], 'instagram');
+$linkedin_url = peak_social_url($social ?? [], 'linkedin');
+$youtube_url = peak_social_url($social ?? [], 'youtube');
+$facebook_url = peak_social_url($social ?? [], 'facebook');

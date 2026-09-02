@@ -1,0 +1,170 @@
+<?php
+namespace App\Controllers\Admin;
+use App\Controllers\BaseController;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
+
+
+
+class Faq extends BaseController 
+{
+	public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger) 
+	{
+        parent::initController($request, $response, $logger);
+        $this->Model_common = new \App\Models\Admin\Model_common();
+        $this->Model_faq = new \App\Models\Admin\Model_faq();
+    }
+
+	public function index()
+	{
+		$data['setting'] = $this->Model_common->get_setting_data();
+		$data['faq'] = $this->Model_faq->show();
+
+		echo view('admin/view_header',$data);
+		echo view('admin/view_faq',$data);
+		echo view('admin/view_footer');
+	}
+
+	public function add()
+	{
+		$data['setting'] = $this->Model_common->get_setting_data();
+		$data['all_lang'] = $this->Model_common->all_lang();
+
+		$error = '';
+		$success = '';
+
+		if(isset($_POST['form1'])) {
+
+			if(PROJECT_MODE == 0) {
+				$this->session->setFlashdata('error',PROJECT_NOTIFICATION);
+				redirect($_SERVER['HTTP_REFERER']);
+			}
+
+			$valid = 1;
+
+			$this->form_validation->set_rules('faq_title', 'FAQ title', 'trim|required');
+			$this->form_validation->set_rules('faq_content', 'FAQ content', 'trim|required');
+
+			if($this->form_validation->run() == FALSE) {
+				$valid = 0;
+                $error = validation_errors();
+            }
+
+	   		if($valid == 1)
+		    {				
+		        $form_data = array(
+					'faq_title'    => $_POST['faq_title'],
+					'faq_content'  => $_POST['faq_content'],
+					'show_on_home' => $_POST['show_on_home'],
+					'lang_id'      => $_POST['lang_id']
+	            );
+	            $this->Model_faq->add($form_data);
+
+		        $success = 'FAQ is added successfully!';
+		        $this->session->setFlashdata('success',$success);
+				redirect(base_url().'admin/faq');		        
+		    }
+		    else
+		    {
+		    	$this->session->setFlashdata('error',$error);
+				redirect(base_url().'admin/faq/add');
+		    }
+            
+        } else {
+            echo view('admin/view_header',$data);
+			echo view('admin/view_faq_add',$data);
+			echo view('admin/view_footer');
+        }
+		
+	}
+
+
+	public function edit($id)
+	{
+		
+    	// If there is no FAQ in this id, then redirect
+    	$tot = $this->Model_faq->faq_check($id);
+    	if(!$tot) {
+    		redirect(base_url().'admin/faq');
+        	exit;
+    	}
+       	
+       	$data['setting'] = $this->Model_common->get_setting_data();
+       	$data['all_lang'] = $this->Model_common->all_lang();
+
+		$error = '';
+		$success = '';
+
+
+		if(isset($_POST['form1'])) 
+		{
+
+			if(PROJECT_MODE == 0) {
+				$this->session->setFlashdata('error',PROJECT_NOTIFICATION);
+				redirect($_SERVER['HTTP_REFERER']);
+			}
+
+			$valid = 1;
+
+			$this->form_validation->set_rules('faq_title', 'FAQ title', 'trim|required');
+			$this->form_validation->set_rules('faq_content', 'FAQ content', 'trim|required');
+
+			if($this->form_validation->run() == FALSE) {
+				$valid = 0;
+                $error = validation_errors();
+            }
+            
+		    if($valid == 1) 
+		    {
+		    	$data['faq'] = $this->Model_faq->getData($id);
+
+	    		$form_data = array(
+					'faq_title'    => $_POST['faq_title'],
+					'faq_content'  => $_POST['faq_content'],
+					'show_on_home' => $_POST['show_on_home'],
+					'lang_id'      => $_POST['lang_id']
+	            );
+	            $this->Model_faq->update($id,$form_data);
+				
+				$success = 'FAQ is updated successfully';
+				$this->session->setFlashdata('success',$success);
+				redirect(base_url().'admin/faq');
+		    }
+		    else 
+		    {
+		    	$this->session->setFlashdata('error',$error);
+				redirect(base_url().'admin/faq/add');
+		    }
+
+          
+		} else {
+			$data['faq'] = $this->Model_faq->getData($id);
+	       	echo view('admin/view_header',$data);
+			echo view('admin/view_faq_edit',$data);
+			echo view('admin/view_footer');
+		}
+
+	}
+
+	public function delete($id) 
+	{
+		// If there is no FAQ in this id, then redirect
+    	$tot = $this->Model_faq->faq_check($id);
+    	if(!$tot) {
+    		redirect(base_url().'admin/faq');
+        	exit;
+    	}
+
+		if(PROJECT_MODE == 0) {
+			$this->session->setFlashdata('error',PROJECT_NOTIFICATION);
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+
+        $this->Model_faq->delete($id);
+        $success = 'FAQ is deleted successfully';
+		$this->session->setFlashdata('success',$success);
+		redirect(base_url().'admin/faq');
+    }
+
+}

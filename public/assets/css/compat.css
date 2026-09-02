@@ -1,0 +1,341 @@
+/* ==========================================================================
+   Cross-browser compatibility & extended responsive breakpoints
+   Shivalik Rasayan Limited
+   ========================================================================== */
+
+/* --- Base fixes (Safari, Firefox, legacy Edge) --- */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Safe area (notched phones / iOS) */
+.site-header {
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+.back-to-top {
+  right: calc(1rem + env(safe-area-inset-right, 0));
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0));
+}
+
+@supports (padding: max(0px)) {
+  .site-header .container {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Gradient text (Safari) */
+.text-gradient {
+  -webkit-text-fill-color: transparent;
+}
+
+/* Backdrop-filter fallback */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .site-header.scrolled,
+  .site-header.menu-open {
+    background: #ffffff !important;
+  }
+
+  .hero-badge,
+  .glass-card {
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  .glass-dark {
+    background: rgba(26, 58, 92, 0.92);
+  }
+}
+
+/* min() / dvh fallbacks for mobile menu */
+@supports not (height: 100dvh) {
+  .hero-section {
+    min-height: 100vh;
+  }
+
+  @media (max-width: 991.98px) {
+    .hero-section {
+      min-height: 100vh;
+    }
+
+    .site-header .navbar-collapse {
+      max-height: calc(100vh - var(--header-height) - 1rem);
+    }
+  }
+}
+
+@supports not (max-height: min(80vh, 100px)) {
+  @media (max-width: 991.98px) {
+    .site-header .navbar-collapse {
+      max-height: 80vh;
+    }
+  }
+}
+
+/* ==========================================================================
+   Large desktops (≥1400px)
+   ========================================================================== */
+@media (min-width: 1400px) {
+  .section {
+    padding: 5.5rem 0;
+  }
+
+  .hero-title {
+    font-size: 3.35rem;
+  }
+
+  .section-subtitle {
+    max-width: 680px;
+  }
+}
+
+/* ==========================================================================
+   Laptop / small desktop (992px – 1199px)
+   ========================================================================== */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .site-header .nav-link {
+    padding: 0.45rem 0.55rem !important;
+    font-size: 0.88rem;
+  }
+
+  .site-header .nav-btn-cta {
+    padding: 0.45rem 1rem !important;
+    font-size: 0.88rem;
+  }
+
+  .logo-img {
+    height: 42px;
+    max-width: 185px;
+  }
+}
+
+/* ==========================================================================
+   Tablet landscape (768px – 991px)
+   ========================================================================== */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-content .col-lg-7 {
+    max-width: 85%;
+  }
+
+  .product-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .industries-grid .col-lg-2 {
+    width: 33.333%;
+  }
+
+  .stat-card {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .news-card .news-body h3 {
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   Small phones (≤575px)
+   ========================================================================== */
+@media (max-width: 575.98px) {
+  .hero-stats .col-4 {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+    text-align: center;
+  }
+
+  .hero-stats strong {
+    font-size: 1.15rem;
+  }
+
+  .footer-brand-name {
+    font-size: 1.2rem;
+  }
+
+  .logo-slider {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+/* ==========================================================================
+   Extra-small phones (≤360px)
+   ========================================================================== */
+@media (max-width: 359.98px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .hero-stats .col-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem !important;
+  }
+
+  .section-title {
+    font-size: 1.4rem !important;
+  }
+
+  .navbar-brand {
+    max-width: 58%;
+  }
+
+  .logo-img {
+    height: 36px;
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Landscape phones / short viewports
+   ========================================================================== */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero-section {
+    min-height: auto;
+    padding-top: calc(var(--header-height) + 0.75rem);
+    padding-bottom: 2rem;
+  }
+
+  .hero-section .min-vh-100 {
+    min-height: auto !important;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  .hero-slider-dots {
+    bottom: 0.75rem;
+  }
+
+  @media (max-width: 991.98px) {
+    .site-header .navbar-collapse {
+      max-height: calc(100vh - var(--header-height) - 0.5rem);
+    }
+  }
+}
+
+/* ==========================================================================
+   Touch devices – larger tap targets
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+  .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .dropdown-item {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .back-to-top {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ==========================================================================
+   High contrast / forced colors (accessibility)
+   ========================================================================== */
+@media (forced-colors: active) {
+  .site-header.scrolled {
+    border-bottom: 1px solid CanvasText;
+  }
+
+  .btn-primary {
+    border: 2px solid ButtonText;
+  }
+
+  .nav-link::after {
+    background: Highlight;
+  }
+}
+
+/* ==========================================================================
+   Print
+   ========================================================================== */
+@media print {
+  .site-header,
+  .back-to-top,
+  .hero-scroll,
+  .hero-slider-dots,
+  .mobile-menu-toggle,
+  .newsletter-form {
+    display: none !important;
+  }
+
+  .hero-section {
+    margin-top: 0;
+    padding-top: 0;
+    min-height: auto;
+    color: #000;
+  }
+
+  .hero-overlay {
+    display: none;
+  }
+
+  .hero-title,
+  .hero-lead {
+    color: #000 !important;
+  }
+
+  .section {
+    padding: 1.5rem 0;
+    break-inside: avoid;
+  }
+
+  a[href^='#']::after {
+    content: '';
+  }
+}
+
+/* ==========================================================================
+   No-JS fallback – show reveal content
+   ========================================================================== */
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}

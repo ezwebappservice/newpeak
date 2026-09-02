@@ -1,0 +1,11 @@
+# Prevent uploaded files from being executed as scripts
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.(?i:php|php3|php4|php5|php7|php8|phtml|phar|cgi|pl|asp|aspx|jsp|htaccess|sh|bash|exe)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    <FilesMatch "\.(?i:php|php3|php4|php5|php7|php8|phtml|phar|cgi|pl|asp|aspx|jsp|htaccess|sh|bash|exe)$">
+        Deny from all
+    </FilesMatch>
+</IfModule>

@@ -1,0 +1,185 @@
+<?php
+if(!$this->session->userdata('id')) {
+    redirect(base_url().'admin');
+}
+?>
+
+<section class="content-header">
+    <div class="content-header-left">
+        <h1>Edit Home Page Content</h1>
+    </div>
+    <div class="content-header-right">
+        <a href="<?= base_url('admin/page-home') ?>" class="btn btn-primary btn-sm">Back to settings</a>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <?php if(session()->getFlashdata('error')): ?>
+            <div class="callout callout-danger"><p><?= session()->getFlashdata('error') ?></p></div>
+            <?php endif; ?>
+            <?php if(session()->getFlashdata('success')): ?>
+            <div class="callout callout-success"><p><?= session()->getFlashdata('success') ?></p></div>
+            <?php endif; ?>
+
+            <?= form_open_multipart(base_url('admin/page-home/edit/' . (int) $page_home['id']), ['class' => 'form-horizontal']) ?>
+            <div class="box box-info" style="padding:0">
+                <div class="box-body" style="padding-top:0">
+
+                    <h3 class="sec_title">Meta Information</h3>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Title</label>
+                        <div class="col-sm-9">
+                            <input type="text" autocomplete="off" class="form-control" name="title" value="<?= esc($page_home['title']) ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Meta Keyword</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="meta_keyword" style="height:70px;"><?= esc($page_home['meta_keyword']) ?></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Meta Description</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="meta_description" style="height:70px;"><?= esc($page_home['meta_description']) ?></textarea>
+                        </div>
+                    </div>
+
+                    <?= view('admin/partials/page_home_edit_hero') ?>
+
+                    <h3 class="sec_title">About Section</h3>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Section label</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_welcome_title" value="<?= esc($page_home['home_welcome_title']) ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Heading</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_welcome_subtitle" value="<?= esc($page_home['home_welcome_subtitle']) ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Body text</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control editor" name="home_welcome_text"><?= esc($page_home['home_welcome_text']) ?></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Image badge line 1</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="home_welcome_pbar1_text" class="form-control" value="<?= esc($page_home['home_welcome_pbar1_text']) ?>">
+                        </div>
+                        <label class="col-sm-2 control-label">Image badge line 2</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="home_welcome_pbar2_text" class="form-control" value="<?= esc($page_home['home_welcome_pbar2_text']) ?>">
+                        </div>
+                    </div>
+
+                    <?= view('admin/partials/page_home_edit_theme') ?>
+
+                    <h3 class="sec_title">Products Section</h3>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Section label</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_service_title" value="<?= esc($page_home['home_service_title']) ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Heading</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_service_subtitle" value="<?= esc($page_home['home_service_subtitle']) ?>">
+                        </div>
+                    </div>
+
+                    <h3 class="sec_title">Industries Section</h3>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Section label</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_feature_title" value="<?= esc($page_home['home_feature_title']) ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Heading</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_feature_subtitle" value="<?= esc($page_home['home_feature_subtitle']) ?>">
+                        </div>
+                    </div>
+
+                    <h3 class="sec_title">Why Choose Us Section</h3>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Section label</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_why_choose_title" value="<?= esc($page_home['home_why_choose_title']) ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Heading</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_why_choose_subtitle" value="<?= esc($page_home['home_why_choose_subtitle']) ?>">
+                        </div>
+                    </div>
+
+                    <h3 class="sec_title">Stats (Hero &amp; Why Choose Us)</h3>
+                    <p class="col-sm-offset-2 col-sm-9 text-muted">First three stats appear in the Hero. All four can appear in Why Choose Us when counters are enabled.</p>
+                    <?php for ($c = 1; $c <= 4; $c++): ?>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Stat <?= $c ?> label</label>
+                        <div class="col-sm-3">
+                            <input type="text" name="counter_<?= $c ?>_title" class="form-control" value="<?= esc($page_home['counter_' . $c . '_title'] ?? '') ?>">
+                        </div>
+                        <label class="col-sm-1 control-label">Value</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="counter_<?= $c ?>_value" class="form-control" value="<?= esc($page_home['counter_' . $c . '_value'] ?? '') ?>">
+                        </div>
+                        <label class="col-sm-1 control-label">Suffix</label>
+                        <div class="col-sm-1">
+                            <input type="text" name="counter_<?= $c ?>_suffix" class="form-control" value="<?= esc($page_home['counter_' . $c . '_suffix'] ?? '') ?>" placeholder="+">
+                        </div>
+                        <input type="hidden" name="counter_<?= $c ?>_icon" value="<?= esc($page_home['counter_' . $c . '_icon'] ?? '') ?>">
+                    </div>
+                    <?php endfor; ?>
+
+                    <h3 class="sec_title">Testimonials Section</h3>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Section label</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_testimonial_title" value="<?= esc($page_home['home_testimonial_title']) ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Heading</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_testimonial_subtitle" value="<?= esc($page_home['home_testimonial_subtitle']) ?>">
+                        </div>
+                    </div>
+
+                    <h3 class="sec_title">News Section</h3>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Section label</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_blog_title" value="<?= esc($page_home['home_blog_title']) ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Heading</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_blog_subtitle" value="<?= esc($page_home['home_blog_subtitle']) ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-success" name="form1">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?= form_close() ?>
+        </div>
+    </div>
+</section>

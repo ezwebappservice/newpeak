@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block access to environment and sensitive files
+    <FilesMatch "^(\.env|\.git|composer\.(json|lock)|\.htaccess)$">
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+    </FilesMatch>
+
+    # Admin panel - route to CodeIgniter (physical public/admin/ is static assets)
+    RewriteRule ^admin/?$ public/index.php/admin [L,NC,QSA]
+
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

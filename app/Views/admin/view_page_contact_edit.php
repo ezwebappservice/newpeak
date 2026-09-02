@@ -1,0 +1,125 @@
+<?php
+if(!$this->session->userdata('id')) {
+    redirect(base_url().'admin');
+}
+?>
+
+<section class="content-header">
+    <div class="content-header-left">
+        <h1>Edit Contact Page</h1>
+    </div>
+    <div class="content-header-right">
+        <a href="<?php echo base_url(); ?>admin/page-contact" class="btn btn-primary btn-sm">View All</a>
+    </div>
+</section>
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <?php
+            if(session()->getFlashdata('error')) {
+                ?>
+                <div class="callout callout-danger">
+                    <p><?php echo session()->getFlashdata('error'); ?></p>
+                </div>
+                <?php
+            }
+            if(session()->getFlashdata('success')) {
+                ?>
+                <div class="callout callout-success">
+                    <p><?php echo session()->getFlashdata('success'); ?></p>
+                </div>
+                <?php
+            }
+            ?>
+
+            <?php echo form_open_multipart(base_url().'admin/page-contact/edit/'.$page_contact['id'], array('class' => 'form-horizontal'));?>
+                <div class="box box-info">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Contact Heading </label>
+                            <div class="col-sm-9">
+                                <input type="text" autocomplete="off" class="form-control" name="contact_heading" value="<?php echo $page_contact['contact_heading']; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Subtitle </label>
+                            <div class="col-sm-9">
+                                <input type="text" autocomplete="off" class="form-control" name="contact_subtitle" value="<?php echo esc($page_contact['contact_subtitle'] ?? ''); ?>" placeholder="e.g. Stay in touch with us">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Intro / Office Hours </label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="contact_intro" rows="2"><?php echo esc($page_contact['contact_intro'] ?? ''); ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Have a Question (Hours) </label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="contact_hours" rows="4"><?php echo esc($page_contact['contact_hours'] ?? ''); ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Website </label>
+                            <div class="col-sm-9">
+                                <input type="text" autocomplete="off" class="form-control" name="contact_website" value="<?php echo esc($page_contact['contact_website'] ?? ''); ?>" placeholder="www.shivalikrasayan.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Contact Address </label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="contact_address" style="height:60px;"><?php echo $page_contact['contact_address']; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Contact Email </label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="contact_email" style="height:60px;"><?php echo $page_contact['contact_email']; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Contact Phone </label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="contact_phone" style="height:60px;"><?php echo $page_contact['contact_phone']; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Contact Map (iframe Code) </label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="contact_map" style="height:120px;"><?php echo $page_contact['contact_map']; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Meta Title </label>
+                            <div class="col-sm-9">
+                                <input type="text" autocomplete="off" class="form-control" name="mt_contact" value="<?php echo $page_contact['mt_contact']; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Meta Keyword </label>
+                            <div class="col-sm-9">
+                               <textarea class="form-control h_100" name="mk_contact"><?php echo $page_contact['mk_contact']; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Meta Description </label>
+                            <div class="col-sm-9">
+                               <textarea class="form-control h_100" name="md_contact"><?php echo $page_contact['md_contact']; ?></textarea>
+                            </div>
+                        </div>
+<div class="form-group">
+                            <label for="" class="col-sm-2 control-label"></label>
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-success pull-left" name="form1">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php echo form_close(); ?>
+        </div>
+    </div>
+
+</section>

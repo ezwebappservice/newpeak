@@ -1,0 +1,232 @@
+<?php
+namespace App\Controllers\Admin;
+use App\Controllers\BaseController;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
+
+
+class Why_choose extends BaseController 
+{
+	public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger) 
+	{
+        parent::initController($request, $response, $logger);
+        $this->Model_common = new \App\Models\Admin\Model_common();
+        $this->Model_why_choose = new \App\Models\Admin\Model_why_choose();
+    }
+
+	public function index()
+	{
+		$data['setting'] = $this->Model_common->get_setting_data();
+
+		$data['why_choose'] = $this->Model_why_choose->show();
+
+		echo view('admin/view_header',$data);
+		echo view('admin/view_why_choose',$data);
+		echo view('admin/view_footer');
+	}
+
+	public function add()
+	{
+		$data['setting'] = $this->Model_common->get_setting_data();
+		$data['all_lang'] = $this->Model_common->all_lang();
+
+		$error = '';
+		$success = '';
+
+		if(isset($_POST['form1'])) {
+
+			if(PROJECT_MODE == 0) {
+				$this->session->setFlashdata('error',PROJECT_NOTIFICATION);
+				redirect($_SERVER['HTTP_REFERER']);
+			}
+
+			$valid = 1;
+
+			$this->form_validation->set_rules('name', 'Name', 'trim|required');
+			$this->form_validation->set_rules('content', 'Content', 'trim|required');
+			$this->form_validation->set_rules('icon', 'Icon', 'trim|required');
+
+			if($this->form_validation->run() == FALSE) {
+				$valid = 0;
+                $error .= validation_errors();
+            }
+
+            $path = $_FILES['photo']['name'];
+		    $path_tmp = $_FILES['photo']['tmp_name'];
+
+		    if($path!='') {
+		        $ext = pathinfo( $path, PATHINFO_EXTENSION );
+		        $file_name = basename( $path, '.' . $ext );
+		        $ext_check = $this->Model_common->extension_check_photo($ext);
+		        if($ext_check == FALSE) {
+		            $valid = 0;
+		            $error .= 'You must have to upload jpg, jpeg, gif or png file for featured photo<br>';
+		        }
+		    } else {
+		    	$valid = 0;
+		        $error .= 'You must have to select a photo for featured photo<br>';
+		    }
+
+		    
+		    if($valid == 1) 
+		    {
+				$next_id = $this->Model_why_choose->get_auto_increment_id();
+				foreach ($next_id as $row) {
+		            $ai_id = $row['Auto_increment'];
+		        }
+
+		        $final_name = 'why-choose-'.$ai_id.'.'.$ext;
+		        move_uploaded_to_uploads($path_tmp, $final_name);
+
+		        $form_data = array(
+					'name'    => $_POST['name'],
+					'content' => $_POST['content'],
+					'icon'    => $_POST['icon'],
+					'photo'   => $final_name,
+					'lang_id' => $_POST['lang_id']
+	            );
+	            $this->Model_why_choose->add($form_data);
+
+		        $success = 'Why Choose Us Section is added successfully!';
+		        $this->session->setFlashdata('success',$success);
+				redirect(base_url().'admin/why_choose');
+		    } 
+		    else
+		    {
+		    	$this->session->setFlashdata('error',$error);
+				redirect(base_url().'admin/why_choose/add');
+		    }
+            
+        } else {
+            
+            echo view('admin/view_header',$data);
+			echo view('admin/view_why_choose_add',$data);
+			echo view('admin/view_footer');
+        }
+		
+	}
+
+
+	public function edit($id)
+	{
+		
+    	$tot = $this->Model_why_choose->why_choose_check($id);
+    	if(!$tot) {
+    		redirect(base_url().'admin/why_choose');
+        	exit;
+    	}
+       	
+       	$data['setting'] = $this->Model_common->get_setting_data();
+       	$data['all_lang'] = $this->Model_common->all_lang();
+       	
+		$error = '';
+		$success = '';
+
+
+		if(isset($_POST['form1'])) 
+		{
+
+			if(PROJECT_MODE == 0) {
+				$this->session->setFlashdata('error',PROJECT_NOTIFICATION);
+				redirect($_SERVER['HTTP_REFERER']);
+			}
+
+			$valid = 1;
+
+			$this->form_validation->set_rules('name', 'Name', 'trim|required');
+			$this->form_validation->set_rules('content', 'Content', 'trim|required');
+			$this->form_validation->set_rules('icon', 'Icon', 'trim|required');
+
+			if($this->form_validation->run() == FALSE) {
+				$valid = 0;
+                $error .= validation_errors();
+            }
+
+            $path = $_FILES['photo']['name'];
+		    $path_tmp = $_FILES['photo']['tmp_name'];
+
+		    if($path!='') {
+		        $ext = pathinfo( $path, PATHINFO_EXTENSION );
+		        $file_name = basename( $path, '.' . $ext );
+		        $ext_check = $this->Model_common->extension_check_photo($ext);
+		        if($ext_check == FALSE) {
+		            $valid = 0;
+		            $error .= 'You must have to upload jpg, jpeg, gif or png file for featured photo<br>';
+		        }
+		    }
+
+		    
+		    if($valid == 1) 
+		    {
+		    	$data['why_choose'] = $this->Model_why_choose->getData($id);
+
+		    	if($path == '') {
+		    		$form_data = array(
+						'name'    => $_POST['name'],
+						'content' => $_POST['content'],
+						'icon'    => $_POST['icon'],
+						'lang_id' => $_POST['lang_id']
+		            );
+		            $this->Model_why_choose->update($id,$form_data);
+				}
+				else {
+					safe_unlink_upload($data['why_choose']['photo']);
+
+					$final_name = 'why-choose-'.$id.'.'.$ext;
+		        	move_uploaded_to_uploads($path_tmp, $final_name);
+
+		        	$form_data = array(
+						'name'    => $_POST['name'],
+						'content' => $_POST['content'],
+						'icon'    => $_POST['icon'],
+						'photo'   => $final_name,
+						'lang_id' => $_POST['lang_id']
+		            );
+		            $this->Model_why_choose->update($id,$form_data);
+				}
+				$success = 'Why Choose Us Section is updated successfully';
+				$this->session->setFlashdata('success',$success);
+				redirect(base_url().'admin/why_choose');
+		    }
+		    else
+		    {
+		    	$this->session->setFlashdata('error',$error);
+				redirect(base_url().'admin/why_choose/edit/'.$id);
+		    }
+           
+		} else {
+			$data['why_choose'] = $this->Model_why_choose->getData($id);
+	       	echo view('admin/view_header',$data);
+			echo view('admin/view_why_choose_edit',$data);
+			echo view('admin/view_footer');
+		}
+
+	}
+
+
+	public function delete($id) 
+	{
+    	$tot = $this->Model_why_choose->why_choose_check($id);
+    	if(!$tot) {
+    		redirect(base_url().'admin/why_choose');
+        	exit;
+    	}
+
+		if(PROJECT_MODE == 0) {
+			$this->session->setFlashdata('error',PROJECT_NOTIFICATION);
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+
+        $data['why_choose'] = $this->Model_why_choose->getData($id);
+        if($data['why_choose']) {
+            safe_unlink_upload($data['why_choose']['photo']);
+        }
+
+        $this->Model_why_choose->delete($id);
+        $success = 'Why Choose Us Section is deleted successfully';
+        $this->session->setFlashdata('success',$success);
+        redirect(base_url().'admin/why_choose');
+    }
+
+}

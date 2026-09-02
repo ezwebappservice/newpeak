@@ -1,0 +1,10 @@
+Shivalik Rasayan Limited - Board Committees (Dummy Test Data)
+
+Audit Committee
+- Mr. A. Sharma (Chairperson)
+- Ms. R. Mehta
+- Mr. P. Verma
+
+Nomination & Remuneration Committee
+- Ms. R. Mehta (Chairperson)
+- Mr. A. Sharma
