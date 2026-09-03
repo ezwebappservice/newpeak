@@ -52,27 +52,33 @@ if (! function_exists('peak_nav_active')) {
 }
 
 if (! function_exists('peak_site_email')) {
-    function peak_site_email(?array $setting = null): string
+    function peak_site_email(?array $setting = null, ?array $page_contact = null): string
     {
-        $email = trim((string) ($setting['top_bar_email'] ?? ''));
+        $email = trim((string) ($page_contact['contact_email'] ?? ''));
+        if ($email === '') {
+            $email = trim((string) ($setting['top_bar_email'] ?? ''));
+        }
 
-        return $email !== '' ? $email : 'hello@peakpotentialacademy.com';
+        return $email;
     }
 }
 
 if (! function_exists('peak_site_phone')) {
-    function peak_site_phone(?array $setting = null): string
+    function peak_site_phone(?array $setting = null, ?array $page_contact = null): string
     {
-        $phone = trim((string) ($setting['top_bar_phone'] ?? ''));
+        $phone = trim((string) ($page_contact['contact_phone'] ?? ''));
+        if ($phone === '') {
+            $phone = trim((string) ($setting['top_bar_phone'] ?? ''));
+        }
 
-        return $phone !== '' ? $phone : '+91 99012 34567';
+        return $phone;
     }
 }
 
 if (! function_exists('peak_site_phone_href')) {
-    function peak_site_phone_href(?array $setting = null): string
+    function peak_site_phone_href(?array $setting = null, ?array $page_contact = null): string
     {
-        return preg_replace('/[^\d+]/', '', peak_site_phone($setting)) ?? '';
+        return preg_replace('/[^\d+]/', '', peak_site_phone($setting, $page_contact)) ?? '';
     }
 }
 

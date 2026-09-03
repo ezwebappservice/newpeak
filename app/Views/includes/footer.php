@@ -37,8 +37,12 @@
       </div>
       <div class="footer-contact">
         <h3>Get in Touch</h3>
+        <?php if ($site_email !== ''): ?>
         <a href="mailto:<?= esc($site_email) ?>">✉ &nbsp;<?= esc($site_email) ?></a>
+        <?php endif; ?>
+        <?php if ($site_phone !== ''): ?>
         <a href="tel:<?= esc($site_phone_href) ?>">⌕ &nbsp;<?= esc($site_phone) ?></a>
+        <?php endif; ?>
         <a href="<?= peak_enquiry_url() ?>" class="footer-cta">Book a Demo</a>
       </div>
     </div>

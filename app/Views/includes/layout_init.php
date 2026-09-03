@@ -8,6 +8,7 @@ helper('theme');
 $setting = is_array($setting ?? null) ? $setting : [];
 $social = is_array($social ?? null) ? $social : [];
 $comment = is_array($comment ?? null) ? $comment : [];
+$page_contact = is_array($page_contact ?? null) ? $page_contact : [];
 
 try {
     $Model_common = new \App\Models\Model_common();
@@ -20,10 +21,14 @@ try {
     if ($comment === []) {
         $comment = $Model_common->all_comment() ?: [];
     }
+    if ($page_contact === []) {
+        $page_contact = $Model_common->all_page_contact() ?: [];
+    }
 } catch (\Throwable $e) {
     $setting = $setting ?: [];
     $social = $social ?: [];
     $comment = $comment ?: [];
+    $page_contact = $page_contact ?: [];
 }
 
 $class_name = theme_current_controller();
@@ -35,9 +40,9 @@ $logo_url = ! empty($setting['logo'])
     ? theme_upload($setting['logo'])
     : peak_img('logo.png');
 
-$site_email = peak_site_email($setting);
-$site_phone = peak_site_phone($setting);
-$site_phone_href = peak_site_phone_href($setting);
+$site_email = peak_site_email($setting, $page_contact);
+$site_phone = peak_site_phone($setting, $page_contact);
+$site_phone_href = peak_site_phone_href($setting, $page_contact);
 $instagram_url = peak_social_url($social ?? [], 'instagram');
 $linkedin_url = peak_social_url($social ?? [], 'linkedin');
 $youtube_url = peak_social_url($social ?? [], 'youtube');

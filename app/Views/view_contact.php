@@ -1,12 +1,10 @@
 <?php
 helper(['form', 'form_ui']);
-$email = peak_site_email($setting ?? []);
-$phone = peak_site_phone($setting ?? []);
-$phoneHref = peak_site_phone_href($setting ?? []);
 $pc = $page_contact ?? [];
-$displayEmail = trim((string) ($pc['contact_email'] ?? '')) ?: $email;
-$displayPhone = trim((string) ($pc['contact_phone'] ?? '')) ?: $phone;
-$displayPhoneHref = preg_replace('/[^\d+]/', '', $displayPhone) ?: $phoneHref;
+$email = peak_site_email($setting ?? [], $pc);
+$phone = peak_site_phone($setting ?? [], $pc);
+$phoneHref = peak_site_phone_href($setting ?? [], $pc);
+$displayHours = trim((string) ($pc['contact_hours'] ?? ''));
 $interests = [
     'Student programme',
     'Parent programme',
@@ -31,18 +29,24 @@ $interests = [
             <p class="inner-page-eyebrow">Get in touch</p>
             <h2>We’d love to hear from you.</h2>
             <p>Whether you are a student, parent, school or organisation, we can help you find the right next step.</p>
+            <?php if ($email !== ''): ?>
             <div class="contact-item">
               <strong>Email</strong>
-              <a href="mailto:<?= esc($displayEmail) ?>"><?= esc($displayEmail) ?></a>
+              <a href="mailto:<?= esc($email) ?>"><?= esc($email) ?></a>
             </div>
+            <?php endif; ?>
+            <?php if ($phone !== ''): ?>
             <div class="contact-item">
               <strong>Phone</strong>
-              <a href="tel:<?= esc($displayPhoneHref) ?>"><?= esc($displayPhone) ?></a>
+              <a href="tel:<?= esc($phoneHref) ?>"><?= esc($phone) ?></a>
             </div>
+            <?php endif; ?>
+            <?php if ($displayHours !== ''): ?>
             <div class="contact-item">
               <strong>Hours</strong>
-              <span>Monday–Friday, 9:00 AM–6:00 PM</span>
+              <span><?= nl2br(esc($displayHours)) ?></span>
             </div>
+            <?php endif; ?>
           </aside>
         </div>
         <div class="col-lg-7">

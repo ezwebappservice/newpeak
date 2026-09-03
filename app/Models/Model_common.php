@@ -62,7 +62,13 @@ class Model_common extends \App\Models\CI3Model
     }
     public function all_page_contact()
     {
-        $query = $this->db->query("SELECT * from tbl_page_contact WHERE lang_id=?", [$_SESSION['sess_lang_id']]);
+        $query = $this->db->query("SELECT * from tbl_page_contact WHERE lang_id=?", [$_SESSION['sess_lang_id'] ?? 1]);
+        $row = $query->getRowArray();
+        if ($row) {
+            return $row;
+        }
+
+        $query = $this->db->query("SELECT * from tbl_page_contact ORDER BY id ASC LIMIT 1");
         return $query->getRowArray();
     }
     public function all_page_search()

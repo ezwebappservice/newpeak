@@ -56,6 +56,9 @@ class MY_Controller extends BaseController
             $comment = $this->Model_common->all_comment() ?: [];
             $page_home = $this->Model_common->all_page_home() ?: [];
             $page_home_lang_independent = $this->Model_common->all_page_home_lang_independent() ?: [];
+            if (! isset($extra['page_contact'])) {
+                $extra['page_contact'] = $this->Model_common->all_page_contact() ?: [];
+            }
         } catch (\Throwable $e) {
             log_message('debug', 'CMS settings unavailable: ' . $e->getMessage());
         }
@@ -66,6 +69,7 @@ class MY_Controller extends BaseController
             'comment'                     => $comment,
             'page_home'                   => $page_home,
             'page_home_lang_independent'  => $page_home_lang_independent,
+            'page_contact'                => $extra['page_contact'] ?? [],
             'current_page'                => $page,
         ], $extra);
     }
