@@ -9,6 +9,8 @@ $setting = is_array($setting ?? null) ? $setting : [];
 $social = is_array($social ?? null) ? $social : [];
 $comment = is_array($comment ?? null) ? $comment : [];
 $page_contact = is_array($page_contact ?? null) ? $page_contact : [];
+$page_home = is_array($page_home ?? null) ? $page_home : [];
+$page_home_lang_independent = is_array($page_home_lang_independent ?? null) ? $page_home_lang_independent : [];
 
 try {
     $Model_common = new \App\Models\Model_common();
@@ -23,6 +25,12 @@ try {
     }
     if ($page_contact === []) {
         $page_contact = $Model_common->all_page_contact() ?: [];
+    }
+    if ($page_home === []) {
+        $page_home = $Model_common->all_page_home() ?: [];
+    }
+    if ($page_home_lang_independent === []) {
+        $page_home_lang_independent = $Model_common->all_page_home_lang_independent() ?: [];
     }
 } catch (\Throwable $e) {
     $setting = $setting ?: [];

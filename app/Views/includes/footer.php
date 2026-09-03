@@ -52,6 +52,10 @@
     </div>
   </div>
 </footer>
+<?= view('partials/peak_book_tab', [
+    'page_home' => $page_home ?? [],
+    'page_home_lang_independent' => $page_home_lang_independent ?? [],
+]) ?>
 
 <?php
 $toastSuccess = session()->getFlashdata('success');
