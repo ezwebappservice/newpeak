@@ -14,12 +14,12 @@ class ShivalikHomeSeeder extends Seeder
             $langId = (int) $langRow['lang_id'];
         }
 
-        $welcomeText = '<p>Shivalik Rasayan Ltd. (SRL) is a chemistry-driven Indian manufacturer built to serve <strong>healthcare</strong> and <strong>crop protection</strong>.</p>'
+        $welcomeText = '<p>Peak PotentialLtd. (SRL) is a chemistry-driven Indian manufacturer built to serve <strong>healthcare</strong> and <strong>crop protection</strong>.</p>'
             . '<p>We are India\'s largest producer of Dimethoate Technical and the second-largest producer of Malathion Technical. With Medicamen Biotech Ltd, we also develop oncology and non-oncology APIs from our Dahej facility.</p>'
             . '<p>In simple terms: <strong>we make the chemistry that helps protect crops and improve human health</strong> — with quality systems aligned to global regulators.</p>';
 
         $this->db->table('tbl_page_home')->where('lang_id', $langId)->update([
-            'hero_badge'              => 'Shivalik Rasayan Limited',
+            'hero_badge'              => 'Peak Potential',
             'hero_title_prefix'       => 'We Manufacture',
             'hero_title_highlight'    => 'APIs, Agrochemicals & Specialty Chemicals',
             'hero_lead'               => 'We are an Indian chemistry company serving healthcare and crop protection — with USFDA/EDQM-aligned facilities, DSIR-recognized R&D, and products trusted in India and global markets.',
@@ -28,7 +28,7 @@ class ShivalikHomeSeeder extends Seeder
             'hero_btn2_text'          => 'What We Do',
             'hero_btn2_url'           => '#products',
             'home_welcome_title'      => 'Who We Are',
-            'home_welcome_subtitle'   => 'Shivalik Rasayan Limited',
+            'home_welcome_subtitle'   => 'Peak Potential',
             'home_welcome_text'       => $welcomeText,
             'home_welcome_pbar1_text' => 'DSIR Recognized',
             'home_welcome_pbar2_text' => 'R&D Centre, Bhiwadi',
@@ -58,7 +58,7 @@ class ShivalikHomeSeeder extends Seeder
             'home_testimonial_title'  => 'Testimonials',
             'home_testimonial_subtitle'=> 'What Our Partners Say',
             'home_blog_title'         => 'Latest Updates',
-            'home_blog_subtitle'      => 'Shivalik Rasayan in News',
+            'home_blog_subtitle'      => 'Peakntialin News',
             'counter_1_title'         => 'Employees',
             'counter_1_value'         => '250',
             'counter_1_suffix'        => '+',

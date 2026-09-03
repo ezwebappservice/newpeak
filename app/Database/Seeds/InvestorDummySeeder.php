@@ -119,7 +119,7 @@ class InvestorDummySeeder extends Seeder
                 'title_type'    => 'Committee Composition',
                 'document_type' => 'TXT',
                 'ext'           => 'txt',
-                'body'          => "Shivalik Rasayan Limited - Board Committees (Dummy Test Data)\n\nAudit Committee\n- Mr. A. Sharma (Chairperson)\n- Ms. R. Mehta\n- Mr. P. Verma\n\nNomination & Remuneration Committee\n- Ms. R. Mehta (Chairperson)\n- Mr. A. Sharma\n",
+                'body'          => "Peak Potential - Board Committees (Dummy Test Data)\n\nAudit Committee\n- Mr. A. Sharma (Chairperson)\n- Ms. R. Mehta\n- Mr. P. Verma\n\nNomination & Remuneration Committee\n- Ms. R. Mehta (Chairperson)\n- Mr. A. Sharma\n",
             ],
             [
                 'category'      => 'Notices & Announcements',

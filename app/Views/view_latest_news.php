@@ -17,7 +17,7 @@
       <div class="srl-highlight-box text-center">
         <i class="bi bi-newspaper srl-news-empty-icon"></i>
         <h3>No news articles yet</h3>
-        <p>Check back soon for the latest updates from Shivalik Rasayan Limited.</p>
+        <p>Check back soon for the latest updates from Peak Potential.</p>
       </div>
     </div>
     <?php else: ?>

@@ -5,7 +5,7 @@ if(!$this->session->userdata('id')) {
 ?>
 <section class="content-header">
   <h1>Dashboard</h1>
-  <p class="text-muted srl-dashboard-intro">Overview of content managed on the Shivalik Rasayan website.</p>
+  <p class="text-muted srl-dashboard-intro">Overview of content managed on the Peak Potentialwebsite.</p>
 </section>
 
 <section class="content">

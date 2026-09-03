@@ -2,7 +2,6 @@
 <section class="hero school-page-hero parents-hero">
   <div class="container">
     <div class="row school-hero-row">
-
       <!-- Left column -->
       <div class="col-lg-7 school-hero-copy">
         <p class="hero-eyebrow">FOR PARENTS</p>

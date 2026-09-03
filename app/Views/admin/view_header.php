@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Shivalik Rasayan CMS</title>
+	<title>Peak PotentialCMS</title>
 
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<?= csrf_meta() ?>
@@ -24,14 +24,14 @@
 
 </head>
 
-<body class="hold-transition fixed skin-blue skin-shivalik sidebar-mini">
+<body class="hold-transition fixed skin-blue skin-Peaksidebar-mini">
 
 	<div class="wrapper">
 
 		<header class="main-header">
 
 			<a href="<?php echo base_url(); ?>admin/dashboard" class="logo">
-				<span class="logo-lg"><?php echo esc($setting['website_name'] ?? 'Shivalik Rasayan'); ?></span>
+				<span class="logo-lg"><?php echo esc($setting['website_name'] ?? 'PeakRasayan'); ?></span>
 			</a>
 
 			<nav class="navbar navbar-static-top">
@@ -89,7 +89,7 @@
     		<section class="sidebar">
 
 				<div class="sidebar-brand">
-					<span class="sidebar-brand-name"><?php echo esc($setting['website_name'] ?? 'Shivalik Rasayan'); ?></span>
+					<span class="sidebar-brand-name"><?php echo esc($setting['website_name'] ?? 'PeakRasayan'); ?></span>
 					<span class="sidebar-brand-sub">Website CMS</span>
 				</div>
      

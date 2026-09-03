@@ -30,7 +30,7 @@ class Team extends MY_Controller
         $data['all_news'] = $this->Model_common->all_news();
         $data['team_members'] = $this->Model_team->all_team_member();
         $data['portfolio_footer'] = $this->Model_portfolio->get_portfolio_data();
-        $data['meta_title'] = $pageTeam['mt_team'] ?? 'Leadership Team | Shivalik Rasayan Limited';
+        $data['meta_title'] = $pageTeam['mt_team'] ?? 'Leadership Team | Peak Potential';
         $data['meta_description'] = $pageTeam['md_team'] ?? '';
         $data['meta_keywords'] = $pageTeam['mk_team'] ?? '';
         $GLOBALS['theme_current_page_slug'] = 'leadership-at-srl';

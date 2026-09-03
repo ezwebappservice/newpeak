@@ -21,9 +21,9 @@ class ShivalikLeadershipTeamSeeder extends Seeder
             'team_heading'   => 'Leadership Team',
             'team_subtitle'  => 'Leadership @ SRL',
             'team_intro'     => 'The Executive Management at SRL has an extensive global experience and is deeply passionate about delivering efficient healthcare solutions to its clients.',
-            'mt_team'        => 'Leadership Team | Shivalik Rasayan Limited',
-            'mk_team'        => 'Shivalik Rasayan leadership, SRL executive team',
-            'md_team'        => 'Executive leadership team at Shivalik Rasayan Limited.',
+            'mt_team'        => 'Leadership Team | Peak Potential',
+            'mk_team'        => 'Peak Potentialleadership, SRL executive team',
+            'md_team'        => 'Executive leadership team at Peak Potential.',
         ]);
 
         $this->db->table('tbl_page_dynamic')
@@ -36,31 +36,31 @@ class ShivalikLeadershipTeamSeeder extends Seeder
                 'name'        => 'Rahul Bishnoi',
                 'designation' => 'Chairman',
                 'photo_src'   => 'leader-rahul-bishnoi.jpg',
-                'detail'      => '<p>Rahul Bishnoi is having 25 years of rich experience in managing agrochemical, APIs and Finished Dosage Form plants. Currently he is the Chairman of Shivalik Rasayan Limited &amp; Medicamen Biotech Ltd. His core competence includes strategic business planning, financial analysis, and developing new business model with strong processes.</p><p>He spearheaded the initiatives regarding acquisition of the then sick Shivalik Rasayan Limited in the year 2002 &amp; debt ridden Medicamen Biotech Limited in 2016 and subsequently transformed these into profit making companies.</p><p>Mr. Bishnoi is a first-generation entrepreneur. He has earned his Commerce degree from Punjab University, Chandigarh in 1983 and completed Chartered Accountant programme in the year 1986.</p>',
+                'detail'      => '<p>Rahul Bishnoi is having 25 years of rich experience in managing agrochemical, APIs and Finished Dosage Form plants. Currently he is the Chairman of Peak Potential &amp; Medicamen Biotech Ltd. His core competence includes strategic business planning, financial analysis, and developing new business model with strong processes.</p><p>He spearheaded the initiatives regarding acquisition of the then sick Peak Potential in the year 2002 &amp; debt ridden Medicamen Biotech Limited in 2016 and subsequently transformed these into profit making companies.</p><p>Mr. Bishnoi is a first-generation entrepreneur. He has earned his Commerce degree from Punjab University, Chandigarh in 1983 and completed Chartered Accountant programme in the year 1986.</p>',
             ],
             [
                 'name'        => 'Dr. Vimal Kumar Shrawat',
                 'designation' => 'Managing Director',
                 'photo_src'   => 'leader-vimal-shrawat.jpg',
-                'detail'      => '<p>Dr. Shrawat holds a Doctorate Degree in Organic Chemistry from Centre of Advanced Studies, Department of Chemistry, University of Delhi, India. He previously held position of Chief Operating Officer (COO) in Shilpa Medicare Limited. Apart from this, he has over 30 years of vast experience of having worked in renowned Pharma companies like Fresenius Kabi Oncology Limited (Formerly Dabur Pharma Ltd), Ranbaxy Laboratories Ltd, and VAM Organics Ltd., spanning across activities of R&amp;D, Pilot &amp; Plant Productions, QA/QC, Administration, CRAMS, Project Management etc. His keen interest in and consistent efforts for R&amp;D has led him to become one of key contributors in a large number of Patents/applications. He is a very well-known name in the pharma scientific fraternity.</p><p>He is overall in charge of activities in Shivalik Rasayan Limited. Under his dynamic leadership, SRL is developing its niche Oncology and Non-Oncology APIs. He is the guiding force for Organic Synthesis/ Intermediates APIs and Formulation Development. His vision of team work and time bound approach always guides &amp; motivates the teams at all our operational sites.</p>',
+                'detail'      => '<p>Dr. Shrawat holds a Doctorate Degree in Organic Chemistry from Centre of Advanced Studies, Department of Chemistry, University of Delhi, India. He previously held position of Chief Operating Officer (COO) in Shilpa Medicare Limited. Apart from this, he has over 30 years of vast experience of having worked in renowned Pharma companies like Fresenius Kabi Oncology Limited (Formerly Dabur Pharma Ltd), Ranbaxy Laboratories Ltd, and VAM Organics Ltd., spanning across activities of R&amp;D, Pilot &amp; Plant Productions, QA/QC, Administration, CRAMS, Project Management etc. His keen interest in and consistent efforts for R&amp;D has led him to become one of key contributors in a large number of Patents/applications. He is a very well-known name in the pharma scientific fraternity.</p><p>He is overall in charge of activities in Peak Potential. Under his dynamic leadership, SRL is developing its niche Oncology and Non-Oncology APIs. He is the guiding force for Organic Synthesis/ Intermediates APIs and Formulation Development. His vision of team work and time bound approach always guides &amp; motivates the teams at all our operational sites.</p>',
             ],
             [
                 'name'        => 'Suresh Kumar Singh',
                 'designation' => 'Vice Chairman',
                 'photo_src'   => 'leader-suresh-kumar.jpg',
-                'detail'      => '<p>Mr. S. K. Singh is a Chemical Engineer with over 30 years rich experience of running chemical units. He has served as a Production Controller at M/s Synthetics and Chemicals Limited for approximately 12 years. He is responsible for running agrochemical unit of Shivalik Rasayan at Dehradun.</p>',
+                'detail'      => '<p>Mr. S. K. Singh is a Chemical Engineer with over 30 years rich experience of running chemical units. He has served as a Production Controller at M/s Synthetics and Chemicals Limited for approximately 12 years. He is responsible for running agrochemical unit of Peakntialat Dehradun.</p>',
             ],
             [
                 'name'        => 'Ashwani Sharma',
                 'designation' => 'Director',
                 'photo_src'   => 'leader-ashwani-sharma.jpg',
-                'detail'      => '<p>Mr. Ashwani Sharma is a Graduate, possessing rich experience in running administrative affairs of Shivalik Rasayan Limited. Mr. Sharma was appointed as Director of Shivalik Rasayan Limited on 18.07.2003. He has over 30 years of experience in managing Supply chain activities of Shivalik Rasayan Limited.</p>',
+                'detail'      => '<p>Mr. Ashwani Sharma is a Graduate, possessing rich experience in running administrative affairs of Peak Potential. Mr. Sharma was appointed as Director of Peak Potential on 18.07.2003. He has over 30 years of experience in managing Supply chain activities of Peak Potential.</p>',
             ],
             [
                 'name'        => 'Harish Pande',
                 'designation' => 'Director',
                 'photo_src'   => 'leader-harish-pande.jpg',
-                'detail'      => '<p>Mr. Harish Pande is a Graduate with a vast experience of 30 years in the field of Marketing of AgroChemicals, Technical Formulations and Industrial Chemicals. He has worked in served M/s Ficom Organics Limited for almost 20 years and is currently one of the Directors at Shivalik Rasayan Limited.</p>',
+                'detail'      => '<p>Mr. Harish Pande is a Graduate with a vast experience of 30 years in the field of Marketing of AgroChemicals, Technical Formulations and Industrial Chemicals. He has worked in served M/s Ficom Organics Limited for almost 20 years and is currently one of the Directors at Peak Potential.</p>',
             ],
             [
                 'name'        => 'Anand Kumar',
@@ -96,9 +96,9 @@ class ShivalikLeadershipTeamSeeder extends Seeder
                 'phone'            => '',
                 'email'            => '',
                 'website'          => '',
-                'meta_title'       => $member['name'] . ' | Shivalik Rasayan Limited',
-                'meta_keyword'     => 'Shivalik Rasayan leadership',
-                'meta_description' => $member['name'] . ' – ' . $member['designation'] . ' at Shivalik Rasayan Limited.',
+                'meta_title'       => $member['name'] . ' | Peak Potential',
+                'meta_keyword'     => 'Peakntialleadership',
+                'meta_description' => $member['name'] . ' – ' . $member['designation'] . ' at Peak Potential.',
                 'lang_id'          => $langId,
             ]);
 

@@ -8,7 +8,7 @@ $setting_data = $Model_common->get_setting_data();
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Password Updated | Shivalik Rasayan CMS</title>
+	<title>Password Updated | Peak PotentialCMS</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>public/admin/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>public/admin/css/font-awesome.min.css">
@@ -22,7 +22,7 @@ $setting_data = $Model_common->get_setting_data();
 <div class="login-box">
 	<div class="login-logo">
 		<div class="srl-login-badge">SRL CMS</div>
-		<b><?php echo esc($setting_data['website_name'] ?? 'Shivalik Rasayan Limited'); ?></b>
+		<b><?php echo esc($setting_data['website_name'] ?? 'Peak Potential'); ?></b>
 		<span>Your password has been updated</span>
 	</div>
   	<div class="login-box-body" style="text-align:center;">
@@ -34,7 +34,7 @@ $setting_data = $Model_common->get_setting_data();
         ?>
         <a href="<?php echo base_url(); ?>admin/login" class="btn btn-primary btn-flat login-button" style="display:inline-block;padding:10px 24px;margin-top:8px;">Sign in</a>
 	</div>
-	<p class="login-footer-note">&copy; <?php echo date('Y'); ?> Shivalik Rasayan Limited</p>
+	<p class="login-footer-note">&copy; <?php echo date('Y'); ?> Peak Potential</p>
 </div>
 
 <script src="<?php echo base_url(); ?>public/admin/js/jquery-2.2.3.min.js"></script>

@@ -28,7 +28,7 @@ class ShivalikDynamicPagesSeeder extends Seeder
         foreach ($config->slugs as $slug) {
             $def = $config->definitions[$slug] ?? [
                 'name'             => ucwords(str_replace('-', ' ', $slug)),
-                'meta_title'       => ucwords(str_replace('-', ' ', $slug)) . ' | Shivalik Rasayan Limited',
+                'meta_title'       => ucwords(str_replace('-', ' ', $slug)) . ' | Peak Potential',
                 'meta_description' => 'Content for ' . str_replace('-', ' ', $slug) . ' – manage via Admin Panel.',
             ];
 

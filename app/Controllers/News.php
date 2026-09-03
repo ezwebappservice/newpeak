@@ -43,8 +43,8 @@ class News extends MY_Controller
         ];
         $data['page_title'] = 'News';
         $data['page_subtitle'] = 'Latest Updates';
-        $data['meta_title'] = 'News | Shivalik Rasayan Limited';
-        $data['meta_description'] = 'Latest news and updates from Shivalik Rasayan Limited.';
+        $data['meta_title'] = 'News | Peak Potential';
+        $data['meta_description'] = 'Latest news and updates from Peak Potential
         $GLOBALS['theme_current_page_slug'] = 'latest-news';
 
         echo view('view_header', $data);
@@ -72,7 +72,7 @@ class News extends MY_Controller
         $data = $this->baseData();
         $data['news_detail'] = $detail;
         $data['recent_news'] = $this->Model_news->recent_news(4, (int) $detail['news_id']);
-        $data['meta_title'] = $detail['meta_title'] ?: ($detail['news_title'] . ' | Shivalik Rasayan Limited');
+        $data['meta_title'] = $detail['meta_title'] ?: ($detail['news_title'] . ' | Peak Potential
         $data['meta_description'] = $detail['meta_description'] ?: ($detail['news_content_short'] ?? '');
         $data['meta_keywords'] = $detail['meta_keyword'] ?? '';
         $data['og_tags'] = '<meta property="og:title" content="' . esc($detail['news_title']) . '">'

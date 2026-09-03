@@ -47,7 +47,7 @@ class Investor extends MY_Controller
 
         $data = $this->layoutData([
             'page_title'         => 'Investor Relations',
-            'meta_title'         => 'Investor Relations | Shivalik Rasayan Limited',
+            'meta_title'         => 'Investor Relations | Peak Potential',
             'meta_description'   => 'Browse investor disclosures, financial reports, governance documents and shareholder information.',
             'investor_groups'    => $groups,
             'investor_parents'   => $parents,

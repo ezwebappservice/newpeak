@@ -34,8 +34,8 @@ class ShivalikFocusPagesContentSeeder extends Seeder
             foreach ($cfg->pages as $slug => $content) {
                 $def = $defs[$slug] ?? [
                     'name'             => ucwords(str_replace('-', ' ', $slug)),
-                    'meta_title'       => ucwords(str_replace('-', ' ', $slug)) . ' | Shivalik Rasayan Limited',
-                    'meta_description' => 'Shivalik Rasayan Limited – ' . str_replace('-', ' ', $slug) . '.',
+                    'meta_title'       => ucwords(str_replace('-', ' ', $slug)) . ' | Peak Potential',
+                    'meta_description' => 'Peak Potential – ' . str_replace('-', ' ', $slug) . '.',
                 ];
 
                 $existing = $this->db->table('tbl_page_dynamic')

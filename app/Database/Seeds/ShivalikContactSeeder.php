@@ -24,9 +24,9 @@ class ShivalikContactSeeder extends Seeder
             'contact_website'  => 'www.shivalikrasayan.com',
             'contact_hours'    => "For any queries, please connect on mail or phone\n\nPhone: +91-11-47589500\nMonday - Friday: 10:00 - 18:00\nSecond Saturday is Off: 10:00 - 16:00",
             'contact_map'      => '',
-            'mt_contact'       => 'Contact Us | Shivalik Rasayan Limited',
-            'mk_contact'       => 'Shivalik Rasayan contact, SRL connect',
-            'md_contact'       => 'Contact Shivalik Rasayan Limited for product inquiries, partnerships and investor relations.',
+            'mt_contact'       => 'Contact Us | Peak Potential',
+            'mk_contact'       => 'Peak Potentialcontact, SRL connect',
+            'md_contact'       => 'Contact Peak Potential for product inquiries, partnerships and investor relations.',
         ]);
 
         $this->db->table('tbl_page_dynamic')

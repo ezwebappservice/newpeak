@@ -74,7 +74,7 @@ $website = trim($pc['contact_website'] ?? '');
 
     <?php if (! empty($locations)): ?>
     <div class="srl-contact-facilities reveal" data-reveal>
-      <h3 class="srl-section-heading text-center">Works, Shivalik Rasayan Limited</h3>
+      <h3 class="srl-section-heading text-center">Works, Peak Potential</h3>
       <div class="row g-4">
         <?php foreach ($locations as $loc): ?>
         <div class="col-md-4">

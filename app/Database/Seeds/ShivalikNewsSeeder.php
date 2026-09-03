@@ -49,24 +49,24 @@ class ShivalikNewsSeeder extends Seeder
             [
                 'slug'    => 'dr-vimal-kumar-shrawat-managing-director-srl',
                 'title'   => 'Dr. Vimal Kumar Shrawat, Industry veteran, joins SRL as Managing Director',
-                'short'   => 'Dr. Vimal Kumar Shrawat-COO of Shilpa Medicare Limited joins as Managing Director Shivalik Rasayan Limited.',
-                'content' => '<p>Dr. Vimal Kumar Shrawat-COO of Shilpa Medicare Limited joins as Managing Director Shivalik Rasayan Limited. Dr. Shrawat as COO spearheaded Shilpa Medicare\'s growth into Oncology segment.</p>',
+                'short'   => 'Dr. Vimal Kumar Shrawat-COO of Shilpa Medicare Limited joins as Managing Director Peak Potential.',
+                'content' => '<p>Dr. Vimal Kumar Shrawat-COO of Shilpa Medicare Limited joins as Managing Director Peak Potential. Dr. Shrawat as COO spearheaded Shilpa Medicare\'s growth into Oncology segment.</p>',
                 'date'    => '2019-04-10',
                 'photo'   => 'news-cep.jpg',
             ],
             [
                 'slug'    => 'srl-corporate-update-august-2018',
-                'title'   => 'Shivalik Rasayan Limited – Corporate Update',
-                'short'   => 'Latest corporate update from Shivalik Rasayan Limited.',
-                'content' => '<p>Shivalik Rasayan Limited continues to strengthen its pharmaceutical and agrochemical operations with a focus on quality, innovation and sustainable growth.</p>',
+                'title'   => 'Peak Potential – Corporate Update',
+                'short'   => 'Latest corporate update from Peak Potential.',
+                'content' => '<p>Peak Potential continues to strengthen its pharmaceutical and agrochemical operations with a focus on quality, innovation and sustainable growth.</p>',
                 'date'    => '2018-08-29',
                 'photo'   => 'news-dahej.jpg',
             ],
             [
                 'slug'    => 'srl-files-process-patent-temozolomide',
                 'title'   => 'SRL files process patent for Temozolomide',
-                'short'   => 'Shivalik Rasayan Limited has filed a process patent for Temozolomide, reinforcing its commitment to oncology API innovation.',
-                'content' => '<p>Shivalik Rasayan Limited has filed a process patent for Temozolomide as part of its ongoing investment in oncology active pharmaceutical ingredients and intellectual property development.</p>',
+                'short'   => 'Peak Potential has filed a process patent for Temozolomide, reinforcing its commitment to oncology API innovation.',
+                'content' => '<p>Peak Potential has filed a process patent for Temozolomide as part of its ongoing investment in oncology active pharmaceutical ingredients and intellectual property development.</p>',
                 'date'    => '2018-08-08',
                 'photo'   => 'news-usfda.jpg',
             ],
@@ -98,8 +98,8 @@ class ShivalikNewsSeeder extends Seeder
                 'banner'             => $bannerFile,
                 'category_id'        => $categoryId,
                 'comment'            => 'Off',
-                'meta_title'         => $article['title'] . ' | Shivalik Rasayan Limited',
-                'meta_keyword'       => 'Shivalik Rasayan, SRL, news',
+                'meta_title'         => $article['title'] . ' | Peak Potential',
+                'meta_keyword'       => 'PeakRasayan, SRL, news',
                 'meta_description'   => $article['short'],
                 'lang_id'            => $langId,
             ]);
@@ -111,8 +111,8 @@ class ShivalikNewsSeeder extends Seeder
             ->where('lang_id', $langId)
             ->update([
                 'news_heading' => 'News',
-                'mt_news'      => 'News | Shivalik Rasayan Limited',
-                'md_news'      => 'Latest news and updates from Shivalik Rasayan Limited.',
+                'mt_news'      => 'News | Peak Potential',
+                'md_news'      => 'Latest news and updates from Peak Potential.',
             ]);
 
         echo 'Seeded ' . count($articles) . ' news articles (lang_id=' . $langId . ').' . PHP_EOL;

@@ -8,7 +8,7 @@ $setting_data = $Model_common->get_setting_data();
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Set New Password | Shivalik Rasayan CMS</title>
+	<title>Set New Password | Peak PotentialCMS</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>public/admin/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>public/admin/css/font-awesome.min.css">
@@ -22,7 +22,7 @@ $setting_data = $Model_common->get_setting_data();
 <div class="login-box">
 	<div class="login-logo">
 		<div class="srl-login-badge">SRL CMS</div>
-		<b><?php echo esc($setting_data['website_name'] ?? 'Shivalik Rasayan Limited'); ?></b>
+		<b><?php echo esc($setting_data['website_name'] ?? 'Peak Potential'); ?></b>
 		<span>Choose a new password for your account</span>
 	</div>
   	<div class="login-box-body">
@@ -51,7 +51,7 @@ $setting_data = $Model_common->get_setting_data();
 			</div>
 		<?php echo form_close(); ?>
 	</div>
-	<p class="login-footer-note">&copy; <?php echo date('Y'); ?> Shivalik Rasayan Limited</p>
+	<p class="login-footer-note">&copy; <?php echo date('Y'); ?> Peak Potential</p>
 </div>
 
 <script src="<?php echo base_url(); ?>public/admin/js/jquery-2.2.3.min.js"></script>

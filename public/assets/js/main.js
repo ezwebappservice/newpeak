@@ -1,5 +1,5 @@
 /**
- * Shivalik Rasayan Limited – Main JavaScript
+ * Peak Potential – Main JavaScript
  * Modular, CMS-ready interactions
  */
 
