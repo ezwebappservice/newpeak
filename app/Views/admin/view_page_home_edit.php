@@ -60,7 +60,7 @@ if(!$this->session->userdata('id')) {
                     <input type="hidden" name="home_welcome_pbar1_text" value="<?= esc($page_home['home_welcome_pbar1_text'] ?? '') ?>">
                     <input type="hidden" name="home_welcome_pbar2_text" value="<?= esc($page_home['home_welcome_pbar2_text'] ?? '') ?>">
 
-                    <?= view('admin/partials/page_home_edit_theme') ?>
+
 
 
 
