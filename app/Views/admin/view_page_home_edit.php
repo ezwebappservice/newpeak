@@ -27,25 +27,7 @@ if(!$this->session->userdata('id')) {
             <div class="box box-info" style="padding:0">
                 <div class="box-body" style="padding-top:0">
 
-                    <h3 class="sec_title">Meta Information</h3>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Title</label>
-                        <div class="col-sm-9">
-                            <input type="text" autocomplete="off" class="form-control" name="title" value="<?= esc($page_home['title']) ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Meta Keyword</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" name="meta_keyword" style="height:70px;"><?= esc($page_home['meta_keyword']) ?></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Meta Description</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" name="meta_description" style="height:70px;"><?= esc($page_home['meta_description']) ?></textarea>
-                        </div>
-                    </div>
+                    
 
                     <?= view('admin/partials/page_home_edit_hero') ?>
 
@@ -80,47 +62,9 @@ if(!$this->session->userdata('id')) {
 
                     <?= view('admin/partials/page_home_edit_theme') ?>
 
-                    <h3 class="sec_title">Products Section</h3>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Section label</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_service_title" value="<?= esc($page_home['home_service_title']) ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Heading</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_service_subtitle" value="<?= esc($page_home['home_service_subtitle']) ?>">
-                        </div>
-                    </div>
 
-                    <h3 class="sec_title">Industries Section</h3>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Section label</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_feature_title" value="<?= esc($page_home['home_feature_title']) ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Heading</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_feature_subtitle" value="<?= esc($page_home['home_feature_subtitle']) ?>">
-                        </div>
-                    </div>
 
-                    <h3 class="sec_title">Why Choose Us Section</h3>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Section label</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_why_choose_title" value="<?= esc($page_home['home_why_choose_title']) ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Heading</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_why_choose_subtitle" value="<?= esc($page_home['home_why_choose_subtitle']) ?>">
-                        </div>
-                    </div>
+
 
                     <h3 class="sec_title">Hero Stats Bar</h3>
                     <p class="col-sm-offset-2 col-sm-9 text-muted">These five counts appear on the homepage and program pages. Value is the large number/text (for example 5000 or Top 100). Suffix is optional (for example +).</p>
@@ -142,33 +86,7 @@ if(!$this->session->userdata('id')) {
                     </div>
                     <?php endfor; ?>
 
-                    <h3 class="sec_title">Testimonials Section</h3>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Section label</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_testimonial_title" value="<?= esc($page_home['home_testimonial_title']) ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Heading</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_testimonial_subtitle" value="<?= esc($page_home['home_testimonial_subtitle']) ?>">
-                        </div>
-                    </div>
-
-                    <h3 class="sec_title">News Section</h3>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Section label</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_blog_title" value="<?= esc($page_home['home_blog_title']) ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Heading</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="home_blog_subtitle" value="<?= esc($page_home['home_blog_subtitle']) ?>">
-                        </div>
-                    </div>
+                   
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label"></label>
