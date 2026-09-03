@@ -18,46 +18,10 @@ $sectionToggles = [
         'extra'  => 'video_url',
     ],
     [
-        'title'  => 'Products',
-        'field'  => 'home_service_status',
-        'form'   => 'form_home_service',
-        'hint'   => 'Product cards: Admin → Homepage Sections → Products.',
-    ],
-    [
-        'title'  => 'Industries',
-        'field'  => 'home_feature_status',
-        'form'   => 'form_home_feature',
-        'hint'   => 'Industry cards: Admin → Homepage Sections → Industries.',
-    ],
-    [
-        'title'  => 'Why Choose Us',
-        'field'  => 'home_why_choose_status',
-        'form'   => 'form_home_why_choose',
-        'hint'   => 'Why Choose items: Admin → Homepage Sections → Why Choose Us.',
-    ],
-    [
         'title'  => 'Hero Stats Bar',
         'field'  => 'counter_status',
         'form'   => 'form_home_counter_text',
         'hint'   => 'Stat values and labels are edited under Edit Page Content.',
-    ],
-    [
-        'title'  => 'Certifications',
-        'field'  => 'home_certification_status',
-        'form'   => 'form_home_certification',
-        'hint'   => 'Certification cards: Admin → Homepage Sections → Certifications.',
-    ],
-    [
-        'title'  => 'Partners',
-        'field'  => 'home_partners_status',
-        'form'   => 'form_home_partners',
-        'hint'   => 'Partner logos: Admin → Homepage Sections → Partners.',
-    ],
-    [
-        'title'  => 'Testimonials',
-        'field'  => 'home_testimonial_status',
-        'form'   => 'form_home_testimonial',
-        'hint'   => 'Testimonials: Admin → Homepage Sections → Testimonials.',
     ],
     [
         'title'  => 'News',
@@ -99,40 +63,7 @@ $ph = $page_home_lang_independent ?? [];
             <div class="box box-info">
                 <div class="box-header with-border"><h3 class="box-title">Section Visibility</h3></div>
                 <div class="box-body">
-                    <?php foreach ($sectionToggles as $section): ?>
-                    <div class="srl-home-section-panel">
-                        <h4 class="sec_title"><?= esc($section['title']) ?></h4>
-                        <?php if (! empty($section['hint'])): ?>
-                        <p class="text-muted srl-home-section-hint"><?= esc($section['hint']) ?></p>
-                        <?php endif; ?>
-                        <?= form_open(base_url('admin/page-home/update'), ['class' => 'form-horizontal']) ?>
-                        <div class="form-group mb-0">
-                            <label class="col-sm-2 control-label">Show on home?</label>
-                            <div class="col-sm-2">
-                                <select name="<?= esc($section['field']) ?>" class="form-control" style="width:auto;">
-                                    <option value="Show" <?= ($ph[$section['field']] ?? 'Show') === 'Show' ? 'selected' : '' ?>>Show</option>
-                                    <option value="Hide" <?= ($ph[$section['field']] ?? 'Show') === 'Hide' ? 'selected' : '' ?>>Hide</option>
-                                </select>
-                            </div>
-                            <?php if (($section['extra'] ?? '') === 'blog_item'): ?>
-                            <label class="col-sm-2 control-label">Items to show</label>
-                            <div class="col-sm-1">
-                                <input type="number" min="1" max="12" name="home_blog_item" class="form-control" value="<?= (int) ($ph['home_blog_item'] ?? 3) ?>">
-                            </div>
-                            <?php endif; ?>
-                            <?php if (($section['extra'] ?? '') === 'video_url'): ?>
-                            <label class="col-sm-2 control-label">YouTube URL</label>
-                            <div class="col-sm-4">
-                                <input type="text" name="home_welcome_video" class="form-control" placeholder="https://www.youtube.com/watch?v=..." value="<?= esc($ph['home_welcome_video'] ?? '') ?>">
-                            </div>
-                            <?php endif; ?>
-                            <div class="col-sm-3">
-                                <button type="submit" class="btn btn-success" name="<?= esc($section['form']) ?>">Update</button>
-                            </div>
-                        </div>
-                        <?= form_close() ?>
-                    </div>
-                    <?php endforeach; ?>
+                    
 
                     <div class="srl-home-section-panel">
                         <h4 class="sec_title">Hero Image</h4>
