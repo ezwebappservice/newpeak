@@ -128,15 +128,13 @@
 						</ul>
 					</li>
 
-					// footer settings
-					<li class="treeview <?php if( ($class_name == 'footer_settings') ) {echo 'active';} ?>">
-			          <a href="<?php echo base_url(); ?>admin/footer_settings">
+					<li class="treeview <?php if($class_name == 'footer_setting') {echo 'active';} ?>">
+			          <a href="<?php echo base_url(); ?>admin/footer-setting">
 			            <i class="fa fa-cog"></i> <span>Footer Settings</span>
 			          </a>
 			        </li>
 
-					// social media settings
-					<li class="treeview <?php if( ($class_name == 'social_media_settings') ) {echo 'active';} ?>">
+					<li class="treeview <?php if($class_name == 'social_media') {echo 'active';} ?>">
 			          <a href="<?php echo base_url(); ?>admin/social_media">
 			            <i class="fa fa-share-alt"></i> <span>Social Media</span>
 			          </a>

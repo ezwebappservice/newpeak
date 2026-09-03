@@ -8,7 +8,7 @@ $sectionToggles = [
         'title'  => 'Hero',
         'field'  => 'home_hero_status',
         'form'   => 'form_home_hero',
-        'hint'   => 'Hero text: Edit Page Content below. Background slides: Page Settings → Hero Background Slides.',
+        'hint'   => 'Hero copy, buttons, and portrait card: Edit Page Content. Portrait photo: Hero Image below.',
     ],
     [
         'title'  => 'Video Section',
@@ -135,8 +135,8 @@ $ph = $page_home_lang_independent ?? [];
                     <?php endforeach; ?>
 
                     <div class="srl-home-section-panel">
-                        <h4 class="sec_title">About Section Image</h4>
-                        <p class="text-muted srl-home-section-hint">Image shown beside the About text on the homepage.</p>
+                        <h4 class="sec_title">Hero Image</h4>
+                        <p class="text-muted srl-home-section-hint">Portrait shown in the homepage hero. Copy and card text are edited under Edit Page Content.</p>
                         <?= form_open_multipart(base_url('admin/page-home/update'), ['class' => 'form-horizontal']) ?>
                         <?php if (! empty($ph['home_welcome_video_bg'])): ?>
                         <div class="form-group">

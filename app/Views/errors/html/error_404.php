@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>404 Page Not Found</title>
+<title><?= esc($title ?? '404 Page Not Found') ?></title>
 <style type="text/css">
 
 ::selection { background-color: #E13300; color: white; }
@@ -55,8 +55,12 @@ p {
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+		<h1><?= esc($heading ?? $title ?? '404 Page Not Found') ?></h1>
+		<?php if (ENVIRONMENT !== 'production'): ?>
+			<p><?= nl2br(esc($message ?? 'The page you requested was not found.')) ?></p>
+		<?php else: ?>
+			<p>The page you requested was not found.</p>
+		<?php endif; ?>
 	</div>
 </body>
 </html>

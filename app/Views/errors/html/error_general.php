@@ -55,8 +55,10 @@ p {
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+		<h1><?= esc($heading ?? $title ?? 'An Error Was Encountered') ?></h1>
+		<?php if (! empty($message)): ?>
+			<p><?= nl2br(esc(is_string($message) ? $message : '')) ?></p>
+		<?php endif; ?>
 	</div>
 </body>
 </html>

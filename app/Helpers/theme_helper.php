@@ -179,6 +179,87 @@ if (! function_exists('peak_video_embed_src')) {
     }
 }
 
+if (! function_exists('peak_cms_url')) {
+    function peak_cms_url(?string $url, string $fallback = ''): string
+    {
+        $url = trim((string) $url);
+        if ($url === '') {
+            return $fallback;
+        }
+
+        if (preg_match('#^(https?:)?//#i', $url) || str_starts_with($url, '#') || str_starts_with($url, 'mailto:') || str_starts_with($url, 'tel:')) {
+            return $url;
+        }
+
+        return base_url(ltrim($url, '/'));
+    }
+}
+
+if (! function_exists('peak_home_hero')) {
+    /**
+     * Homepage hero copy from CMS, with Peak defaults as fallback.
+     *
+     * @return array{
+     *   visible: bool,
+     *   eyebrow: string,
+     *   prefix: string,
+     *   highlight: string,
+     *   suffix: string,
+     *   lead: string,
+     *   btn1_text: string,
+     *   btn1_url: string,
+     *   btn2_text: string,
+     *   btn2_url: string,
+     *   features: list<array{icon: string, label: string}>,
+     *   card_name: string,
+     *   card_role: string,
+     *   card_org: string,
+     *   card_badge: string,
+     *   tab_text: string,
+     *   photo: string,
+     *   photo_alt: string
+     * }
+     */
+    function peak_home_hero(?array $page_home = null, ?array $page_home_lang_independent = null): array
+    {
+        $page_home = is_array($page_home) ? $page_home : [];
+        $independent = is_array($page_home_lang_independent) ? $page_home_lang_independent : [];
+
+        $val = static function (string $key, string $default) use ($page_home): string {
+            $value = trim((string) ($page_home[$key] ?? ''));
+
+            return $value !== '' ? $value : $default;
+        };
+
+        $photoFile = trim((string) ($independent['home_welcome_video_bg'] ?? ''));
+
+        return [
+            'visible'    => ($independent['home_hero_status'] ?? 'Show') !== 'Hide',
+            'eyebrow'    => $val('hero_badge', 'THE HUMAN POTENTIAL INSTITUTE'),
+            'prefix'     => $val('hero_title_prefix', 'Break the'),
+            'highlight'  => $val('hero_title_highlight', 'Invisible Loops'),
+            'suffix'     => $val('hero_title_suffix', 'Holding You Back.'),
+            'lead'       => $val('hero_lead', 'We work with both students and parents to create lasting change. Students build emotional, communication and financial intelligence beyond academics. Parents gain practical tools to manage screens, behaviour and everyday conflict. Together, they build calmer relationships and confident, life-ready children.'),
+            'btn1_text'  => $val('hero_btn1_text', 'Book a Discovery Call'),
+            'btn1_url'   => peak_cms_url($page_home['hero_btn1_url'] ?? '', peak_enquiry_url()),
+            'btn2_text'  => $val('hero_btn2_text', 'Request a Proposal'),
+            'btn2_url'   => peak_cms_url($page_home['hero_btn2_url'] ?? '', base_url('contact-us')),
+            'features'   => [
+                ['icon' => 'mobile-phone.png', 'label' => $val('hero_feature_1_title', "Screen\nAddiction")],
+                ['icon' => 'brain.png', 'label' => $val('hero_feature_2_title', "Emotional\nOverwhelm")],
+                ['icon' => 'refresh.png', 'label' => $val('hero_feature_3_title', "Limiting\nPatterns")],
+            ],
+            'card_name'  => $val('hero_card_name', 'Sapna KS'),
+            'card_role'  => $val('hero_card_role', 'Emotional Strength Educator'),
+            'card_org'   => $val('hero_card_org', 'Founder, Peak Potential Academy'),
+            'card_badge' => $val('hero_card_badge', "Top 100 Global\nEducation Leader"),
+            'tab_text'   => $val('hero_tab_text', 'Book ₹599 Session'),
+            'photo'      => $photoFile !== '' ? theme_upload($photoFile) : peak_img('14 hero section image.png'),
+            'photo_alt'  => $val('hero_card_name', 'Sapna KS'),
+        ];
+    }
+}
+
 if (! function_exists('theme_section_url')) {
     function theme_section_url(string $anchor): string
     {

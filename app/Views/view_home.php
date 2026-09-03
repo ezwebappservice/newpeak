@@ -1,48 +1,41 @@
+<?php
+$page_home = is_array($page_home ?? null) ? $page_home : [];
+$page_home_lang_independent = is_array($page_home_lang_independent ?? null) ? $page_home_lang_independent : [];
+$hero = peak_home_hero($page_home, $page_home_lang_independent);
+?>
 <!-- ===== Hero Section ===== -->
 <section class="hero">
+<?php if ($hero['visible']): ?>
   <div class="container">
     <div class="row align-items-end pt-5 banner-mobile">
 
       <!-- Left column -->
       <div class="col-lg-6">
-        <p class="hero-eyebrow">THE HUMAN POTENTIAL INSTITUTE</p>
+        <p class="hero-eyebrow"><?= cms_text($hero['eyebrow']) ?></p>
         <h1 class="hero-heading">
-          Break the<br>
-          <span class="accent">Invisible Loops</span><br>
-          Holding You Back.
+          <?= cms_text($hero['prefix']) ?><br>
+          <span class="accent"><?= cms_text($hero['highlight']) ?></span><br>
+          <?= cms_text($hero['suffix']) ?>
         </h1>
 
         <div class="hero-features">
+          <?php foreach ($hero['features'] as $feature): ?>
           <div class="hero-feature">
             <span class="icon-circle">
-              <img src="<?= peak_img('mobile-phone.png') ?>" alt="">
-              <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg> -->
+              <img src="<?= peak_img($feature['icon']) ?>" alt="">
             </span>
-            <span class="label">Screen<br>Addiction</span>
+            <span class="label"><?= cms_multiline($feature['label']) ?></span>
           </div>
-          <div class="hero-feature">
-            <span class="icon-circle">
-              <img src="<?= peak_img('brain.png') ?>" alt="">
-              <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.5.5.8 1 .8 1.7V16h6.4v-.8c0-.7.3-1.2.8-1.7A6 6 0 0012 3z"/></svg> -->
-            </span>
-            <span class="label">Emotional<br>Overwhelm</span>
-          </div>
-          <div class="hero-feature">
-            <span class="icon-circle">
-              <img src="<?= peak_img('refresh.png') ?>" alt="">
-              <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> -->
-            </span>
-            <span class="label">Limiting<br>Patterns</span>
-          </div>
+          <?php endforeach; ?>
         </div>
 
         <p class="hero-text">
-          We work with both students and parents to create lasting change. Students build emotional, communication and financial intelligence beyond academics. Parents gain practical tools to manage screens, behaviour and everyday conflict. Together, they build calmer relationships and confident, life-ready children. 
+          <?= cms_text($hero['lead']) ?>
         </p>
 
         <div class="hero-ctas  pb-5">
-          <a href="<?= peak_enquiry_url() ?>" class="btn-primary-maroon">Book a Discovery Call <span>&rarr;</span></a>
-          <a href="<?= base_url('contact-us') ?>" class="btn-outline-maroon">Request a Proposal <span>&rarr;</span></a>
+          <a href="<?= cms_attr($hero['btn1_url']) ?>" class="btn-primary-maroon"><?= cms_text($hero['btn1_text']) ?> <span>&rarr;</span></a>
+          <a href="<?= cms_attr($hero['btn2_url']) ?>" class="btn-outline-maroon"><?= cms_text($hero['btn2_text']) ?> <span>&rarr;</span></a>
         </div>
       </div>
 
@@ -52,34 +45,16 @@
           <div class="hero-dots"></div>
           <div class="hero-ring"></div>
           <div class="hero-circle">
-              <img src="<?= peak_img('14 hero section image.png') ?>" alt="">
+              <img src="<?= cms_attr($hero['photo']) ?>" alt="<?= cms_attr($hero['photo_alt']) ?>">
             <div class="hero-info-card">
-              <div class="name">Sapna KS</div>
-              <div class="role">Emotional Strength Educator</div>
-              <div class="org">Founder, Peak Potential Academy</div>
+              <div class="name"><?= cms_text($hero['card_name']) ?></div>
+              <div class="role"><?= cms_text($hero['card_role']) ?></div>
+              <div class="org"><?= cms_text($hero['card_org']) ?></div>
               <div class="badge-line">
                 <span class="badge-icon">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b08a4e" stroke-width="1.8"><path d="M8 21h8M12 17v4M17 5h3a1 1 0 011 1v1a4 4 0 01-4 4M7 5H4a1 1 0 00-1 1v1a4 4 0 004 4M7 5h10v4a5 5 0 01-10 0V5z"></path></svg>
                 </span>
-                <span class="badge-text">Top 100 Global<br>Education Leader</span>
-              </div>
-            </div>
-            <!-- <div class="hero-photo">
-              <img src="<?= peak_img('hero.PNG') ?>" alt="Portrait of Sapna KS, Founder of Peak Potential Academy">
-            </div> -->
-
-           
-
-            <!-- Info card -->
-            <div class="hero-info-card">
-              <div class="name">Sapna KS</div>
-              <div class="role">Emotional Strength Educator</div>
-              <div class="org">Founder, Peak Potential Academy</div>
-              <div class="badge-line">
-                <span class="badge-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b08a4e" stroke-width="1.8"><path d="M8 21h8M12 17v4M17 5h3a1 1 0 011 1v1a4 4 0 01-4 4M7 5H4a1 1 0 00-1 1v1a4 4 0 004 4M7 5h10v4a5 5 0 01-10 0V5z"/></svg>
-                </span>
-                <span class="badge-text">Top 100 Global<br>Education Leader</span>
+                <span class="badge-text"><?= cms_multiline($hero['card_badge']) ?></span>
               </div>
             </div>
           </div>
@@ -88,13 +63,13 @@
 
     </div>
   </div>
- <!-- Book session tab -->
-            <a href="<?= peak_enquiry_url() ?>" class="hero-book-tab">
+            <a href="<?= cms_attr($hero['btn1_url']) ?>" class="hero-book-tab">
               <span class="phone-icon">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.9.35 1.78.68 2.61a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.47-1.27a2 2 0 012.11-.45c.83.33 1.71.56 2.61.68A2 2 0 0122 16.92z"/></svg>
               </span>
-              <span class="tab-text">Book ₹599 Session</span>
+              <span class="tab-text"><?= cms_text($hero['tab_text']) ?></span>
             </a>
+<?php endif; ?>
 <?= view('partials/peak_stats_bar') ?>
 </section>
 
