@@ -24,6 +24,7 @@ $routes->get('terms-and-conditions', 'Terms_and_conditions::index');
 $routes->setAutoRoute(true);
 
 $routes->add('admin', 'Admin\Login::index');
+$routes->match(['get', 'post'], 'admin/page-home/edit(:num)', 'Admin\Page_home::edit/$1');
 $routes->get('admin/footer-setting', 'Admin\Footer_setting::index');
 $routes->get('admin/footer_settings', 'Admin\Footer_setting::index');
 $routes->get('admin/footer-settings', 'Admin\Footer_setting::index');

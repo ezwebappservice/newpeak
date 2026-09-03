@@ -143,16 +143,10 @@ class Page_home extends BaseController
 			$counter_5_suffix = $this->request->getPost('counter_5_suffix', true);
 			$home_welcome_video = $this->request->getPost('home_welcome_video');
 
-			$this->form_validation->set_rules('title', 'Title', 'trim|required');
-
-			if($this->form_validation->run() == FALSE) {
-				$valid = 0;
-                $error .= validation_errors();
-            }
-
 		    if($valid == 1) 
 		    {
 	    		$existing = $this->Model_page_home->get_page_home($id);
+	    		$posted = $this->request->getPost() ?: [];
 
 	    		$form_data = array(
 					'title' => $title,
@@ -244,6 +238,13 @@ class Page_home extends BaseController
 					'counter_4_suffix' => $counter_4_suffix,
 					'counter_5_suffix' => $counter_5_suffix,
 	            );
+
+	            foreach ($form_data as $key => $value) {
+	            	if (! array_key_exists($key, $posted)) {
+	            		$form_data[$key] = $existing[$key] ?? $value;
+	            	}
+	            }
+
 	            $this->Model_page_home->update($id,$form_data);
 
 	            if ($home_welcome_video !== null) {
@@ -259,7 +260,7 @@ class Page_home extends BaseController
 		    else
 		    {
 		    	$this->session->setFlashdata('error',$error);
-				redirect(base_url().'admin/page-home/edit'.$id);
+				redirect(base_url().'admin/page-home/edit/'.$id);
 		    }
            
 		} else {
