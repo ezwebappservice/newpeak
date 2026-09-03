@@ -30,10 +30,7 @@ if(!$this->session->userdata('id')) {
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#tab_logo" data-toggle="tab">Logo</a></li>
 					<li><a href="#tab_favicon" data-toggle="tab">Favicon</a></li>
-					<li><a href="#tab_top_bar" data-toggle="tab">Top Bar</a></li>
 					<li><a href="#tab_email" data-toggle="tab">Email</a></li>
-					<li><a href="#tab_banner" data-toggle="tab">Page Banners</a></li>
-					<li><a href="#tab_general" data-toggle="tab">General</a></li>
 				</ul>
 
 				<div class="tab-content">
@@ -92,33 +89,7 @@ if(!$this->session->userdata('id')) {
 						<?php echo form_close(); ?>
 					</div>
 
-					<div class="tab-pane" id="tab_top_bar">
-						<?php echo form_open(base_url().'admin/setting/update',array('class' => 'form-horizontal')); ?>
-						<div class="box box-info">
-							<div class="box-body">
-								<p class="text-muted" style="padding:0 15px 10px;">Shown in the site header bar (phone and email).</p>
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Top Bar Email</label>
-									<div class="col-sm-6">
-										<input type="text" class="form-control" name="top_bar_email" value="<?php echo esc($setting['top_bar_email']); ?>">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Top Bar Phone</label>
-									<div class="col-sm-6">
-										<input type="text" class="form-control" name="top_bar_phone" value="<?php echo esc($setting['top_bar_phone']); ?>">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label"></label>
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-success pull-left" name="form_top_bar">Update</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<?php echo form_close(); ?>
-					</div>
+					
 
 					<div class="tab-pane" id="tab_email">
 						<?php echo form_open(base_url().'admin/setting/update',array('class' => 'form-horizontal')); ?>
@@ -172,86 +143,7 @@ if(!$this->session->userdata('id')) {
 						<?php echo form_close(); ?>
 					</div>
 
-					<div class="tab-pane" id="tab_banner">
-						<div class="box box-info">
-							<div class="box-body">
-								<p class="text-muted">Hero banners for module pages. Dynamic pages use their own banner from Admin → Dynamic Pages.</p>
-								<table class="table table-bordered">
-									<tr>
-										<?php echo form_open_multipart(base_url().'admin/setting/update',array('class' => '')); ?>
-										<td style="width:50%">
-											<h4>Contact Page (/connect)</h4>
-											<p><img src="<?php echo base_url().'public/uploads/'.$setting['banner_contact']; ?>" alt="" style="width:100%;height:auto;"></p>
-										</td>
-										<td style="width:50%">
-											<h4>Change Banner</h4>
-											<input type="file" name="photo">
-											<input type="submit" class="btn btn-primary btn-xs" value="Update" style="margin-top:10px;" name="form_banner_contact">
-										</td>
-										<?php echo form_close(); ?>
-									</tr>
-									<tr>
-										<?php echo form_open_multipart(base_url().'admin/setting/update',array('class' => '')); ?>
-										<td style="width:50%">
-											<h4>Leadership Page (/leadership-at-srl)</h4>
-											<p><img src="<?php echo base_url().'public/uploads/'.$setting['banner_team']; ?>" alt="" style="width:100%;height:auto;"></p>
-										</td>
-										<td style="width:50%">
-											<h4>Change Banner</h4>
-											<input type="file" name="photo">
-											<input type="submit" class="btn btn-primary btn-xs" value="Update" style="margin-top:10px;" name="form_banner_team">
-										</td>
-										<?php echo form_close(); ?>
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-
-					<div class="tab-pane" id="tab_general">
-						<?php echo form_open(base_url().'admin/setting/update',array('class' => 'form-horizontal')); ?>
-						<div class="box box-info">
-							<div class="box-body">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Website Name</label>
-									<div class="col-sm-4">
-										<input type="text" name="website_name" class="form-control" value="<?php echo esc($setting['website_name']); ?>">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Preloader</label>
-									<div class="col-sm-4">
-										<select name="preloader_status" class="form-control select2">
-											<option value="On" <?php if($setting['preloader_status'] == 'On') {echo 'selected';} ?>>On</option>
-											<option value="Off" <?php if($setting['preloader_status'] == 'Off') {echo 'selected';} ?>>Off</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Live Chat Code</label>
-									<div class="col-sm-6">
-										<textarea name="tawk_live_chat_code" class="form-control" cols="30" rows="6"><?php echo esc($setting['tawk_live_chat_code']); ?></textarea>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Live Chat Status</label>
-									<div class="col-sm-4">
-										<select name="tawk_live_chat_status" class="form-control select2">
-											<option value="On" <?php if($setting['tawk_live_chat_status'] == 'On') {echo 'selected';} ?>>On</option>
-											<option value="Off" <?php if($setting['tawk_live_chat_status'] == 'Off') {echo 'selected';} ?>>Off</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label"></label>
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-success pull-left" name="form_other">Update</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<?php echo form_close(); ?>
-					</div>
+					
 
 				</div>
 			</div>
