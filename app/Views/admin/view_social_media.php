@@ -111,12 +111,7 @@ foreach ($social as $row) {
 								<input type="text" class="form-control" name="googleplus" value="<?php echo $googleplus; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Pinterest </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="pinterest" value="<?php echo $pinterest; ?>">
-							</div>
-						</div>
+						
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">YouTube </label>
 							<div class="col-sm-6">
@@ -129,60 +124,7 @@ foreach ($social as $row) {
 								<input type="text" class="form-control" name="instagram" value="<?php echo $instagram; ?>">
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Tumblr </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="tumblr" value="<?php echo $tumblr; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Flickr </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="flickr" value="<?php echo $flickr; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Reddit </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="reddit" value="<?php echo $reddit; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Snapchat </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="snapchat" value="<?php echo $snapchat; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">WhatsApp </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="whatsapp" value="<?php echo $whatsapp; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Quora </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="quora" value="<?php echo $quora; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">StumbleUpon </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="stumbleupon" value="<?php echo $stumbleupon; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Delicious </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="delicious" value="<?php echo $delicious; ?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Digg </label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" name="digg" value="<?php echo $digg; ?>">
-							</div>
-						</div>
+						
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label"></label>
 							<div class="col-sm-6">

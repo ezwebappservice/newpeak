@@ -123,16 +123,11 @@
 						</a>
 						<ul class="treeview-menu">
 							<li><a href="<?php echo base_url(); ?>admin/page-home"><i class="fa fa-circle-o"></i> Home Page</a></li>
-							<li><a href="<?php echo base_url(); ?>admin/page-about"><i class="fa fa-circle-o"></i> About Page</a></li>
 							<li><a href="<?php echo base_url(); ?>admin/page-contact"><i class="fa fa-circle-o"></i> Contact Page</a></li>
 						</ul>
 					</li>
 
-					<li class="treeview <?php if($class_name == 'footer_setting') {echo 'active';} ?>">
-			          <a href="<?php echo base_url(); ?>admin/footer-setting">
-			            <i class="fa fa-cog"></i> <span>Footer Settings</span>
-			          </a>
-			        </li>
+				
 
 					<li class="treeview <?php if($class_name == 'social_media') {echo 'active';} ?>">
 			          <a href="<?php echo base_url(); ?>admin/social_media">
