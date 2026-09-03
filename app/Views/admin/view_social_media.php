@@ -11,6 +11,7 @@ if(!$this->session->userdata('id')) {
 </section>
 
 <?php						
+$facebook = $twitter = $linkedin = $googleplus = $youtube = $instagram = '';
 foreach ($social as $row) {
 	if($row['social_name'] == 'Facebook') {
 		$facebook = $row['social_url'];
@@ -24,41 +25,11 @@ foreach ($social as $row) {
 	if($row['social_name'] == 'Google Plus') {
 		$googleplus = $row['social_url'];
 	}
-	if($row['social_name'] == 'Pinterest') {
-		$pinterest = $row['social_url'];
-	}
 	if($row['social_name'] == 'YouTube') {
 		$youtube = $row['social_url'];
 	}
 	if($row['social_name'] == 'Instagram') {
 		$instagram = $row['social_url'];
-	}
-	if($row['social_name'] == 'Tumblr') {
-		$tumblr = $row['social_url'];
-	}
-	if($row['social_name'] == 'Flickr') {
-		$flickr = $row['social_url'];
-	}
-	if($row['social_name'] == 'Reddit') {
-		$reddit = $row['social_url'];
-	}
-	if($row['social_name'] == 'Snapchat') {
-		$snapchat = $row['social_url'];
-	}
-	if($row['social_name'] == 'WhatsApp') {
-		$whatsapp = $row['social_url'];
-	}
-	if($row['social_name'] == 'Quora') {
-		$quora = $row['social_url'];
-	}
-	if($row['social_name'] == 'StumbleUpon') {
-		$stumbleupon = $row['social_url'];
-	}
-	if($row['social_name'] == 'Delicious') {
-		$delicious = $row['social_url'];
-	}
-	if($row['social_name'] == 'Digg') {
-		$digg = $row['social_url'];
 	}
 }
 ?>
