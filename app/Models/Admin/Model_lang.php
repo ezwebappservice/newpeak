@@ -255,6 +255,10 @@ class Model_lang extends \App\Models\CI3Model
     }
 
     function add_page_home($data) {
+        $db = \Config\Database::connect();
+        if ($db->tableExists('tbl_page_home')) {
+            $data = array_intersect_key($data, array_flip($db->getFieldNames('tbl_page_home')));
+        }
         $this->db->table('tbl_page_home')->insert($data);
         return $this->db->insert_id();
     }
