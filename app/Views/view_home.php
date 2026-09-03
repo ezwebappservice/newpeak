@@ -95,93 +95,42 @@
               </span>
               <span class="tab-text">Book ₹599 Session</span>
             </a>
-  <!-- Stats bar -->
-  <div class="stats-bar">
-    <div class="container">
-      <div class="row gy-3">
-        <div class="col-6 col-md-4 col-lg">
-          <div class="stat-item">
-            <span class="stat-icon">
-              <img src="<?= peak_img('school.png') ?>">
-              <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg> -->
-            </span>
-            <span>
-              <span class="stat-value">5000+</span>
-              <span class="stat-label">Students Trusted</span>
-            </span>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg">
-          <div class="stat-item">
-            <span class="stat-icon">
-              <img src="<?= peak_img('friends.png') ?>" alt="">
-              <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg> -->
-            </span>
-            <span>
-              <span class="stat-value">5,000+</span>
-              <span class="stat-label">Lives Impacted</span>
-            </span>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg">
-          <div class="stat-item">
-            <span class="stat-icon">
-              <img src="<?= peak_img('trophy.png') ?>" alt="">
-              <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M8 21h8M12 17v4M17 5h3a1 1 0 011 1v1a4 4 0 01-4 4M7 5H4a1 1 0 00-1 1v1a4 4 0 004 4M7 5h10v4a5 5 0 01-10 0V5z"/></svg> -->
-            </span>
-            <span>
-              <span class="stat-value">Top 100</span>
-              <span class="stat-label">Global Education Leader</span>
-            </span>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg">
-          <div class="stat-item">
-            <span class="stat-icon">
-              <img src="<?= peak_img('validation.png') ?>" alt="">
-              <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="8" r="5"/><path d="M8.5 13.5L6 21l6-3 6 3-2.5-7.5"/></svg> -->
-            </span>
-            <span>
-              <span class="stat-value">15+</span>
-              <span class="stat-label">Years Leadership</span>
-            </span>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg">
-          <div class="stat-item">
-            <span class="stat-icon">
-              <img src="<?= peak_img('globe.png') ?>" alt="">
-              <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg> -->
-            </span>
-            <span>
-              <span class="stat-value">Awardee In</span>
-              <span class="stat-label">35th World Education Summit, Dubai </span>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<?= view('partials/peak_stats_bar') ?>
 </section>
 
 
+<?php
+$page_home = is_array($page_home ?? null) ? $page_home : [];
+$page_home_lang_independent = is_array($page_home_lang_independent ?? null) ? $page_home_lang_independent : [];
+$show_home_video = ($page_home_lang_independent['home_welcome_status'] ?? 'Show') !== 'Hide';
+$video_eyebrow = trim((string) ($page_home['home_welcome_title'] ?? '')) ?: 'Discover More';
+$video_title = trim((string) ($page_home['home_welcome_subtitle'] ?? '')) ?: 'A closer look at what we do';
+$video_text = trim((string) ($page_home['home_welcome_text'] ?? ''));
+$video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_video'] ?? '');
+?>
+<?php if ($show_home_video): ?>
 <!-- ===== Video Section ===== -->
 <section class="video-section" aria-labelledby="video-section-title">
   <div class="container">
     <div class="row align-items-center g-4 g-lg-5">
       <div class="col-lg-5">
-        <p class="video-section__eyebrow">Discover More</p>
-        <h2 id="video-section-title">A closer look at what we do</h2>
+        <p class="video-section__eyebrow"><?= cms_text($video_eyebrow) ?></p>
+        <h2 id="video-section-title"><?= cms_text($video_title) ?></h2>
+        <?php if ($video_text !== ''): ?>
+        <div><?= cms_html($video_text) ?></div>
+        <?php else: ?>
         <p>Discover how Peak Potential Academy helps students, parents, schools, and organisations move forward with greater clarity, confidence, and purpose.</p>
+        <?php endif; ?>
       </div>
       <div class="col-lg-7">
         <div class="video-section__frame ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/Ve2IHBwbzus?si=x7vf0EGQbx5imjZz" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe src="<?= cms_attr($video_embed) ?>" title="<?= cms_attr($video_title) ?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </div>
   </div>
 </section>
+<?php endif; ?>
 
 <!-- ===== Invisible Loops Section ===== -->
 <section class="invisible-loops" aria-labelledby="loops-title">

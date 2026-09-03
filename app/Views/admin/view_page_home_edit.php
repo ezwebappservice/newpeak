@@ -49,9 +49,10 @@ if(!$this->session->userdata('id')) {
 
                     <?= view('admin/partials/page_home_edit_hero') ?>
 
-                    <h3 class="sec_title">About Section</h3>
+                    <h3 class="sec_title">Video Section</h3>
+                    <p class="col-sm-offset-2 col-sm-9 text-muted">Shown beside the homepage video. Paste a YouTube link (watch, share, or embed URL).</p>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Section label</label>
+                        <label class="col-sm-2 control-label">Eyebrow</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="home_welcome_title" value="<?= esc($page_home['home_welcome_title']) ?>">
                         </div>
@@ -69,15 +70,13 @@ if(!$this->session->userdata('id')) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Image badge line 1</label>
-                        <div class="col-sm-4">
-                            <input type="text" name="home_welcome_pbar1_text" class="form-control" value="<?= esc($page_home['home_welcome_pbar1_text']) ?>">
-                        </div>
-                        <label class="col-sm-2 control-label">Image badge line 2</label>
-                        <div class="col-sm-4">
-                            <input type="text" name="home_welcome_pbar2_text" class="form-control" value="<?= esc($page_home['home_welcome_pbar2_text']) ?>">
+                        <label class="col-sm-2 control-label">YouTube URL</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="home_welcome_video" placeholder="https://www.youtube.com/watch?v=..." value="<?= esc($page_home_lang_independent['home_welcome_video'] ?? '') ?>">
                         </div>
                     </div>
+                    <input type="hidden" name="home_welcome_pbar1_text" value="<?= esc($page_home['home_welcome_pbar1_text'] ?? '') ?>">
+                    <input type="hidden" name="home_welcome_pbar2_text" value="<?= esc($page_home['home_welcome_pbar2_text'] ?? '') ?>">
 
                     <?= view('admin/partials/page_home_edit_theme') ?>
 
@@ -123,9 +122,9 @@ if(!$this->session->userdata('id')) {
                         </div>
                     </div>
 
-                    <h3 class="sec_title">Stats (Hero &amp; Why Choose Us)</h3>
-                    <p class="col-sm-offset-2 col-sm-9 text-muted">First three stats appear in the Hero. All four can appear in Why Choose Us when counters are enabled.</p>
-                    <?php for ($c = 1; $c <= 4; $c++): ?>
+                    <h3 class="sec_title">Hero Stats Bar</h3>
+                    <p class="col-sm-offset-2 col-sm-9 text-muted">These five counts appear on the homepage and program pages. Value is the large number/text (for example 5000 or Top 100). Suffix is optional (for example +).</p>
+                    <?php for ($c = 1; $c <= 5; $c++): ?>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Stat <?= $c ?> label</label>
                         <div class="col-sm-3">

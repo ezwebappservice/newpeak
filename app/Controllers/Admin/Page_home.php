@@ -87,6 +87,9 @@ class Page_home extends BaseController
 			$counter_4_title = $this->request->getPost('counter_4_title', true);
 			$counter_4_value = $this->request->getPost('counter_4_value', true);
 			$counter_4_icon = $this->request->getPost('counter_4_icon', true);
+			$counter_5_title = $this->request->getPost('counter_5_title', true);
+			$counter_5_value = $this->request->getPost('counter_5_value', true);
+			$counter_5_icon = $this->request->getPost('counter_5_icon', true);
 			$home_portfolio_title = $this->request->getPost('home_portfolio_title', true);
 			$home_portfolio_subtitle = $this->request->getPost('home_portfolio_subtitle', true);
 			$home_booking_form_title = $this->request->getPost('home_booking_form_title', true);
@@ -128,6 +131,8 @@ class Page_home extends BaseController
 			$counter_2_suffix = $this->request->getPost('counter_2_suffix', true);
 			$counter_3_suffix = $this->request->getPost('counter_3_suffix', true);
 			$counter_4_suffix = $this->request->getPost('counter_4_suffix', true);
+			$counter_5_suffix = $this->request->getPost('counter_5_suffix', true);
+			$home_welcome_video = $this->request->getPost('home_welcome_video');
 
 			$this->form_validation->set_rules('title', 'Title', 'trim|required');
 
@@ -175,6 +180,9 @@ class Page_home extends BaseController
 					'counter_4_title' => $counter_4_title,
 					'counter_4_value' => $counter_4_value,
 					'counter_4_icon' => $counter_4_icon,
+					'counter_5_title' => $counter_5_title,
+					'counter_5_value' => $counter_5_value,
+					'counter_5_icon' => $counter_5_icon,
 					'home_portfolio_title' => $existing['home_portfolio_title'] ?? '',
 					'home_portfolio_subtitle' => $existing['home_portfolio_subtitle'] ?? '',
 					'home_booking_form_title' => $existing['home_booking_form_title'] ?? '',
@@ -216,8 +224,15 @@ class Page_home extends BaseController
 					'counter_2_suffix' => $counter_2_suffix,
 					'counter_3_suffix' => $counter_3_suffix,
 					'counter_4_suffix' => $counter_4_suffix,
+					'counter_5_suffix' => $counter_5_suffix,
 	            );
-	            $this->Model_page_home->update($id,$form_data);				
+	            $this->Model_page_home->update($id,$form_data);
+
+	            if ($home_welcome_video !== null) {
+	            	$this->Model_page_home->update_home([
+	            		'home_welcome_video' => trim((string) $home_welcome_video),
+	            	]);
+	            }
 				
 				$success = 'Home Page information is updated successfully';
 				$this->session->setFlashdata('success',$success);
@@ -231,6 +246,7 @@ class Page_home extends BaseController
            
 		} else {
 			$data['page_home'] = $this->Model_page_home->get_page_home($id);
+			$data['page_home_lang_independent'] = $this->Model_page_home->show_lang_independent();
 	       	echo view('admin/view_header',$data);
 			echo view('admin/view_page_home_edit',$data);
 			echo view('admin/view_footer');
@@ -301,11 +317,13 @@ class Page_home extends BaseController
 			}
 
         	$form_data = array(
-				'home_welcome_video'  => $_POST['home_welcome_video'],
 				'home_welcome_status' => $_POST['home_welcome_status']
             );
+            if (isset($_POST['home_welcome_video'])) {
+            	$form_data['home_welcome_video'] = trim((string) $_POST['home_welcome_video']);
+            }
         	$this->Model_page_home->update_home($form_data);
-        	$success = 'Home page welcome information is updated successfully!';
+        	$success = 'Home page video section is updated successfully!';
         	$this->session->setFlashdata('success',$success);
 		    redirect(base_url().'admin/page-home');
 		}

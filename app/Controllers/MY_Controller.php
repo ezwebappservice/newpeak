@@ -44,6 +44,8 @@ class MY_Controller extends BaseController
         $setting = [];
         $social = [];
         $comment = [];
+        $page_home = [];
+        $page_home_lang_independent = [];
 
         try {
             if (! isset($this->Model_common)) {
@@ -52,15 +54,19 @@ class MY_Controller extends BaseController
             $setting = $this->Model_common->all_setting() ?: [];
             $social = $this->Model_common->all_social() ?: [];
             $comment = $this->Model_common->all_comment() ?: [];
+            $page_home = $this->Model_common->all_page_home() ?: [];
+            $page_home_lang_independent = $this->Model_common->all_page_home_lang_independent() ?: [];
         } catch (\Throwable $e) {
             log_message('debug', 'CMS settings unavailable: ' . $e->getMessage());
         }
 
         return array_merge([
-            'setting'      => $setting,
-            'social'       => $social,
-            'comment'      => $comment,
-            'current_page' => $page,
+            'setting'                     => $setting,
+            'social'                      => $social,
+            'comment'                     => $comment,
+            'page_home'                   => $page_home,
+            'page_home_lang_independent'  => $page_home_lang_independent,
+            'current_page'                => $page,
         ], $extra);
     }
 

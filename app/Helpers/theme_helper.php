@@ -111,6 +111,74 @@ if (! function_exists('peak_social_url')) {
     }
 }
 
+if (! function_exists('peak_home_stats')) {
+    /**
+     * Homepage stats bar items from CMS, with Peak defaults as fallback.
+     *
+     * @return list<array{value: string, label: string, icon: string}>
+     */
+    function peak_home_stats(?array $page_home = null): array
+    {
+        $page_home = is_array($page_home) ? $page_home : [];
+        $defaults = [
+            1 => ['value' => '5000+', 'label' => 'Students Trusted', 'icon' => 'school.png'],
+            2 => ['value' => '5,000+', 'label' => 'Lives Impacted', 'icon' => 'friends.png'],
+            3 => ['value' => 'Top 100', 'label' => 'Global Education Leader', 'icon' => 'trophy.png'],
+            4 => ['value' => '15+', 'label' => 'Years Leadership', 'icon' => 'validation.png'],
+            5 => ['value' => 'Awardee In', 'label' => '35th World Education Summit, Dubai', 'icon' => 'globe.png'],
+        ];
+
+        $stats = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $value  = trim((string) ($page_home['counter_' . $i . '_value'] ?? ''));
+            $suffix = trim((string) ($page_home['counter_' . $i . '_suffix'] ?? ''));
+            $label  = trim((string) ($page_home['counter_' . $i . '_title'] ?? ''));
+            $display = $value . $suffix;
+
+            $stats[] = [
+                'value' => $display !== '' ? $display : $defaults[$i]['value'],
+                'label' => $label !== '' ? $label : $defaults[$i]['label'],
+                'icon'  => $defaults[$i]['icon'],
+            ];
+        }
+
+        return $stats;
+    }
+}
+
+if (! function_exists('peak_video_embed_src')) {
+    /**
+     * Convert a YouTube/Vimeo URL, video id, or iframe snippet into a safe embed src.
+     */
+    function peak_video_embed_src(?string $input, string $fallback = 'https://www.youtube.com/embed/Ve2IHBwbzus'): string
+    {
+        $input = trim((string) $input);
+        if ($input === '') {
+            return $fallback;
+        }
+
+        if (preg_match('/\bsrc\s*=\s*["\']([^"\']+)["\']/i', $input, $match)) {
+            $input = html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        }
+
+        if (preg_match('~youtu\.be/([a-zA-Z0-9_-]{11})~', $input, $match)
+            || preg_match('~youtube(?:-nocookie)?\.com/(?:embed/|shorts/|watch\?.*?v=)([a-zA-Z0-9_-]{11})~', $input, $match)
+        ) {
+            return 'https://www.youtube.com/embed/' . $match[1];
+        }
+
+        if (preg_match('/^[a-zA-Z0-9_-]{11}$/', $input)) {
+            return 'https://www.youtube.com/embed/' . $input;
+        }
+
+        if (preg_match('~(?:player\.)?vimeo\.com/(?:video/)?(\d+)~', $input, $match)) {
+            return 'https://player.vimeo.com/video/' . $match[1];
+        }
+
+        return $fallback;
+    }
+}
+
 if (! function_exists('theme_section_url')) {
     function theme_section_url(string $anchor): string
     {

@@ -14,10 +14,6 @@ class ShivalikHomeSeeder extends Seeder
             $langId = (int) $langRow['lang_id'];
         }
 
-        $welcomeText = '<p>Peak PotentialLtd. (SRL) is a chemistry-driven Indian manufacturer built to serve <strong>healthcare</strong> and <strong>crop protection</strong>.</p>'
-            . '<p>We are India\'s largest producer of Dimethoate Technical and the second-largest producer of Malathion Technical. With Medicamen Biotech Ltd, we also develop oncology and non-oncology APIs from our Dahej facility.</p>'
-            . '<p>In simple terms: <strong>we make the chemistry that helps protect crops and improve human health</strong> — with quality systems aligned to global regulators.</p>';
-
         $this->db->table('tbl_page_home')->where('lang_id', $langId)->update([
             'hero_badge'              => 'Peak Potential',
             'hero_title_prefix'       => 'We Manufacture',
@@ -27,9 +23,9 @@ class ShivalikHomeSeeder extends Seeder
             'hero_btn1_url'           => '#about',
             'hero_btn2_text'          => 'What We Do',
             'hero_btn2_url'           => '#products',
-            'home_welcome_title'      => 'Who We Are',
-            'home_welcome_subtitle'   => 'Peak Potential',
-            'home_welcome_text'       => $welcomeText,
+            'home_welcome_title'      => 'Discover More',
+            'home_welcome_subtitle'   => 'A closer look at what we do',
+            'home_welcome_text'       => '<p>Discover how Peak Potential Academy helps students, parents, schools, and organisations move forward with greater clarity, confidence, and purpose.</p>',
             'home_welcome_pbar1_text' => 'DSIR Recognized',
             'home_welcome_pbar2_text' => 'R&D Centre, Bhiwadi',
             'home_vision_title'       => 'Our Vision',
@@ -59,23 +55,27 @@ class ShivalikHomeSeeder extends Seeder
             'home_testimonial_subtitle'=> 'What Our Partners Say',
             'home_blog_title'         => 'Latest Updates',
             'home_blog_subtitle'      => 'Peakntialin News',
-            'counter_1_title'         => 'Employees',
-            'counter_1_value'         => '250',
+            'counter_1_title'         => 'Students Trusted',
+            'counter_1_value'         => '5000',
             'counter_1_suffix'        => '+',
-            'counter_2_title'         => 'API Capacity (MT)',
-            'counter_2_value'         => '1500',
-            'counter_2_suffix'        => '',
-            'counter_3_title'         => 'GL & SS Reactors',
-            'counter_3_value'         => '32',
+            'counter_2_title'         => 'Lives Impacted',
+            'counter_2_value'         => '5,000',
+            'counter_2_suffix'        => '+',
+            'counter_3_title'         => 'Global Education Leader',
+            'counter_3_value'         => 'Top 100',
             'counter_3_suffix'        => '',
-            'counter_4_title'         => 'R&D Scientists',
-            'counter_4_value'         => '60',
+            'counter_4_title'         => 'Years Leadership',
+            'counter_4_value'         => '15',
             'counter_4_suffix'        => '+',
+            'counter_5_title'         => '35th World Education Summit, Dubai',
+            'counter_5_value'         => 'Awardee In',
+            'counter_5_suffix'        => '',
         ]);
 
         $this->db->table('tbl_page_home_lang_independent')->where('id', 1)->update([
             'home_hero_status'           => 'Show',
             'home_welcome_status'        => 'Show',
+            'home_welcome_video'         => 'https://www.youtube.com/watch?v=Ve2IHBwbzus',
             'home_service_status'        => 'Show',
             'home_feature_status'        => 'Show',
             'home_why_choose_status'     => 'Show',
