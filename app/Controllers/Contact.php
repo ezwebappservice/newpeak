@@ -92,7 +92,18 @@ class Contact extends MY_Controller
 
         $errors = [];
 
-        if ($firstName === '' && $name === '') {
+        $usesSplitNameFields = $this->request->getPost('first_name') !== null
+            || $this->request->getPost('last_name') !== null;
+
+        if ($usesSplitNameFields) {
+            if ($firstName === '') {
+                $errors[] = 'First name is required.';
+            }
+
+            if ($lastName === '') {
+                $errors[] = 'Last name is required.';
+            }
+        } elseif ($firstName === '' && $name === '') {
             $errors[] = 'Full name is required.';
         }
 
