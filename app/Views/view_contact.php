@@ -54,9 +54,9 @@ $interests = [
             <h2>Send us a message</h2>
             <?= view('includes/form_flash_alerts', ['flash_key' => 'connect_form_error', 'success_key' => 'connect_form_success']) ?>
             <div class="contact-form-grid">
-              <label>Full Name<input type="text" name="name" value="<?= esc(form_old_value('name')) ?>" required></label>
-              <label>Email Address<input type="email" name="email" value="<?= esc(form_old_value('email')) ?>" required></label>
-              <label>Phone Number<input type="tel" name="phone" value="<?= esc(form_old_value('phone')) ?>"></label>
+              <label>Full Name*<input type="text" name="name" value="<?= esc(form_old_value('name')) ?>" required></label>
+              <label>Email Address*<input type="email" name="email" value="<?= esc(form_old_value('email')) ?>" required></label>
+              <label>Phone Number*<input type="tel" name="phone" value="<?= esc(form_old_value('phone')) ?>" required></label>
               <label>I am interested in
                 <select name="interest">
                   <option value="">Please select</option>

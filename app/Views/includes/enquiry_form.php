@@ -33,11 +33,11 @@ $challenges = [
   </div>
   <?= view('includes/form_flash_alerts', ['flash_key' => 'discovery_form_error', 'success_key' => 'discovery_form_success']) ?>
   <div class="discovery-form__grid">
-    <label>First Name<input type="text" name="first_name" value="<?= esc(form_old_value('first_name')) ?>" required></label>
-    <label>Last Name<input type="text" name="last_name" value="<?= esc(form_old_value('last_name')) ?>" required></label>
-    <label>Email ID<input type="email" name="email" value="<?= esc(form_old_value('email')) ?>" required></label>
-    <label>WhatsApp Contact Number<input type="tel" name="phone" inputmode="tel" value="<?= esc(form_old_value('phone')) ?>" required></label>
-    <label>Country
+    <label>First Name <span class="text-danger">*</span><input type="text" name="first_name" value="<?= esc(form_old_value('first_name')) ?>" required></label>
+    <label>Last Name <span class="text-danger">*</span><input type="text" name="last_name" value="<?= esc(form_old_value('last_name')) ?>" required></label>
+    <label>Email ID <span class="text-danger">*</span><input type="email" name="email" value="<?= esc(form_old_value('email')) ?>" required></label>
+    <label>WhatsApp Contact Number <span class="text-danger">*</span><input type="tel" name="phone" inputmode="tel" value="<?= esc(form_old_value('phone')) ?>" required></label>
+    <label>Country <span class="text-danger">*</span>
      <select name="country" required>
     <option value="" disabled<?= form_old_value('country') === '' ? ' selected' : '' ?>>Select country</option>
     <?php
@@ -250,12 +250,12 @@ foreach ($countries as $country):
 </select>
 
     </label>
-    <label>City
+    <label>City <span class="text-danger">*</span>
       <input type="text" name="city" value="<?= esc(form_old_value('city')) ?>" placeholder="Enter city" required>
 
      
     </label>
-    <label>Are you applying as?
+    <label>Are you applying as? <span class="text-danger">*</span>
       <select name="applicant" required>
         <option value="" disabled<?= form_old_value('applicant') === '' ? ' selected' : '' ?>>Select one</option>
         <?php foreach (['Student', 'Parent', 'Working Professional'] as $applicant): ?>
@@ -267,7 +267,7 @@ foreach ($countries as $country):
   </div>
   <fieldset>
     <legend>Program Selection</legend>
-    <label>Which program are you interested in?
+    <label>Which program are you interested in? <span class="text-danger">*</span>
       <select name="program" required>
         <option value="" disabled<?= form_old_value('program') === '' ? ' selected' : '' ?>>Select a program</option>
         <?php foreach ($programs as $program): ?>
@@ -297,8 +297,8 @@ foreach ($countries as $country):
   <fieldset>
     <legend>Scheduling</legend>
     <div class="discovery-form__grid">
-      <label>When should we meet?<input type="date" name="meeting_date" value="<?= esc(form_old_value('meeting_date')) ?>" required></label>
-      <label>Select time of day
+      <label>When should we meet? <span class="text-danger">*</span><input type="date" name="meeting_date" value="<?= esc(form_old_value('meeting_date')) ?>" required></label>
+      <label>Select time of day <span class="text-danger">*</span>
         <select name="meeting_time" required>
           <option value="" disabled<?= form_old_value('meeting_time') === '' ? ' selected' : '' ?>>Select a time</option>
           <?php foreach (['Morning (9 AM – 12 PM)', 'Afternoon (12 PM – 4 PM)', 'Evening (4 PM – 7 PM)'] as $time): ?>
