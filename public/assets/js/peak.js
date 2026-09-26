@@ -20,7 +20,6 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = [
-    '.hero .row',
     'section h2',
     '.loop-card',
     '.framework-step',
@@ -52,16 +51,32 @@
     revealItems.forEach(function (item) {
       item.classList.add('is-visible');
     });
-    return;
+  } else {
+    const revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.16 });
+
+    revealItems.forEach(function (item) {
+      revealObserver.observe(item);
+    });
   }
 
-  const revealObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      entry.target.classList.toggle('is-visible', entry.isIntersecting);
-    });
-  }, { threshold: 0.16 });
+  document.querySelectorAll('.video-facade[data-youtube]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var videoId = button.getAttribute('data-youtube');
+      if (!videoId) {
+        return;
+      }
 
-  revealItems.forEach(function (item) {
-    revealObserver.observe(item);
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId) + '?autoplay=1&rel=0';
+      iframe.title = button.getAttribute('aria-label') || 'Video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      button.replaceWith(iframe);
+    });
   });
 })();

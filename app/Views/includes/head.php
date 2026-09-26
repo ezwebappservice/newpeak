@@ -4,11 +4,20 @@
   <?= view('includes/meta', get_defined_vars()) ?>
   <?= csrf_meta() ?>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preload" as="font" href="<?= base_url('assets/fonts/manrope-latin.woff2') ?>" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="<?= base_url('assets/fonts/cormorant-garamond-latin.woff2') ?>" type="font/woff2" crossorigin>
+  <?php
+  $heroPreloadUrl = '';
+  if (theme_is_home()) {
+      $heroPreloadUrl = peak_home_hero($page_home ?? [], $page_home_lang_independent ?? [])['photo'] ?? '';
+  }
+  ?>
+  <?php if ($heroPreloadUrl !== ''): ?>
+  <link rel="preload" as="image" href="<?= esc($heroPreloadUrl) ?>" fetchpriority="high">
+  <?php endif; ?>
+
+  <link rel="stylesheet" href="<?= theme_asset('css/fonts.css') ?>">
+  <link rel="stylesheet" href="<?= theme_asset('vendor/bootstrap/bootstrap.min.css') ?>">
   <link rel="stylesheet" href="<?= theme_asset('css/peak.css') ?>">
 
   <?php if (! empty($setting['favicon'])): ?>

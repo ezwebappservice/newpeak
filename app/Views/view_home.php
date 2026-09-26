@@ -22,7 +22,7 @@ $hero = peak_home_hero($page_home, $page_home_lang_independent);
           <?php foreach ($hero['features'] as $feature): ?>
           <div class="hero-feature">
             <span class="icon-circle">
-              <img src="<?= peak_img($feature['icon']) ?>" alt="">
+              <img src="<?= peak_img($feature['icon']) ?>" alt="" width="32" height="32" decoding="async">
             </span>
             <span class="label"><?= cms_multiline($feature['label']) ?></span>
           </div>
@@ -45,7 +45,7 @@ $hero = peak_home_hero($page_home, $page_home_lang_independent);
           <div class="hero-dots"></div>
           <div class="hero-ring"></div>
           <div class="hero-circle">
-              <img src="<?= cms_attr($hero['photo']) ?>" alt="<?= cms_attr($hero['photo_alt']) ?>">
+              <img src="<?= cms_attr($hero['photo']) ?>" alt="<?= cms_attr($hero['photo_alt']) ?>" width="960" height="952" fetchpriority="high" decoding="async">
             <div class="hero-info-card">
               <div class="name"><?= cms_text($hero['card_name']) ?></div>
               <div class="role"><?= cms_text($hero['card_role']) ?></div>
@@ -76,6 +76,11 @@ $video_eyebrow = trim((string) ($page_home['home_welcome_title'] ?? '')) ?: 'Dis
 $video_title = trim((string) ($page_home['home_welcome_subtitle'] ?? '')) ?: 'A closer look at what we do';
 $video_text = trim((string) ($page_home['home_welcome_text'] ?? ''));
 $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_video'] ?? '');
+$video_id = peak_youtube_id($page_home_lang_independent['home_welcome_video'] ?? '');
+if ($video_id === '') {
+    $video_id = peak_youtube_id($video_embed);
+}
+$video_poster = $video_id !== '' ? 'https://i.ytimg.com/vi/' . $video_id . '/hqdefault.jpg' : '';
 ?>
 <?php if ($show_home_video): ?>
 <!-- ===== Video Section ===== -->
@@ -93,7 +98,14 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
       </div>
       <div class="col-lg-7">
         <div class="video-section__frame ratio ratio-16x9">
-          <iframe src="<?= cms_attr($video_embed) ?>" title="<?= cms_attr($video_title) ?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <?php if ($video_id !== ''): ?>
+          <button type="button" class="video-facade" data-youtube="<?= esc($video_id) ?>" aria-label="Play <?= cms_attr($video_title) ?>">
+            <img src="<?= esc($video_poster) ?>" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="video-facade__play" aria-hidden="true"></span>
+          </button>
+          <?php else: ?>
+          <iframe src="<?= cms_attr($video_embed) ?>" title="<?= cms_attr($video_title) ?>" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -112,26 +124,26 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
      
           <div class="loops-diagram" aria-label="Digital, emotional and behaviour loops lead to human potential decline">
             <div class="loop-card loop-card1">
-              <img src="<?= peak_img('mobile-phone.png') ?>" alt="">
+              <img src="<?= peak_img('mobile-phone.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
               <h3>Digital Loop</h3>
               <p>Short attention span<br>Poor focus<br>Constant stimulation</p>
             </div>
             <span class="loop-arrow" aria-hidden="true">→</span>
             <div class="loop-card loop-card2">
-              <img src="<?= peak_img('brain.png') ?>" alt="">
+              <img src="<?= peak_img('brain.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
               <h3>Emotional Loop</h3>
               <p>Stress<br>Self-doubt<br>Fear of failure</p>
             </div>
             <span class="loop-arrow" aria-hidden="true">→</span>
             <div class="loop-card loop-card3">
-              <img src="<?= peak_img('refresh.png') ?>" alt="">
+              <img src="<?= peak_img('refresh.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
               <h3>Behaviour Loop</h3>
               <p>Reactive decisions<br>Procrastination<br>Conflict</p>
             </div>
-            <img src="<?= peak_img('curve-arrow.png') ?>" alt="" class="loop-curve-arrow arrow-two" aria-hidden="true">
+            <img src="<?= peak_img('curve-arrow.png') ?>" alt="" class="loop-curve-arrow arrow-two" width="48" height="48" loading="lazy" decoding="async" aria-hidden="true">
             <span class="loop-arrow center-arrow-ico" aria-hidden="true">→</span>
             <div class="loop-outcome">Human Potential Declines</div>
-              <img src="<?= peak_img('curve-arrow.png') ?>" alt="" class="loop-curve-arrow" aria-hidden="true">
+              <img src="<?= peak_img('curve-arrow.png') ?>" alt="" class="loop-curve-arrow" width="48" height="48" loading="lazy" decoding="async" aria-hidden="true">
           </div>
      
     </div>
@@ -195,7 +207,7 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
     <ol class="framework-steps">
       <li class="framework-step">
         <span class="frameworkIconBox">
-          <img src="<?= peak_img('search.png') ?>" alt="">
+          <img src="<?= peak_img('search.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
         </span>
         <h3>1. Identify</h3>
         <p>Become aware of<br>your patterns<br>and triggers</p>
@@ -203,7 +215,7 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
       <li class="framework-arrow" aria-hidden="true">→</li>
       <li class="framework-step">
         <span class="frameworkIconBox">
-          <img src="<?= peak_img('link.png') ?>" alt="">
+          <img src="<?= peak_img('link.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
         </span>
         
         <h3>2. Break</h3>
@@ -212,7 +224,7 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
       <li class="framework-arrow" aria-hidden="true">→</li>
       <li class="framework-step">
         <span class="frameworkIconBox">
-          <img src="<?= peak_img('refresh-single.png') ?>" alt="">
+          <img src="<?= peak_img('refresh-single.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
         </span>
         
         <h3>3. Replace</h3>
@@ -221,7 +233,7 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
       <li class="framework-arrow" aria-hidden="true">→</li>
       <li class="framework-step">
         <span class="frameworkIconBox">
-          <img src="<?= peak_img('bar-chart.png') ?>" alt="">
+          <img src="<?= peak_img('bar-chart.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
         </span>
         
         <h3>4. Strengthen</h3>
@@ -230,7 +242,7 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
       <li class="framework-arrow" aria-hidden="true">→</li>
       <li class="framework-step framework-thrive">
         <span class="frameworkIconBox">
-          <img src="<?= peak_img('user-avatar.png') ?>" alt="">
+          <img src="<?= peak_img('user-avatar.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
         </span>
         
         <h3>5. Thrive</h3>
@@ -247,7 +259,7 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
     <div class="skills-grid">
       <article class="skill-item">
         <span class="skill-icon" aria-hidden="true">
-          <img src="<?= peak_img('emotional-intelligence.png') ?>" alt="">
+          <img src="<?= peak_img('emotional-intelligence.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
         </span>
         <div>
           <h3>Emotional<br>Strength</h3>
@@ -256,7 +268,7 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
       </article>
       <article class="skill-item">
         <span class="skill-icon" aria-hidden="true">
-          <img src="<?= peak_img('paralyzed.png') ?>" alt="">
+          <img src="<?= peak_img('paralyzed.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
         </span>
         <div>
           <h3>Mental<br>Agility</h3>
@@ -265,7 +277,7 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
       </article>
       <article class="skill-item">
         <span class="skill-icon skill-chat" aria-hidden="true">
-          <img src="<?= peak_img('chat.png') ?>" alt="">
+          <img src="<?= peak_img('chat.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
         </span>
         <div>
           <h3>Clear<br>Communication</h3>
@@ -274,7 +286,7 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
       </article>
       <article class="skill-item">
         <span class="skill-icon skill-rupee" aria-hidden="true">
-          <img src="<?= peak_img('rupee-indian.png') ?>" alt="">
+          <img src="<?= peak_img('rupee-indian.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
         </span>
         <div>
           <h3>Financial<br>Intelligence</h3>
@@ -331,23 +343,23 @@ $video_embed = peak_video_embed_src($page_home_lang_independent['home_welcome_vi
         <h2 id="discovery-journey-title">What happens in your <span>₹599</span> discovery session?</h2>
         <ol class="journey-steps">
           <li class="journey-step">
-            <span class="journey-icon"><img src="<?= peak_img('briefcase.png') ?>" alt=""></span>
+            <span class="journey-icon"><img src="<?= peak_img('briefcase.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async"></span>
             <div><strong>1. Assess</strong><p>Science-backed Human Potential Assessment</p></div>
           </li>
           <li class="journey-step">
-            <span class="journey-icon"><img src="<?= peak_img('find.png') ?>" alt=""></span>
+            <span class="journey-icon"><img src="<?= peak_img('find.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async"></span>
             <div><strong>2. Identify</strong><p>Uncover your invisible loops</p></div>
           </li>
           <li class="journey-step">
-            <span class="journey-icon"><img src="<?= peak_img('bar-chart-color.png') ?>" alt=""></span>
+            <span class="journey-icon"><img src="<?= peak_img('bar-chart-color.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async"></span>
             <div><strong>3. Score</strong><p>Get your Peak Potential Score</p></div>
           </li>
           <li class="journey-step">
-            <span class="journey-icon"><img src="<?= peak_img('blueprint.png') ?>" alt=""></span>
+            <span class="journey-icon"><img src="<?= peak_img('blueprint.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async"></span>
             <div><strong>4. Blueprint</strong><p>Receive your personal growth roadmap</p></div>
           </li>
           <li class="journey-step">
-            <span class="journey-icon"><img src="<?= peak_img('target.png') ?>" alt=""></span>
+            <span class="journey-icon"><img src="<?= peak_img('target.png') ?>" alt="" width="32" height="32" loading="lazy" decoding="async"></span>
             <div><strong>5. Transform</strong><p>Choose the right path to break the loop</p></div>
           </li>
         </ol>

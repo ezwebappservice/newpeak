@@ -3,21 +3,21 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="navbar-brand d-flex align-items-center logo-footer" href="<?= base_url() ?>">
-          <img class="brand-logo" src="<?= esc($logo_url) ?>" alt="Peak Potential Academy logo">
+          <img class="brand-logo" src="<?= esc($logo_url) ?>" alt="Peak Potential Academy logo" width="152" height="85" loading="lazy" decoding="async">
         </a>
         <p>Unlock. Empower. Thrive.</p>
         <div class="social-links">
           <a href="<?= esc($instagram_url) ?>" aria-label="Instagram"<?= $instagram_url !== '#' ? ' target="_blank" rel="noopener noreferrer"' : '' ?>>
-            <img src="<?= peak_img('instagram.png') ?>" alt="">
+            <img src="<?= peak_img('instagram.png') ?>" alt="" width="24" height="24" loading="lazy" decoding="async">
           </a>
           <a href="<?= esc($linkedin_url) ?>" aria-label="LinkedIn"<?= $linkedin_url !== '#' ? ' target="_blank" rel="noopener noreferrer"' : '' ?>>
-            <img src="<?= peak_img('linkedin-logo.png') ?>" alt="">
+            <img src="<?= peak_img('linkedin-logo.png') ?>" alt="" width="24" height="24" loading="lazy" decoding="async">
           </a>
           <a href="<?= esc($youtube_url) ?>" aria-label="YouTube"<?= $youtube_url !== '#' ? ' target="_blank" rel="noopener noreferrer"' : '' ?>>
-            <img src="<?= peak_img('youtube.png') ?>" alt="">
+            <img src="<?= peak_img('youtube.png') ?>" alt="" width="24" height="24" loading="lazy" decoding="async">
           </a>
           <a href="<?= esc($facebook_url) ?>" aria-label="Facebook"<?= $facebook_url !== '#' ? ' target="_blank" rel="noopener noreferrer"' : '' ?>>
-            <img src="<?= peak_img('facebook-app-symbol.png') ?>" alt="">
+            <img src="<?= peak_img('facebook-app-symbol.png') ?>" alt="" width="24" height="24" loading="lazy" decoding="async">
           </a>
         </div>
       </div>
@@ -79,11 +79,27 @@ $showToast = ($toastSuccess && ! is_array($toastSuccess)) || ($toastError && ! i
 </div>
 <?php endif; ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-<script src="<?= theme_asset('js/peak.js') ?>"></script>
+<script src="<?= theme_asset('vendor/bootstrap/bootstrap.bundle.min.js') ?>" defer></script>
+<script src="<?= theme_asset('js/peak.js') ?>" defer></script>
 
-<?php if (($setting['tawk_live_chat_status'] ?? 'Off') === 'On'): ?>
-<?= $setting['tawk_live_chat_code'] ?? '' ?>
+<?php if (($setting['tawk_live_chat_status'] ?? 'Off') === 'On' && trim((string) ($setting['tawk_live_chat_code'] ?? '')) !== ''): ?>
+<script>
+window.addEventListener('load', function () {
+  window.setTimeout(function () {
+    var holder = document.createElement('div');
+    holder.innerHTML = <?= json_encode($setting['tawk_live_chat_code'] ?? '') ?>;
+    document.body.appendChild(holder);
+    holder.querySelectorAll('script').forEach(function (oldScript) {
+      var script = document.createElement('script');
+      Array.from(oldScript.attributes).forEach(function (attr) {
+        script.setAttribute(attr.name, attr.value);
+      });
+      script.textContent = oldScript.textContent;
+      oldScript.replaceWith(script);
+    });
+  }, 3500);
+});
+</script>
 <?php endif; ?>
 </body>
 </html>

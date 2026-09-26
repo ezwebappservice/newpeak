@@ -22,7 +22,7 @@ $setting_data = $Model_common->get_setting_data();
 
 <div class="login-box">
 	<div class="login-logo">
-		<div class="srl-login-badge">SRL CMS</div>
+		<div class="srl-login-badge">Peak Potential CMS</div>
 		<b><?php echo esc($setting_data['website_name'] ?? 'Peak Potential'); ?></b>
 		<span>Sign in to manage website content</span>
 	</div>

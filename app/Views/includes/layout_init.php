@@ -12,31 +12,36 @@ $page_contact = is_array($page_contact ?? null) ? $page_contact : [];
 $page_home = is_array($page_home ?? null) ? $page_home : [];
 $page_home_lang_independent = is_array($page_home_lang_independent ?? null) ? $page_home_lang_independent : [];
 
-try {
-    $Model_common = new \App\Models\Model_common();
-    if ($setting === []) {
-        $setting = $Model_common->all_setting() ?: [];
+$needsCmsLookup = $setting === [] || $social === [] || $comment === []
+    || $page_contact === [] || $page_home === [] || $page_home_lang_independent === [];
+
+if ($needsCmsLookup) {
+    try {
+        $Model_common = new \App\Models\Model_common();
+        if ($setting === []) {
+            $setting = $Model_common->all_setting() ?: [];
+        }
+        if ($social === []) {
+            $social = $Model_common->all_social() ?: [];
+        }
+        if ($comment === []) {
+            $comment = $Model_common->all_comment() ?: [];
+        }
+        if ($page_contact === []) {
+            $page_contact = $Model_common->all_page_contact() ?: [];
+        }
+        if ($page_home === []) {
+            $page_home = $Model_common->all_page_home() ?: [];
+        }
+        if ($page_home_lang_independent === []) {
+            $page_home_lang_independent = $Model_common->all_page_home_lang_independent() ?: [];
+        }
+    } catch (\Throwable $e) {
+        $setting = $setting ?: [];
+        $social = $social ?: [];
+        $comment = $comment ?: [];
+        $page_contact = $page_contact ?: [];
     }
-    if ($social === []) {
-        $social = $Model_common->all_social() ?: [];
-    }
-    if ($comment === []) {
-        $comment = $Model_common->all_comment() ?: [];
-    }
-    if ($page_contact === []) {
-        $page_contact = $Model_common->all_page_contact() ?: [];
-    }
-    if ($page_home === []) {
-        $page_home = $Model_common->all_page_home() ?: [];
-    }
-    if ($page_home_lang_independent === []) {
-        $page_home_lang_independent = $Model_common->all_page_home_lang_independent() ?: [];
-    }
-} catch (\Throwable $e) {
-    $setting = $setting ?: [];
-    $social = $social ?: [];
-    $comment = $comment ?: [];
-    $page_contact = $page_contact ?: [];
 }
 
 $class_name = theme_current_controller();

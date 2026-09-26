@@ -15,7 +15,7 @@ $home_stats = peak_home_stats($page_home);
         <div class="col-6 col-md-4 col-lg">
           <div class="stat-item">
             <span class="stat-icon">
-              <img src="<?= peak_img($stat['icon']) ?>" alt="">
+              <img src="<?= peak_img($stat['icon']) ?>" alt="" width="32" height="32" loading="lazy" decoding="async">
             </span>
             <span>
               <span class="stat-value"><?= cms_text($stat['value']) ?></span>

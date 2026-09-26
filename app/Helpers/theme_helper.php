@@ -7,7 +7,33 @@
 if (! function_exists('theme_asset')) {
     function theme_asset(string $path = ''): string
     {
-        return base_url('assets/' . ltrim($path, '/'));
+        $path = ltrim($path, '/');
+        $url = base_url('assets/' . $path);
+        $file = FCPATH . 'assets/' . $path;
+        if (is_file($file)) {
+            return $url . '?v=' . filemtime($file);
+        }
+
+        return $url;
+    }
+}
+
+if (! function_exists('peak_prefer_webp')) {
+    /**
+     * Serve a sibling .webp file when it exists next to a raster image.
+     */
+    function peak_prefer_webp(string $url, string $absolutePath = ''): string
+    {
+        if ($absolutePath === '' || ! preg_match('/\.(png|jpe?g|gif)$/i', $absolutePath)) {
+            return $url;
+        }
+
+        $webpPath = (string) preg_replace('/\.(png|jpe?g|gif)$/i', '.webp', $absolutePath);
+        if (! is_file($webpPath)) {
+            return $url;
+        }
+
+        return (string) preg_replace('/\.(png|jpe?g|gif)(\?.*)?$/i', '.webp$2', $url);
     }
 }
 
@@ -33,7 +59,10 @@ if (! function_exists('peak_img')) {
         $path = preg_replace('#^image/+#', '', $path) ?? $path;
         $segments = array_map('rawurlencode', array_filter(explode('/', $path), static fn ($part) => $part !== ''));
 
-        return base_url('assets/images/peak/' . implode('/', $segments));
+        $url = base_url('assets/images/peak/' . implode('/', $segments));
+        $diskPath = FCPATH . 'assets/images/peak/' . $path;
+
+        return peak_prefer_webp($url, $diskPath);
     }
 }
 
@@ -152,15 +181,15 @@ if (! function_exists('peak_home_stats')) {
     }
 }
 
-if (! function_exists('peak_video_embed_src')) {
+if (! function_exists('peak_youtube_id')) {
     /**
-     * Convert a YouTube/Vimeo URL, video id, or iframe snippet into a safe embed src.
+     * Extract an 11-character YouTube video id from a URL, embed, or raw id.
      */
-    function peak_video_embed_src(?string $input, string $fallback = 'https://www.youtube.com/embed/Ve2IHBwbzus'): string
+    function peak_youtube_id(?string $input): string
     {
         $input = trim((string) $input);
         if ($input === '') {
-            return $fallback;
+            return '';
         }
 
         if (preg_match('/\bsrc\s*=\s*["\']([^"\']+)["\']/i', $input, $match)) {
@@ -168,13 +197,34 @@ if (! function_exists('peak_video_embed_src')) {
         }
 
         if (preg_match('~youtu\.be/([a-zA-Z0-9_-]{11})~', $input, $match)
-            || preg_match('~youtube(?:-nocookie)?\.com/(?:embed/|shorts/|watch\?.*?v=)([a-zA-Z0-9_-]{11})~', $input, $match)
+            || preg_match('~youtube(?:-nocookie)?\.com/(?:embed/|shorts/|live/|watch\?.*?v=)([a-zA-Z0-9_-]{11})~', $input, $match)
+            || preg_match('/^[a-zA-Z0-9_-]{11}$/', $input, $match)
         ) {
-            return 'https://www.youtube.com/embed/' . $match[1];
+            return $match[1];
         }
 
-        if (preg_match('/^[a-zA-Z0-9_-]{11}$/', $input)) {
-            return 'https://www.youtube.com/embed/' . $input;
+        return '';
+    }
+}
+
+if (! function_exists('peak_video_embed_src')) {
+    /**
+     * Convert a YouTube/Vimeo URL, video id, or iframe snippet into a safe embed src.
+     */
+    function peak_video_embed_src(?string $input, string $fallback = 'https://www.youtube-nocookie.com/embed/Ve2IHBwbzus'): string
+    {
+        $youtubeId = peak_youtube_id($input);
+        if ($youtubeId !== '') {
+            return 'https://www.youtube-nocookie.com/embed/' . $youtubeId;
+        }
+
+        $input = trim((string) $input);
+        if ($input === '') {
+            return $fallback;
+        }
+
+        if (preg_match('/\bsrc\s*=\s*["\']([^"\']+)["\']/i', $input, $match)) {
+            $input = html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8');
         }
 
         if (preg_match('~(?:player\.)?vimeo\.com/(?:video/)?(\d+)~', $input, $match)) {
@@ -286,7 +336,17 @@ if (! function_exists('theme_upload')) {
     function theme_upload(?string $filename, string $fallback = ''): string
     {
         if (! empty($filename)) {
-            return base_url('public/uploads/' . $filename);
+            $filename = ltrim($filename, '/');
+            $absolute = FCPATH . 'uploads/' . $filename;
+            $url = peak_prefer_webp(base_url('public/uploads/' . $filename), $absolute);
+            $served = str_ends_with(strtolower(parse_url($url, PHP_URL_PATH) ?? ''), '.webp')
+                ? (string) preg_replace('/\.(png|jpe?g|gif)$/i', '.webp', $absolute)
+                : $absolute;
+            if (is_file($served)) {
+                $url .= '?v=' . filemtime($served);
+            }
+
+            return $url;
         }
 
         return $fallback !== '' ? theme_asset($fallback) : '';
