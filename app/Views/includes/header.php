@@ -24,7 +24,7 @@
             <li><a class="dropdown-item<?= peak_nav_active('for-corporate') ?>" href="<?= base_url('for-corporate') ?>">For Corporates</a></li>
           </ul>
         </li>
-        <!-- <li class="nav-item"><a class="nav-link<?= peak_nav_active('our-story') ?>" href="<?= base_url('our-story') ?>">Our Story</a></li> -->
+        <li class="nav-item"><a class="nav-link<?= peak_nav_active('our-story') ?>" href="<?= base_url('our-story') ?>">Our Story</a></li>
         <li class="nav-item"><a class="nav-link<?= peak_nav_active('contact-us') ?>" href="<?= base_url('contact-us') ?>">Contact Us</a></li>
       </ul>
       <a href="<?= peak_enquiry_url() ?>" class="btn btn-book">Book a Discovery Call</a>

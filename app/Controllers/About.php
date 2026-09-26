@@ -18,8 +18,8 @@ class About extends MY_Controller
     {
         $this->render_frontend('view_our_story', [
             'current_page'     => 'our-story',
-            'meta_title'       => 'Our Story | Peak Potential Academy',
-            'meta_description' => 'Peak Potential Academy began with one belief: lasting change comes when we learn to understand our minds and choose our next step with intention.',
+            'meta_title'       => 'Parenting Unplugged | Peak Potential Academy',
+            'meta_description' => 'A live online workshop for parents of 13+ year olds. 4th October 2026, 11:00 AM–12:00 PM IST, on Zoom.',
             'page_about'       => $this->safe_cms_page('all_page_about'),
         ]);
     }
