@@ -1,20 +1,54 @@
-*/config/development
-*/logs/log-*.php
-!*/logs/index.html
-*/cache/*
-!system/cache/*
-!*/cache/index.html
-!*/cache/.htaccess
-
+# Environment and secrets
 .env
+.env.*
+!.env.example
 
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
-
-#codeigniter 3
-application/logs/*
-!application/logs/index.html
-!application/logs/.htaccess
+# Composer
 /vendor/
+
+# CodeIgniter runtime
+writable/cache/*
+!writable/cache/index.html
+!writable/cache/.htaccess
+
+writable/logs/*
+!writable/logs/index.html
+!writable/logs/.htaccess
+
+writable/session/*
+!writable/session/index.html
+!writable/session/.htaccess
+
+writable/debugbar/*
+!writable/debugbar/index.html
+!writable/debugbar/.htaccess
+
+writable/uploads/*
+!writable/uploads/index.html
+!writable/uploads/.htaccess
+
+writable/investor_documents/*
+!writable/investor_documents/index.html
+!writable/investor_documents/.htaccess
+
+writable/backups/*
+!writable/backups/index.html
+!writable/backups/.htaccess
+
+# Tests and build output
+phpunit.xml
+phpunit.xml.bak
+tests/coverage*
+build/
+.phpunit.cache/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+*~
+.idea/
+.vscode/
+nbproject/
+.buildpath
+.project
+.settings/
