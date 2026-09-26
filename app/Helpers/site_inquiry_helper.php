@@ -120,6 +120,7 @@ if (! function_exists('site_inquiry_source_label')) {
             'discovery' => 'Customer Enquiry Form',
             'contact'   => 'Contact Page',
             'home'      => 'Home Page',
+            'workshop'  => 'Workshop Registration',
             default     => $source !== null && $source !== '' ? ucfirst($source) : 'Unknown',
         };
     }
@@ -154,6 +155,12 @@ if (! function_exists('site_inquiry_form_data_rows')) {
             'other_challenge'  => 'Other challenge',
             'meeting_date'     => 'Preferred date',
             'meeting_time'     => 'Preferred time',
+            'medium'           => 'Medium of instruction',
+            'topic'            => 'Topic request',
+            'heard_from'       => 'Heard about workshop',
+            'amount'           => 'Amount paid',
+            'payment_id'       => 'Razorpay payment ID',
+            'payment_status'   => 'Payment status',
         ];
 
         $rows = [];

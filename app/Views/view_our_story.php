@@ -72,7 +72,7 @@
       <p class="inner-page-eyebrow">Parenting Unplugged</p>
       <h2>A calmer, more confident way to parent.</h2>
       <p>4th October 2026 &nbsp;|&nbsp; 11:00 AM–12:00 PM IST &nbsp;|&nbsp; Live on Zoom &nbsp;|&nbsp; For Parents of 13+ Years</p>
-      <a href="<?= peak_enquiry_url() ?>" class="story-cta__button">Reserve your seat <span>&rarr;</span></a>
+      <a href="<?= base_url('workshop-registration') ?>" class="story-cta__button">Reserve your seat <span>&rarr;</span></a>
     </div>
   </section>
 </main>

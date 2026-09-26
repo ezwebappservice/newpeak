@@ -107,6 +107,12 @@
 			          </a>
 			        </li>
 
+			        <li class="treeview <?php if($class_name == 'workshop_registration') {echo 'active';} ?>">
+			          <a href="<?php echo base_url(); ?>admin/workshop_registration">
+			            <i class="fa fa-ticket"></i> <span>Workshop Seats</span>
+			          </a>
+			        </li>
+
 			        <li class="treeview <?php if( ($class_name == 'setting') ) {echo 'active';} ?>">
 			          <a href="<?php echo base_url(); ?>admin/setting">
 			            <i class="fa fa-cog"></i> <span>Settings</span>

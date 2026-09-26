@@ -44,4 +44,4 @@ rsync -az \
   -e "$RSYNC_RSH" \
   public/uploads/ "${DEST}:${DEPLOY_PATH}/public/uploads/"
 
-ssh "${SSH_OPTS[@]}" "$DEST" "cd $(printf '%q' "$DEPLOY_PATH") && mkdir -p writable/cache writable/logs writable/session writable/debugbar writable/uploads writable/backups writable/investor_documents public/uploads && chmod -R u+rwX writable public/uploads && php spark cache:clear"
+ssh "${SSH_OPTS[@]}" "$DEST" "cd $(printf '%q' "$DEPLOY_PATH") && mkdir -p writable/cache writable/logs writable/session writable/debugbar writable/uploads writable/backups writable/investor_documents public/uploads && chmod -R u+rwX writable public/uploads && php spark migrate --all && php spark cache:clear"

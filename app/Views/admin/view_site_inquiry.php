@@ -28,6 +28,7 @@ helper('site_inquiry');
                         <option value="discovery" <?= ($filter_source ?? '') === 'discovery' ? 'selected' : '' ?>>Customer Enquiry Form</option>
                         <option value="contact" <?= ($filter_source ?? '') === 'contact' ? 'selected' : '' ?>>Contact Page</option>
                         <option value="home" <?= ($filter_source ?? '') === 'home' ? 'selected' : '' ?>>Home Page</option>
+                        <option value="workshop" <?= ($filter_source ?? '') === 'workshop' ? 'selected' : '' ?>>Workshop Registration</option>
                     </select>
                     <label>Status:</label>
                     <select name="status" class="form-control" style="width:auto;margin:0 10px;">

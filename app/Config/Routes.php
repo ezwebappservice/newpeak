@@ -18,6 +18,10 @@ $routes->get('customer-enquiry-form', 'Contact::enquiry');
 $routes->get('book-a-discovery-call', 'Contact::enquiry');
 $routes->post('enquiry/send', 'Contact::send_discovery');
 $routes->get('enquiry/thank-you', 'Contact::thank_you');
+$routes->get('workshop-registration', 'Workshop::index');
+$routes->post('workshop-registration/checkout', 'Workshop::checkout');
+$routes->post('workshop-registration/verify', 'Workshop::verify');
+$routes->get('workshop-registration/thank-you', 'Workshop::thank_you');
 $routes->get('privacy-policy', 'Privacy_policy::index');
 $routes->get('terms-and-conditions', 'Terms_and_conditions::index');
 
