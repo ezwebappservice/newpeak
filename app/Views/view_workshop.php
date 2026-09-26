@@ -6,9 +6,77 @@ $heardSelected = form_old_value('heard_from', $workshop->sources[0] ?? 'LinkedIn
 ?>
 <main class="workshop-page">
   <div class="container workshop-wrap">
-    <section class="workshop-poster">
-      <img src="<?= peak_img('workshop/parenting-unplugged-banner.jpg') ?>" alt="Parenting Unplugged with Sapna KS. Emotional Strength, Healthier Boundaries and Better Conversations. 4th October 2026, 11:00 AM–12:00 PM IST, on Zoom, for parents of 13+ years." width="819" height="848">
-      <h1 class="visually-hidden">Parenting Unplugged</h1>
+    <section class="pu" aria-labelledby="pu-title">
+      <div class="pu-top">
+        <p class="pu-pill">Live online workshop for parents</p>
+        <img class="pu-logo" src="<?= peak_img('workshop/ppa-logo.png') ?>" alt="Peak Potential Academy" width="270" height="102">
+      </div>
+
+      <div class="pu-intro">
+        <div class="pu-copy">
+          <h1 id="pu-title">
+            <span class="pu-title">Parenting</span>
+            <span class="pu-script">Unplugged</span>
+          </h1>
+          <p class="pu-tagline">A calmer, more confident way to parent in a noisy digital world</p>
+        </div>
+        <div class="pu-photo">
+          <img src="<?= peak_img('workshop/family.png') ?>" alt="A mother sitting with her teenage son and daughter" width="419" height="345">
+        </div>
+      </div>
+
+      <div class="pu-host">
+        <span class="pu-sk" aria-hidden="true">SK</span>
+        <div>
+          <strong>With Sapna KS</strong>
+          <p>Top 100 Global Expert in Education · Emotional Strength Expert · 20 Years of Experience</p>
+        </div>
+      </div>
+
+      <div class="pu-pillars">
+        <article>
+          <span class="pu-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 40c0-8 6-12 6-18 0-4-2.5-7-6-8-3.5 1-6 4-6 8 0 6 6 10 6 18Z" stroke="currentColor" stroke-width="1.8"/><path d="M24 22c-4-6-2-12 0-16 2 4 4 10 0 16Z" stroke="currentColor" stroke-width="1.8"/><path d="M18 24c-6-2-10 2-12 6 4 0 8-1 12-6Z" stroke="currentColor" stroke-width="1.8"/><path d="M30 24c6-2 10 2 12 6-4 0-8-1-12-6Z" stroke="currentColor" stroke-width="1.8"/></svg>
+          </span>
+          <h2>Emotional Strength</h2>
+          <p>Give your teen a toolkit to manage big emotions on their own.</p>
+        </article>
+        <article>
+          <span class="pu-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 6 38 12v12c0 9-6.2 14.6-14 18-7.8-3.4-14-9-14-18V12L24 6Z" stroke="currentColor" stroke-width="1.8"/><path d="m17 24 5 5 10-11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h2>Healthier Boundaries</h2>
+          <p>Set limits your teen respects, without the power struggle.</p>
+        </article>
+        <article>
+          <span class="pu-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M10 14h20a6 6 0 0 1 6 6v6a6 6 0 0 1-6 6H20l-7 6v-6h-3a6 6 0 0 1-6-6v-6a6 6 0 0 1 6-6Z" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="23" r="1.4" fill="currentColor"/><circle cx="24" cy="23" r="1.4" fill="currentColor"/><circle cx="30" cy="23" r="1.4" fill="currentColor"/></svg>
+          </span>
+          <h2>Better Conversations</h2>
+          <p>Turn a shutdown into a real conversation, without it becoming a fight.</p>
+        </article>
+      </div>
+
+      <div class="pu-facts">
+        <div>
+          <span class="pu-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="12" width="32" height="28" rx="4" stroke="currentColor" stroke-width="1.8"/><path d="M8 20h32M16 8v8M32 8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <p>4th October<br>2026</p>
+        </div>
+        <div>
+          <span class="pu-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="1.8"/><path d="M24 16v9l6 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <p>11:00 AM – 12:00 PM<br>(IST) · On Zoom</p>
+        </div>
+        <div>
+          <span class="pu-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="16" cy="16" r="5" stroke="currentColor" stroke-width="1.8"/><circle cx="32" cy="16" r="5" stroke="currentColor" stroke-width="1.8"/><path d="M6 36c1.2-6 5-9 10-9s8.8 3 10 9M22 36c1-4.2 3.8-7 8-7 4.6 0 8 3 9.4 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <p>For Parents of<br>13+ Years</p>
+        </div>
+      </div>
     </section>
 
     <section class="workshop-body">
