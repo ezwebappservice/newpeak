@@ -43,6 +43,15 @@ class Contact extends MY_Controller
         ]);
     }
 
+    public function thank_you()
+    {
+        $this->render_frontend('view_enquiry_thanks', [
+            'current_page'     => 'enquiry-thanks',
+            'meta_title'       => 'Thank You | Peak Potential Academy',
+            'meta_description' => 'Your enquiry has been received. The Peak Potential Academy team will be in touch shortly.',
+        ]);
+    }
+
     public function connect()
     {
         return redirect()->to(contact_page_url());
@@ -315,10 +324,6 @@ class Contact extends MY_Controller
             log_message('error', 'Discovery enquiry notify failed: ' . $e->getMessage());
         }
 
-        return form_redirect_with_success(
-            $returnUrl,
-            'Thank you — your enquiry has been recorded. We’ll be in touch shortly.',
-            'discovery_form_success'
-        );
+        return redirect()->to(base_url('enquiry/thank-you'));
     }
 }

@@ -1,5 +1,36 @@
 <?php
 
+if (! function_exists('site_email')) {
+    function site_email(array $setting): \CodeIgniter\Email\Email
+    {
+        $port = (int) ($setting['smtp_port'] ?? 587);
+        $crypto = 'tls';
+
+        if ($port === 465) {
+            $crypto = 'ssl';
+        } elseif ($port === 25 || $port === 2525) {
+            $crypto = '';
+        }
+
+        $email = \Config\Services::email();
+        $email->initialize([
+            'protocol'    => 'smtp',
+            'SMTPHost'    => (string) ($setting['smtp_host'] ?? ''),
+            'SMTPUser'    => (string) ($setting['smtp_username'] ?? ''),
+            'SMTPPass'    => (string) ($setting['smtp_password'] ?? ''),
+            'SMTPPort'    => $port,
+            'SMTPCrypto'  => $crypto,
+            'SMTPTimeout' => 20,
+            'mailType'    => 'html',
+            'charset'     => 'UTF-8',
+            'newline'     => "\r\n",
+            'CRLF'        => "\r\n",
+        ]);
+
+        return $email;
+    }
+}
+
 if (! function_exists('site_inquiry_notify_admin')) {
     function site_inquiry_notify_admin(array $setting, string $subject, string $html): void
     {
@@ -11,13 +42,16 @@ if (! function_exists('site_inquiry_notify_admin')) {
         }
 
         try {
-            $email = \Config\Services::email();
-            $email->from($from);
-            $email->to($to);
-            $email->subject($subject);
+            $email = site_email($setting);
+            $email->setFrom($from, 'Peak Potential Academy');
+            $email->setTo($to);
+            $email->setSubject($subject);
             $email->setMailType('html');
             $email->setMessage($html);
-            $email->send();
+
+            if (! $email->send()) {
+                log_message('error', 'Inquiry admin notify failed: ' . $email->printDebugger(['headers']));
+            }
         } catch (\Throwable $e) {
             log_message('error', 'Inquiry admin notify failed: ' . $e->getMessage());
         }

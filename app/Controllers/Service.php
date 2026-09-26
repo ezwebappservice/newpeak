@@ -156,20 +156,8 @@ class Service extends MY_Controller {
 				';
             	
 
-            	$config = [
-					'protocol' => 'smtp',
-					'smtp_host' => $data['setting']['smtp_host'],
-					'smtp_port' => $data['setting']['smtp_port'],
-					'smtp_user' => $data['setting']['smtp_username'],
-					'smtp_pass' => $data['setting']['smtp_password'],
-					'crlf' => "\r\n",
-					'newline' => "\r\n",
-					'mailtype'  => 'html',
-					'charset'   => 'utf-8'
-				];
-
-				$this->email = \Config\Services::email();
-				// Note: CI4 email initialization might need config explicitly passed if overriding defaults
+				helper('site_inquiry');
+				$this->email = site_email($data['setting']);
 
 				$this->email->from($data['setting']['send_email_from']);
 				$this->email->to($data['setting']['receive_email_to']);

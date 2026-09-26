@@ -56,19 +56,8 @@ class Forget_password extends BaseController
 
                 $msg = '<p>To reset your password, please <a href="' . esc($resetUrl) . '">click here</a> and enter a new password. This link expires in 1 hour.</p>';
 
-                $config = [
-					'protocol' => 'smtp',
-					'smtp_host' => $data['setting']['smtp_host'],
-					'smtp_port' => $data['setting']['smtp_port'],
-					'smtp_user' => $data['setting']['smtp_username'],
-					'smtp_pass' => $data['setting']['smtp_password'],
-					'crlf' => "\r\n",
-					'newline' => "\r\n",
-					'mailtype'  => 'html',
-					'charset'   => 'utf-8'
-				];
-
-				$this->email = \Config\Services::email();
+                helper('site_inquiry');
+                $this->email = site_email($data['setting']);
 
                 $this->email->from($data['setting']['send_email_from']);
                 $this->email->to($email);

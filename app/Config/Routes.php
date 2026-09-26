@@ -17,6 +17,7 @@ $routes->post('contact-us/send', 'Contact::send_email');
 $routes->get('customer-enquiry-form', 'Contact::enquiry');
 $routes->get('book-a-discovery-call', 'Contact::enquiry');
 $routes->post('enquiry/send', 'Contact::send_discovery');
+$routes->get('enquiry/thank-you', 'Contact::thank_you');
 $routes->get('privacy-policy', 'Privacy_policy::index');
 $routes->get('terms-and-conditions', 'Terms_and_conditions::index');
 
