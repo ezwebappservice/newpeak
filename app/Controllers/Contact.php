@@ -122,7 +122,9 @@ class Contact extends MY_Controller
             $errors[] = 'Please enter a valid email address.';
         }
 
-        if ($phone !== '' && ! form_antispam_valid_phone($phone)) {
+        if ($phone === '') {
+            $errors[] = 'Phone number is required.';
+        } elseif (! form_antispam_valid_phone($phone)) {
             $errors[] = 'Please enter a valid phone number.';
         }
 
@@ -156,20 +158,17 @@ class Contact extends MY_Controller
             return form_redirect_with_errors($redirectUrl, 'We could not save your message. Please try again.', 'connect_form_error');
         }
 
-        $msg = '<html><head><title>Contact Form</title></head><body>'
-            . '<h3>Contact Form – Peak Potential Academy</h3>'
-            . '<b>Name: </b>' . esc($displayName) . '<br><br>'
-            . '<b>Email: </b>' . esc($email) . '<br><br>'
-            . ($phone !== '' ? '<b>Phone: </b>' . esc($phone) . '<br><br>' : '')
-            . '<b>Interest: </b>' . esc($subject) . '<br><br>'
-            . '<b>Message: </b>' . nl2br(esc($message))
-            . '</body></html>';
+        $msg = site_inquiry_email_html('Contact form – Peak Potential Academy', [
+            'Full name'     => $displayName,
+            'Email'         => $email,
+            'Phone'         => $phone,
+            'Interested in' => $interest !== '' ? $interest : 'Not selected',
+            'Message'       => $message,
+        ]);
 
-        site_inquiry_notify_admin($data['setting'], 'Contact Form – ' . $displayName, $msg);
+        site_inquiry_notify_admin($data['setting'], 'Contact Form – ' . $displayName, $msg, $email, $displayName);
 
-        $success = defined('SUCCESS_CONTACT_FORM') ? SUCCESS_CONTACT_FORM : 'Thank you for contacting us. We will get back to you shortly.';
-
-        return form_redirect_with_success($redirectUrl, $success, 'connect_form_success');
+        return redirect()->to(base_url('enquiry/thank-you'));
     }
 
     public function send_discovery()
@@ -313,13 +312,21 @@ class Contact extends MY_Controller
         }
 
         try {
-            site_inquiry_notify_admin($setting, 'Discovery Enquiry – ' . $displayName, '<html><head><title>Discovery Enquiry</title></head><body>'
-                . '<h3>Customer Enquiry Form – Peak Potential Academy</h3>'
-                . '<b>Name: </b>' . esc($displayName) . '<br><br>'
-                . '<b>Email: </b>' . esc($email) . '<br><br>'
-                . '<b>Phone: </b>' . esc($phone) . '<br><br>'
-                . '<pre>' . esc($message) . '</pre>'
-                . '</body></html>');
+            site_inquiry_notify_admin($setting, 'Discovery Enquiry – ' . $displayName, site_inquiry_email_html('Customer enquiry – Peak Potential Academy', [
+                'Full name'        => $displayName,
+                'Email'            => $email,
+                'WhatsApp'         => $phone,
+                'Country'          => $country,
+                'City'             => $city,
+                'Applying as'      => $applicant,
+                'Age'              => $age,
+                'Program'          => $program,
+                'Challenge focus'  => $challengeFocus,
+                'Challenges'       => $challenges !== [] ? implode(', ', $challenges) : '',
+                'Other challenge'  => $otherChallenge,
+                'Preferred date'   => $meetingDate,
+                'Preferred time'   => $meetingTime,
+            ]), $email, $displayName);
         } catch (\Throwable $e) {
             log_message('error', 'Discovery enquiry notify failed: ' . $e->getMessage());
         }

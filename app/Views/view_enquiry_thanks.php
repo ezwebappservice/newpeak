@@ -1,9 +1,9 @@
 <main>
   <section class="enquiry-hero">
     <div class="container">
-      <p class="enquiry-eyebrow">Enquiry received</p>
+      <p class="enquiry-eyebrow">Message received</p>
       <h1>Thank <em>you.</em></h1>
-      <p>Your enquiry has been recorded. Our team will review it and contact you shortly.</p>
+      <p>Your message has been received. Our team will review it and contact you shortly.</p>
     </div>
   </section>
 

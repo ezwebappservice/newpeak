@@ -31,8 +31,35 @@ if (! function_exists('site_email')) {
     }
 }
 
+if (! function_exists('site_inquiry_email_html')) {
+    /**
+     * @param array<string, string> $rows
+     */
+    function site_inquiry_email_html(string $title, array $rows): string
+    {
+        $html = '<h2 style="margin:0 0 16px;font-family:Georgia,serif;color:#560d17;">' . esc($title) . '</h2>';
+        $html .= '<table cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%;max-width:640px;font-family:Arial,sans-serif;font-size:14px;color:#352a2c;">';
+
+        foreach ($rows as $label => $value) {
+            $value = trim((string) $value);
+            if ($value === '') {
+                $value = '—';
+            }
+
+            $html .= '<tr>'
+                . '<td style="width:180px;border:1px solid #eadfdb;background:#f9f1ee;font-weight:bold;vertical-align:top;">' . esc($label) . '</td>'
+                . '<td style="border:1px solid #eadfdb;vertical-align:top;">' . nl2br(esc($value)) . '</td>'
+                . '</tr>';
+        }
+
+        $html .= '</table>';
+
+        return $html;
+    }
+}
+
 if (! function_exists('site_inquiry_notify_admin')) {
-    function site_inquiry_notify_admin(array $setting, string $subject, string $html): void
+    function site_inquiry_notify_admin(array $setting, string $subject, string $html, string $replyTo = '', string $replyName = ''): void
     {
         $to = trim((string) ($setting['receive_email_to'] ?? ''));
         $from = trim((string) ($setting['send_email_from'] ?? ''));
@@ -45,6 +72,9 @@ if (! function_exists('site_inquiry_notify_admin')) {
             $email = site_email($setting);
             $email->setFrom($from, 'Peak Potential Academy');
             $email->setTo($to);
+            if ($replyTo !== '' && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
+                $email->setReplyTo($replyTo, $replyName);
+            }
             $email->setSubject($subject);
             $email->setMailType('html');
             $email->setMessage($html);
