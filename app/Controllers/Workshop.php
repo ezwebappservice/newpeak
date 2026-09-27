@@ -54,14 +54,21 @@ class Workshop extends MY_Controller
         $topic = trim((string) $this->request->getPost('topic'));
         $heardFrom = trim((string) $this->request->getPost('heard_from'));
 
-        $errors = $this->validateRegistration($firstName, $lastName, $phone, $email, $medium, $topic, $heardFrom);
+        $fieldErrors = $this->validateRegistration($firstName, $lastName, $phone, $email, $medium, $topic, $heardFrom);
+        $rateError = form_antispam_rate_limit($this->request, 'workshop_registration');
 
-        if ($rateError = form_antispam_rate_limit($this->request, 'workshop_registration')) {
-            $errors[] = $rateError;
-        }
+        if ($fieldErrors !== [] || $rateError !== null) {
+            $redirect = redirect()->to($returnUrl)->withInput();
 
-        if ($errors !== []) {
-            return form_redirect_with_errors($returnUrl, $errors, 'workshop_form_error');
+            if ($fieldErrors !== []) {
+                $redirect->with('workshop_field_errors', $fieldErrors);
+            }
+
+            if ($rateError !== null) {
+                $redirect->with('workshop_form_error', $rateError);
+            }
+
+            return $redirect;
         }
 
         $razorpay = new RazorpayClient();
@@ -234,7 +241,7 @@ class Workshop extends MY_Controller
     }
 
     /**
-     * @return list<string>
+     * @return array<string, string>
      */
     private function validateRegistration(
         string $firstName,
@@ -248,37 +255,73 @@ class Workshop extends MY_Controller
         helper('form_antispam');
         $errors = [];
 
-        if (! form_antispam_valid_person_name($firstName)) {
-            $errors[] = 'Please enter a valid first name.';
+        if ($firstName === '') {
+            $errors['first_name'] = 'Please enter your first name.';
+        } elseif (! $this->validPersonName($firstName)) {
+            $errors['first_name'] = 'Please enter a valid first name.';
         }
 
-        if (! form_antispam_valid_person_name($lastName)) {
-            $errors[] = 'Please enter a valid last name.';
+        if ($lastName === '') {
+            $errors['last_name'] = 'Please enter your last name.';
+        } elseif (! $this->validPersonName($lastName)) {
+            $errors['last_name'] = 'Please enter a valid last name.';
         }
 
-        if ($email === '' || ! filter_var($email, FILTER_VALIDATE_EMAIL) || form_antispam_is_bad_email($email)) {
-            $errors[] = 'Please enter a valid email address.';
+        if ($email === '') {
+            $errors['email'] = 'Please enter your email address.';
+        } elseif (! filter_var($email, FILTER_VALIDATE_EMAIL) || form_antispam_is_bad_email($email)) {
+            $errors['email'] = 'Please enter a valid email address.';
         }
 
-        if ($phone === '' || ! form_antispam_valid_phone($phone)) {
-            $errors[] = 'Please enter a valid WhatsApp number.';
+        if ($phone === '') {
+            $errors['phone'] = 'Please enter your WhatsApp number.';
+        } elseif (! $this->validWhatsapp($phone)) {
+            $errors['phone'] = 'Please enter a valid 10-digit WhatsApp number.';
         }
 
         if (! in_array($medium, $this->workshop->mediums, true)) {
-            $errors[] = 'Please choose a preferred medium of instruction.';
+            $errors['medium'] = 'Please choose a preferred medium of instruction.';
         }
 
         if (! in_array($heardFrom, $this->workshop->sources, true)) {
-            $errors[] = 'Please tell us how you heard about this workshop.';
+            $errors['heard_from'] = 'Please tell us how you heard about this workshop.';
         }
 
         if (strlen($topic) > 1000) {
-            $errors[] = 'The topic is too long.';
+            $errors['topic'] = 'The topic is too long.';
         } elseif ($topic !== '' && form_antispam_contains_spam($topic)) {
-            $errors[] = 'Please rephrase the topic you would like us to include.';
+            $errors['topic'] = 'Please rephrase the topic you would like us to include.';
         }
 
         return $errors;
+    }
+
+    private function validPersonName(string $name): bool
+    {
+        $name = trim($name);
+
+        if (mb_strlen($name) < 2 || mb_strlen($name) > 80) {
+            return false;
+        }
+
+        if (preg_match('/https?:|www\.|<|>|@|\d/iu', $name)) {
+            return false;
+        }
+
+        return (bool) preg_match("/^[\p{L}\p{M}\s'.-]+$/u", $name);
+    }
+
+    private function validWhatsapp(string $phone): bool
+    {
+        $digits = preg_replace('/\D+/', '', $phone) ?? '';
+
+        if (str_starts_with($digits, '91') && strlen($digits) === 12) {
+            $digits = substr($digits, 2);
+        } elseif (str_starts_with($digits, '0') && strlen($digits) === 11) {
+            $digits = substr($digits, 1);
+        }
+
+        return (bool) preg_match('/^[6-9]\d{9}$/', $digits);
     }
 
     /**

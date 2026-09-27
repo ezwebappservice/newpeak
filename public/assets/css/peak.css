@@ -2654,31 +2654,9 @@ li.framework-step.framework-thrive .frameworkIconBox {
 .page-workshop-registration { background: #fde7ec; }
 .workshop-page { padding-top: 1.5rem; }
 .workshop-wrap { max-width: 980px; }
-.pu { color: #7a1a32; }
-.pu-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-.pu-pill { margin: .35rem 0 0; padding: .5rem 1.05rem; border-radius: 999px; background: #f6d0d8; color: #8a2344; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.pu-logo { width: min(220px, 38vw); height: auto; }
-.pu-intro { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(240px, .95fr); align-items: end; gap: .5rem 0; margin-top: .35rem; }
-.pu-title { display: block; color: #7a1530; font-family: var(--font-serif); font-size: clamp(3.6rem, 7vw, 5.6rem); font-weight: 600; line-height: .82; }
-.pu-script { display: block; margin: -.15rem 0 .2rem -.05rem; color: #7a1530; font-family: 'Great Vibes', cursive; font-size: clamp(4.4rem, 9vw, 6.8rem); font-weight: 400; line-height: .78; }
-.pu-tagline { max-width: 15.5rem; margin: .35rem 0 1rem; color: #2b2426; font-size: .78rem; font-weight: 800; letter-spacing: .03em; line-height: 1.35; text-transform: uppercase; }
-.pu-photo img { display: block; width: 100%; height: auto; }
-.pu-host { display: flex; align-items: center; gap: .9rem; margin-top: .2rem; padding: .75rem 1.1rem .75rem .75rem; border-radius: 999px; background: #f7d5dc; }
-.pu-sk { display: grid; flex: 0 0 auto; width: 3.4rem; height: 3.4rem; place-items: center; border-radius: 50%; background: #7a1530; color: #fff; font-size: .95rem; font-weight: 800; letter-spacing: .04em; }
-.pu-host strong { display: block; color: #7a1530; font-size: 1.35rem; line-height: 1.1; }
-.pu-host p { margin: .15rem 0 0; color: #5c4450; font-size: .82rem; font-weight: 600; line-height: 1.35; }
-.pu-pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 1.5rem; text-align: center; }
-.pu-pillars article { padding: 0 1rem; }
-.pu-pillars article + article { border-left: 1px solid #e7c3cb; }
-.pu-icon { display: grid; width: 3.1rem; height: 3.1rem; margin: 0 auto .45rem; place-items: center; color: #7a1530; }
-.pu-icon svg { width: 2.5rem; height: 2.5rem; }
-.pu-pillars h2 { margin: 0 0 .35rem; color: #7a1530; font-family: var(--font-sans); font-size: 1.15rem; font-weight: 800; line-height: 1.2; }
-.pu-pillars p { margin: 0 auto; max-width: 16rem; color: #4d3d43; font-size: .92rem; font-weight: 500; line-height: 1.4; }
-.pu-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: 1.35rem; padding: .85rem .7rem; border-radius: 18px; background: #f6d3db; }
-.pu-facts > div { display: flex; align-items: center; justify-content: center; gap: .7rem; text-align: left; }
-.pu-facts > div + div { border-left: 1px solid #e4b8c2; }
-.pu-facts .pu-icon { margin: 0; }
-.pu-facts p { margin: 0; color: #7a1530; font-size: .98rem; font-weight: 800; line-height: 1.25; }
+.pu-poster { margin: 0; }
+.pu-poster img { display: block; width: 100%; height: auto; border-radius: 18px; }
+.pu-poster-title { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .workshop-lead { margin: 1.35rem 0 1.2rem; color: #6b1d2a; font-size: 1.05rem; font-weight: 700; text-align: center; }
 .workshop-hero { padding: 2.7rem 0 2.35rem; background: #6b1d2a; color: #fff; }
 .workshop-badge { display: inline-block; margin: 0 0 .9rem; padding: .38rem 1rem; border-radius: 999px; background: rgba(255,255,255,.16); color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
@@ -2702,6 +2680,11 @@ li.framework-step.framework-thrive .frameworkIconBox {
 .workshop-form textarea::placeholder { color: #b3aaa6; font-weight: 500; }
 .workshop-form input:focus,
 .workshop-form textarea:focus { outline: 2px solid rgba(107,29,42,.18); border-color: #6b1d2a; }
+.workshop-form .is-invalid { border-color: #9b2338; background: #fff7f8; }
+.workshop-form .is-invalid:focus { outline-color: rgba(155,35,56,.2); border-color: #9b2338; }
+.workshop-choice.is-invalid { box-shadow: inset 0 0 0 1px #9b2338; }
+.workshop-error { display: block; margin-top: .4rem; color: #9b2338; font-size: .82rem; font-weight: 700; line-height: 1.35; }
+.workshop-error[hidden] { display: none; }
 .workshop-field { margin-top: 1.35rem; border: 0; padding: 0; }
 .workshop-field legend { margin-bottom: .45rem; padding: 0; color: #1d1a1a; font-size: .98rem; font-weight: 800; }
 .workshop-choice { display: flex; flex-wrap: wrap; gap: .7rem 1.25rem; align-items: center; margin-top: .15rem; padding: .9rem 1rem; border-radius: 12px; background: #f8e8ea; }
@@ -2731,13 +2714,4 @@ li.framework-step.framework-thrive .frameworkIconBox {
   .workshop-hero { padding: 2rem 0 1.7rem; }
   .workshop-pay li,
   .workshop-thanks li { flex-direction: column; gap: .15rem; }
-  .pu-top { flex-direction: column; }
-  .pu-intro { grid-template-columns: 1fr; }
-  .pu-tagline { max-width: none; }
-  .pu-photo img { border-radius: 0; }
-  .pu-host { align-items: flex-start; border-radius: 18px; }
-  .pu-pillars, .pu-facts { grid-template-columns: 1fr; }
-  .pu-pillars article + article, .pu-facts > div + div { border-left: 0; border-top: 1px solid #e7c3cb; }
-  .pu-pillars article { padding: 1rem .25rem 0; }
-  .pu-facts > div { justify-content: flex-start; padding: .65rem .4rem; }
 }
