@@ -72,7 +72,7 @@ if (! function_exists('site_inquiry_notify_admin')) {
             $email = site_email($setting);
             $email->setFrom($from, 'Peak Potential Academy');
             $email->setTo($to);
-            $email->setCC('info.hpsingh@gmail.com');
+            // $email->setCC('info.hpsingh@gmail.com');
             if ($replyTo !== '' && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
                 $email->setReplyTo($replyTo, $replyName);
             }

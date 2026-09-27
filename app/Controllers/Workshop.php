@@ -24,7 +24,8 @@ class Workshop extends MY_Controller
         session()->set('workshop_form_seen', time());
 
         $this->render_frontend('view_workshop', $this->pageMeta([
-            'workshop' => $this->workshop,
+            'workshop'       => $this->workshop,
+            'hide_book_tab'  => true,
         ]));
     }
 
@@ -432,9 +433,9 @@ class Workshop extends MY_Controller
     private function emailRegistrant(array $setting, array $registration): void
     {
         $to = trim((string) ($registration['email'] ?? ''));
-        $from = trim((string) ($setting['send_email_from'] ?? ''));
+        $from = 'Foundersapnaks@gmail.com';
 
-        if ($to === '' || $from === '' || ! filter_var($to, FILTER_VALIDATE_EMAIL)) {
+        if ($to === '' || ! filter_var($to, FILTER_VALIDATE_EMAIL)) {
             return;
         }
 
@@ -454,7 +455,7 @@ class Workshop extends MY_Controller
     {
         $p = 'margin:0 0 16px;font-family:Arial,sans-serif;font-size:16px;line-height:1.6;color:#352a2c;';
 
-        $greeting = $parentName !== '' ? 'Dear Parent ' . esc($parentName) . ',' : 'Dear Parent,';
+        $greeting = $parentName !== '' ? 'Dear ' . esc($parentName) . ',' : 'Dear Parent,';
 
         $html = '<div style="max-width:640px;">';
         $html .= '<p style="' . $p . '">' . $greeting . '</p>';

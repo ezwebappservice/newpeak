@@ -48,14 +48,17 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; <?= date('Y') ?> Peak Potential Academy. All Rights Reserved.</span>
+      <span class="footer-credit">Designed by <a href="https://www.ezwebapp.com/" target="_blank" rel="noopener noreferrer">EZ Web APP</a></span>
       <span><a href="<?= base_url('privacy-policy') ?>">Privacy Policy</a><i>|</i><a href="<?= base_url('terms-and-conditions') ?>">Terms &amp; Conditions</a></span>
     </div>
   </div>
 </footer>
+<?php if (empty($hide_book_tab)): ?>
 <?= view('partials/peak_book_tab', [
     'page_home' => $page_home ?? [],
     'page_home_lang_independent' => $page_home_lang_independent ?? [],
 ]) ?>
+<?php endif; ?>
 
 <?php
 $toastSuccess = session()->getFlashdata('success');

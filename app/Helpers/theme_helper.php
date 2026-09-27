@@ -338,7 +338,7 @@ if (! function_exists('theme_upload')) {
         if (! empty($filename)) {
             $filename = ltrim($filename, '/');
             $absolute = FCPATH . 'uploads/' . $filename;
-            $url = peak_prefer_webp(base_url('public/uploads/' . $filename), $absolute);
+            $url = peak_prefer_webp(base_url('uploads/' . $filename), $absolute);
             $served = str_ends_with(strtolower(parse_url($url, PHP_URL_PATH) ?? ''), '.webp')
                 ? (string) preg_replace('/\.(png|jpe?g|gif)$/i', '.webp', $absolute)
                 : $absolute;
