@@ -19,7 +19,7 @@ class Workshop extends BaseConfig
     public string $audience = 'Parents of 13+ year olds';
 
     /** Seat fee in rupees. Override with workshop.amountInr in .env. */
-    public int $amountInr = 999;
+    public int $amountInr = 299;
 
     public string $currency = 'INR';
 
