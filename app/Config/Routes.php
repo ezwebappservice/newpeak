@@ -22,6 +22,7 @@ $routes->get('workshop-registration', 'Workshop::index');
 $routes->match(['get', 'post'], 'workshop-registration/checkout', 'Workshop::checkout');
 $routes->post('workshop-registration/verify', 'Workshop::verify');
 $routes->get('workshop-registration/thank-you', 'Workshop::thank_you');
+$routes->post('admin/workshop_registration/update_price', 'Admin\Workshop_registration::update_price');
 $routes->get('privacy-policy', 'Privacy_policy::index');
 $routes->get('terms-and-conditions', 'Terms_and_conditions::index');
 

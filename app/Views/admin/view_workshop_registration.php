@@ -12,6 +12,25 @@ if (! $this->session->userdata('id')) {
 <section class="content">
     <div class="row">
         <div class="col-md-12">
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="callout callout-danger"><p><?= esc(session()->getFlashdata('error')) ?></p></div>
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('success')): ?>
+                <div class="callout callout-success"><p><?= esc(session()->getFlashdata('success')) ?></p></div>
+            <?php endif; ?>
+
+            <div class="box box-info">
+                <div class="box-body">
+                    <h3 class="sec_title" style="margin-top:0;">Seat fee</h3>
+                    <p class="text-muted">This price is shown on the workshop registration page and charged through Razorpay.</p>
+                    <?= form_open(base_url('admin/workshop_registration/update_price'), ['class' => 'form-inline']) ?>
+                        <label for="seat_fee">Price (₹)</label>
+                        <input type="number" name="seat_fee" id="seat_fee" class="form-control" style="width:140px;margin:0 10px;" min="1" max="1000000" step="1" value="<?= (int) ($seat_fee ?? 299) ?>" required>
+                        <button type="submit" class="btn btn-success btn-sm">Save price</button>
+                    <?= form_close() ?>
+                </div>
+            </div>
+
             <div class="box box-info" style="padding:10px 15px;">
                 <form method="get" class="form-inline">
                     <label>Payment:</label>
