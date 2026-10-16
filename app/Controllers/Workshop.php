@@ -239,7 +239,7 @@ class Workshop extends MY_Controller
         return array_merge([
             'current_page'     => 'workshop-registration',
             'meta_title'       => $title . ' | Peak Potential Academy',
-            'meta_description' => 'Reserve your seat for Understand Your Teen, a live online workshop on 4th October 2026, 11:00 AM–12:00 PM IST.',
+            'meta_description' => 'Reserve your seat for Understand Your Teen, a live online workshop on ' . $this->workshop->eventDate . ', ' . $this->workshop->eventTime . '.',
         ], $extra);
     }
 
@@ -463,8 +463,16 @@ class Workshop extends MY_Controller
         $html .= '<p style="' . $p . '">' . $greeting . '</p>';
         $html .= '<p style="' . $p . '">Thank you for registering for <strong>Parenting Unplugged</strong>.</p>';
         $html .= '<p style="' . $p . '">I’m looking forward to spending this hour with you and helping you navigate the teenage years with more understanding, confidence and calm.</p>';
-        $html .= '<p style="' . $p . '"><strong>Workshop Details:</strong><br>Date: 4th October 2026<br>Time: 11:00 AM – 12:00 PM IST<br>Mode: Live on Zoom</p>';
-        $html .= '<p style="' . $p . '">Your Zoom joining link will be shared with you in a separate email 24 hours before the workshop. Please keep an eye on your registered email inbox.</p>';
+        $details = 'Date: ' . esc($this->workshop->eventDate) . '<br>Time: ' . esc($this->workshop->eventTime) . '<br>Mode: ' . esc($this->workshop->eventFormat);
+        if ($this->workshop->zoomLink !== '') {
+            $details .= '<br>Zoom link: <a href="' . esc($this->workshop->zoomLink, 'attr') . '" style="color:#6b1d2a;">' . esc($this->workshop->zoomLink) . '</a>';
+        }
+        $html .= '<p style="' . $p . '"><strong>Workshop Details:</strong><br>' . $details . '</p>';
+        if ($this->workshop->zoomLink !== '') {
+            $html .= '<p style="' . $p . '">Use the Zoom link above to join the workshop. Please keep an eye on your registered email inbox for any updates.</p>';
+        } else {
+            $html .= '<p style="' . $p . '">Your Zoom joining link will be shared with you in a separate email 24 hours before the workshop. Please keep an eye on your registered email inbox.</p>';
+        }
         $html .= '<p style="' . $p . '">During the workshop, we’ll work around three practical areas:<br><strong>Emotional Strength | Healthier Boundaries | Better Conversations</strong></p>';
         $html .= '<p style="' . $p . '">I’ll also use the responses shared during registration to make the session relevant to the real challenges parents are facing.</p>';
         $html .= '<p style="' . $p . '"><strong>Before the workshop:</strong><br>This is an interactive, activity-based session, so please ensure you have:</p>';

@@ -31,6 +31,32 @@ if (! $this->session->userdata('id')) {
                 </div>
             </div>
 
+            <div class="box box-info">
+                <div class="box-body">
+                    <h3 class="sec_title" style="margin-top:0;">Date, time and format</h3>
+                    <p class="text-muted">These details appear on the workshop registration page. The Zoom link is optional. When it is filled in, “format” becomes a link.</p>
+                    <?= form_open(base_url('admin/workshop_registration/update_details')) ?>
+                        <div class="form-group">
+                            <label for="event_date">Date</label>
+                            <input type="text" name="event_date" id="event_date" class="form-control" maxlength="80" value="<?= esc($event_date ?? '18 Oct 2026') ?>" required placeholder="18 Oct 2026">
+                        </div>
+                        <div class="form-group">
+                            <label for="event_time">Time</label>
+                            <input type="text" name="event_time" id="event_time" class="form-control" maxlength="80" value="<?= esc($event_time ?? '07 AM – 08 AM') ?>" required placeholder="07 AM – 08 AM">
+                        </div>
+                        <div class="form-group">
+                            <label for="event_format">Format</label>
+                            <input type="text" name="event_format" id="event_format" class="form-control" maxlength="120" value="<?= esc($event_format ?? 'Live on Zoom') ?>" required placeholder="Live on Zoom">
+                        </div>
+                        <div class="form-group">
+                            <label for="zoom_link">Zoom link <span class="text-muted">(optional)</span></label>
+                            <input type="url" name="zoom_link" id="zoom_link" class="form-control" maxlength="500" value="<?= esc($zoom_link ?? '') ?>" placeholder="https://zoom.us/j/…">
+                        </div>
+                        <button type="submit" class="btn btn-success btn-sm">Save details</button>
+                    <?= form_close() ?>
+                </div>
+            </div>
+
             <div class="box box-info" style="padding:10px 15px;">
                 <form method="get" class="form-inline">
                     <label>Payment:</label>

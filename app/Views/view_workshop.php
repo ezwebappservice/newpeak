@@ -9,6 +9,18 @@ $fieldError = static function (string $field) use ($fieldErrors): string {
     return trim((string) ($fieldErrors[$field] ?? ''));
 };
 $amount = $workshop->amountLabel();
+$eventDate = $workshop->eventDate;
+$eventTime = $workshop->eventTime;
+$eventFormat = $workshop->eventFormat;
+$zoomLink = $workshop->zoomLink;
+$formatHtml = static function () use ($eventFormat, $zoomLink): string {
+    $label = esc($eventFormat);
+    if ($zoomLink === '') {
+        return $label;
+    }
+
+    return '<a href="' . esc($zoomLink, 'attr') . '" target="_blank" rel="noopener noreferrer">' . $label . '</a>';
+};
 $facilitator = peak_home_hero($page_home ?? [], $page_home_lang_independent ?? []);
 $facilitatorPhoto = $facilitator['photo'] ?? peak_img('14 hero section image.webp');
 ?>
@@ -19,9 +31,9 @@ $facilitatorPhoto = $facilitator['photo'] ?? peak_img('14 hero section image.web
       <h1>Understand<br><span class="pu-accent">Your Teen</span><br>Before the Next<br>Fight Starts.</h1>
       <p class="pu-lead">A live, interactive workshop for parents of teenagers — on why the silence, the screen fights, and the “nothing” answers happen, and what actually helps.</p>
       <div class="pu-pills">
-        <span class="pu-pill">4th October 2026</span>
-        <span class="pu-pill">11:00 AM – 12:00 PM</span>
-        <span class="pu-pill">Live on Zoom</span>
+        <span class="pu-pill"><?= esc($eventDate) ?></span>
+        <span class="pu-pill"><?= esc($eventTime) ?></span>
+        <span class="pu-pill"><?= $formatHtml() ?></span>
         <span class="pu-pill">Limited Seats</span>
       </div>
       <a href="#register" class="pu-cta">Reserve your Seat · <?= esc($amount) ?></a>
@@ -80,9 +92,9 @@ $facilitatorPhoto = $facilitator['photo'] ?? peak_img('14 hero section image.web
         </article>
       </div>
       <div class="pu-eventbar">
-        <div><small>Date</small><b>18 Oct 2026</b></div>
-        <div><small>Time</small><b>07 AM – 08 AM</b></div>
-        <div><small>Format</small><b>Live on Zoom</b></div>
+        <div><small>Date</small><b><?= esc($eventDate) ?></b></div>
+        <div><small>Time</small><b><?= esc($eventTime) ?></b></div>
+        <div><small>Format</small><b><?= $formatHtml() ?></b></div>
         <div><small>Seat fee</small><b><?= esc($amount) ?></b></div>
       </div>
     </div>
@@ -117,7 +129,11 @@ $facilitatorPhoto = $facilitator['photo'] ?? peak_img('14 hero section image.web
         </div>
         <div class="pu-faqitem">
           <b>How do I join?</b>
-          <p>Complete the registration form and payment. The Zoom joining link will be shared separately 24 hours before the workshop.</p>
+          <?php if ($zoomLink !== ''): ?>
+            <p>Complete the registration form and payment, then join on Zoom: <a href="<?= esc($zoomLink, 'attr') ?>" target="_blank" rel="noopener noreferrer"><?= esc($zoomLink) ?></a></p>
+          <?php else: ?>
+            <p>Complete the registration form and payment. The Zoom joining link will be shared separately 24 hours before the workshop.</p>
+          <?php endif; ?>
         </div>
         <div class="pu-faqitem">
           <b>Is this interactive?</b>

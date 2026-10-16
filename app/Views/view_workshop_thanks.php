@@ -15,7 +15,7 @@
     <div class="container workshop-wrap">
       <article class="workshop-thanks">
         <h2><?= esc($workshop->when) ?></h2>
-        <p><?= esc($workshop->where) ?> · <?= esc($workshop->audience) ?></p>
+        <p><?php if ($workshop->zoomLink !== ''): ?><a href="<?= esc($workshop->zoomLink, 'attr') ?>" target="_blank" rel="noopener noreferrer"><?= esc($workshop->where) ?></a><?php else: ?><?= esc($workshop->where) ?><?php endif; ?> · <?= esc($workshop->audience) ?></p>
         <?php if (is_array($receipt)): ?>
           <ul>
             <?php if (($receipt['name'] ?? '') !== ''): ?><li><span>Name</span><?= esc($receipt['name']) ?></li><?php endif; ?>

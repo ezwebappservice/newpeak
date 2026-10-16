@@ -2659,6 +2659,7 @@ html:has(body.page-workshop-registration) { scroll-behavior: smooth; }
 .pu-lead { max-width: 760px; margin: 0; color: var(--pu-muted); font-size: 20px; line-height: 1.6; }
 .pu-pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0; }
 .pu-pill { padding: 11px 16px; border: 1px solid var(--pu-line); border-radius: 999px; background: #fff; font-size: 13px; font-weight: 700; }
+.pu-pill a { color: inherit; text-decoration: underline; }
 .pu-cta { display: inline-block; padding: 16px 24px; border: 0; border-radius: 8px; background: var(--pu-burg); color: #fff; font-size: 16px; font-weight: 800; letter-spacing: .04em; text-decoration: none; text-transform: uppercase; }
 .pu-cta:hover { background: #741c21; color: #fff; }
 .pu-micro { margin-top: 10px; color: var(--pu-muted); font-size: 12px; }
@@ -2688,6 +2689,7 @@ html:has(body.page-workshop-registration) { scroll-behavior: smooth; }
 .pu-eventbar { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 34px; padding: 25px; border-radius: 14px; background: var(--pu-wine); color: #fff; text-align: center; }
 .pu-eventbar small { display: block; margin-bottom: 7px; color: #d9b9bd; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
 .pu-eventbar b { font-size: 15px; }
+.pu-eventbar a { color: inherit; text-decoration: underline; }
 .pu-bio { display: grid; grid-template-columns: 220px 1fr; gap: 35px; align-items: center; max-width: 920px; margin: 32px auto 0; padding: 32px; border: 1px solid var(--pu-line); border-radius: 16px; background: #fff; }
 .pu-bio img { width: 210px; height: 210px; object-fit: cover; object-position: center; border-radius: 50%; background: #2a1216; }
 .pu-bio h3 { margin: 0 0 7px; color: var(--pu-ink); font: 700 31px Georgia, "Times New Roman", serif; }
