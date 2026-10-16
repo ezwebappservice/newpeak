@@ -24,7 +24,7 @@ $facilitatorPhoto = $facilitator['photo'] ?? peak_img('14 hero section image.web
         <span class="pu-pill">Live on Zoom</span>
         <span class="pu-pill">Limited Seats</span>
       </div>
-      <a href="#register" class="pu-cta">Grab your seat · <?= esc($amount) ?></a>
+      <a href="#register" class="pu-cta">Reserve your Seat · <?= esc($amount) ?></a>
       <div class="pu-micro">Seat fee <?= esc($amount) ?> · Paid securely with Razorpay</div>
     </div>
   </section>
@@ -80,8 +80,8 @@ $facilitatorPhoto = $facilitator['photo'] ?? peak_img('14 hero section image.web
         </article>
       </div>
       <div class="pu-eventbar">
-        <div><small>Date</small><b>4 Oct 2026</b></div>
-        <div><small>Time</small><b>11 AM – 12 PM</b></div>
+        <div><small>Date</small><b>18 Oct 2026</b></div>
+        <div><small>Time</small><b>07 AM – 08 AM</b></div>
         <div><small>Format</small><b>Live on Zoom</b></div>
         <div><small>Seat fee</small><b><?= esc($amount) ?></b></div>
       </div>
@@ -131,7 +131,7 @@ $facilitatorPhoto = $facilitator['photo'] ?? peak_img('14 hero section image.web
       <div class="pu-final">
         <h2>Seats are limited.</h2>
         <p>Reserve yours before this workshop fills up.</p>
-        <a href="#register" class="pu-cta">Grab your seat · <?= esc($amount) ?></a>
+        <a href="#register" class="pu-cta">Reserve your Seat · <?= esc($amount) ?></a>
       </div>
     </div>
   </section>
@@ -207,7 +207,7 @@ $facilitatorPhoto = $facilitator['photo'] ?? peak_img('14 hero section image.web
         </fieldset>
 
         <p class="pu-paynote workshop-fee">Seat fee <?= esc($amount) ?> · Paid securely with Razorpay</p>
-        <button class="pu-submit workshop-submit" id="workshop-reserve" type="submit">Grab your seat · <?= esc($amount) ?></button>
+        <button class="pu-submit workshop-submit" id="workshop-reserve" type="submit">Reserve your Seat </button>
       </form>
     </div>
   </section>
