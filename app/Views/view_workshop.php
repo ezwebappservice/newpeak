@@ -23,21 +23,31 @@ $formatHtml = static function () use ($eventFormat, $zoomLink): string {
 };
 $facilitator = peak_home_hero($page_home ?? [], $page_home_lang_independent ?? []);
 $facilitatorPhoto = $facilitator['photo'] ?? peak_img('14 hero section image.webp');
+$youtubeEmbed = $workshop->youtubeEmbedUrl();
 ?>
 <main class="pu-page">
   <section class="pu-hero">
     <div class="pu-wrap">
-      <div class="pu-eyebrow">Parenting Unplugged · Peak Potential Academy</div>
-      <h1>Understand<br><span class="pu-accent">Your Teen</span><br>Before the Next<br>Fight Starts.</h1>
-      <p class="pu-lead">A live, interactive workshop for parents of teenagers — on why the silence, the screen fights, and the “nothing” answers happen, and what actually helps.</p>
-      <div class="pu-pills">
-        <span class="pu-pill"><?= esc($eventDate) ?></span>
-        <span class="pu-pill"><?= esc($eventTime) ?></span>
-        <span class="pu-pill"><?= $formatHtml() ?></span>
-        <span class="pu-pill">Limited Seats</span>
+      <div class="pu-hero-layout<?= $youtubeEmbed !== '' ? ' has-video' : '' ?>">
+        <div class="pu-hero-copy">
+          <div class="pu-eyebrow">Parenting Unplugged · Peak Potential Academy</div>
+          <h1>Understand<br><span class="pu-accent">Your Teen</span><br>Before the Next<br>Fight Starts.</h1>
+          <p class="pu-lead">A live, interactive workshop for parents of teenagers — on why the silence, the screen fights, and the “nothing” answers happen, and what actually helps.</p>
+          <div class="pu-pills">
+            <span class="pu-pill"><?= esc($eventDate) ?></span>
+            <span class="pu-pill"><?= esc($eventTime) ?></span>
+            <span class="pu-pill"><?= $formatHtml() ?></span>
+            <span class="pu-pill">Limited Seats</span>
+          </div>
+          <a href="#register" class="pu-cta">Reserve your Seat · <?= esc($amount) ?></a>
+          <div class="pu-micro">Seat fee <?= esc($amount) ?> · Paid securely with Razorpay</div>
+        </div>
+        <?php if ($youtubeEmbed !== ''): ?>
+          <div class="pu-hero-video">
+            <iframe src="<?= esc($youtubeEmbed, 'attr') ?>?rel=0" title="Understand Your Teen workshop video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+        <?php endif; ?>
       </div>
-      <a href="#register" class="pu-cta">Reserve your Seat · <?= esc($amount) ?></a>
-      <div class="pu-micro">Seat fee <?= esc($amount) ?> · Paid securely with Razorpay</div>
     </div>
   </section>
 

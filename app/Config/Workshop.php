@@ -21,6 +21,9 @@ class Workshop extends BaseConfig
     /** Optional Zoom URL. Empty when the admin has not added a link. */
     public string $zoomLink = '';
 
+    /** Optional YouTube URL shown beside the workshop headline. */
+    public string $youtubeUrl = '';
+
     public string $when = '18 Oct 2026, 07 AM – 08 AM';
 
     public string $where = 'Live on Zoom';
@@ -50,6 +53,7 @@ class Workshop extends BaseConfig
 
         $this->applyStoredAmount();
         $this->applyStoredSchedule();
+        $this->applyStoredVideo();
     }
 
     /**
@@ -118,6 +122,75 @@ class Workshop extends BaseConfig
             log_message('error', 'Workshop schedule could not be loaded: ' . $e->getMessage());
             $this->syncDerived();
         }
+    }
+
+    /**
+     * Use the YouTube link saved from the admin panel when it is available.
+     */
+    public function applyStoredVideo(): void
+    {
+        try {
+            $db = \Config\Database::connect();
+
+            if (! $db->tableExists('tbl_settings') || ! $db->fieldExists('workshop_youtube_url', 'tbl_settings')) {
+                return;
+            }
+
+            $row = $db->table('tbl_settings')->select('workshop_youtube_url')->where('id', 1)->get()->getRowArray();
+            $url = trim((string) ($row['workshop_youtube_url'] ?? ''));
+            $this->youtubeUrl = $this->youtubeId($url) !== '' ? $url : '';
+        } catch (\Throwable $e) {
+            log_message('error', 'Workshop video could not be loaded: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Privacy-enhanced embed URL, or empty when the saved link is not a YouTube video.
+     */
+    public function youtubeEmbedUrl(): string
+    {
+        $id = $this->youtubeId($this->youtubeUrl);
+
+        return $id === '' ? '' : 'https://www.youtube-nocookie.com/embed/' . rawurlencode($id);
+    }
+
+    public function youtubeId(string $url): string
+    {
+        $url = trim($url);
+
+        if ($url === '') {
+            return '';
+        }
+
+        if (preg_match('/^[A-Za-z0-9_-]{11}$/', $url) === 1) {
+            return $url;
+        }
+
+        if (! $this->isHttpUrl($url)) {
+            return '';
+        }
+
+        $host = strtolower((string) parse_url($url, PHP_URL_HOST));
+        $host = (string) preg_replace('/^www\./', '', $host);
+        $path = (string) parse_url($url, PHP_URL_PATH);
+        parse_str((string) parse_url($url, PHP_URL_QUERY), $params);
+        $watchId = (string) ($params['v'] ?? '');
+
+        if (in_array($host, ['youtube.com', 'm.youtube.com', 'music.youtube.com', 'youtube-nocookie.com'], true)) {
+            if (preg_match('/^[A-Za-z0-9_-]{11}$/', $watchId) === 1) {
+                return $watchId;
+            }
+
+            if (preg_match('#^/(?:embed|shorts|live|v)/([A-Za-z0-9_-]{11})(?:/|$)#', $path, $match) === 1) {
+                return $match[1];
+            }
+        }
+
+        if ($host === 'youtu.be' && preg_match('#^/([A-Za-z0-9_-]{11})(?:/|$)#', $path, $match) === 1) {
+            return $match[1];
+        }
+
+        return '';
     }
 
     public function syncDerived(): void

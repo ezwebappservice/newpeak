@@ -24,6 +24,7 @@ class Workshop_registration extends BaseController
             'event_time'    => $workshop->eventTime,
             'event_format'  => $workshop->eventFormat,
             'zoom_link'     => $workshop->zoomLink,
+            'youtube_url'   => $workshop->youtubeUrl,
         ];
 
         echo view('admin/view_header', $data);
@@ -130,6 +131,46 @@ class Workshop_registration extends BaseController
         ]);
 
         $this->session->setFlashdata('success', 'Workshop date, time, and format updated. The registration page will use these details.');
+
+        return redirect()->to(base_url('admin/workshop_registration'));
+    }
+
+    public function update_video()
+    {
+        if (! $this->request->is('post')) {
+            return redirect()->to(base_url('admin/workshop_registration'));
+        }
+
+        if (defined('PROJECT_MODE') && PROJECT_MODE == 0) {
+            $this->session->setFlashdata('error', PROJECT_NOTIFICATION);
+
+            return redirect()->to(base_url('admin/workshop_registration'));
+        }
+
+        $youtube = trim((string) $this->request->getPost('youtube_url'));
+        $workshop = config(\Config\Workshop::class);
+
+        if ($youtube !== '' && (mb_strlen($youtube) > 500 || $workshop->youtubeId($youtube) === '')) {
+            $this->session->setFlashdata('error', 'Enter a YouTube link such as https://www.youtube.com/watch?v=… or https://youtu.be/…, or leave it blank.');
+
+            return redirect()->to(base_url('admin/workshop_registration'));
+        }
+
+        $db = \Config\Database::connect();
+
+        if (! $db->tableExists('tbl_settings') || ! $db->fieldExists('workshop_youtube_url', 'tbl_settings')) {
+            $this->session->setFlashdata('error', 'The workshop video setting is not available yet. Run the latest database migration.');
+
+            return redirect()->to(base_url('admin/workshop_registration'));
+        }
+
+        (new \App\Models\Admin\Model_setting())->update([
+            'workshop_youtube_url' => $youtube !== '' ? $youtube : null,
+        ]);
+
+        $this->session->setFlashdata('success', $youtube === ''
+            ? 'Workshop video removed. The registration page will show the headline on its own.'
+            : 'Workshop video updated. It now appears beside the headline on the registration page.');
 
         return redirect()->to(base_url('admin/workshop_registration'));
     }

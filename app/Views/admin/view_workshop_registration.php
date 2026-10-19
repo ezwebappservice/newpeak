@@ -57,6 +57,20 @@ if (! $this->session->userdata('id')) {
                 </div>
             </div>
 
+            <div class="box box-info">
+                <div class="box-body">
+                    <h3 class="sec_title" style="margin-top:0;">Hero video</h3>
+                    <p class="text-muted">Paste a YouTube link. The video appears on the right of the workshop headline. Leave it blank to hide the video.</p>
+                    <?= form_open(base_url('admin/workshop_registration/update_video')) ?>
+                        <div class="form-group">
+                            <label for="youtube_url">YouTube link <span class="text-muted">(optional)</span></label>
+                            <input type="url" name="youtube_url" id="youtube_url" class="form-control" maxlength="500" value="<?= esc($youtube_url ?? '') ?>" placeholder="https://www.youtube.com/watch?v=…">
+                        </div>
+                        <button type="submit" class="btn btn-success btn-sm">Save video</button>
+                    <?= form_close() ?>
+                </div>
+            </div>
+
             <div class="box box-info" style="padding:10px 15px;">
                 <form method="get" class="form-inline">
                     <label>Payment:</label>
