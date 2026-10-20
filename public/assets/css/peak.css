@@ -2653,10 +2653,14 @@ html:has(body.page-workshop-registration) { scroll-behavior: smooth; }
 .pu-page { --pu-ink: #222; --pu-burg: #8f2228; --pu-wine: #56131b; --pu-muted: #6f6260; --pu-white: #fffaf7; --pu-line: #dcc9c3; color: var(--pu-ink); }
 .pu-wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
 .pu-hero { padding: 72px 0 60px; border-top: 9px solid var(--pu-wine); }
-.pu-hero-layout.has-video { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(280px, .9fr); gap: 36px 48px; align-items: center; }
-.pu-hero-layout.has-video h1 { max-width: none; font-size: clamp(42px, 4vw, 58px); letter-spacing: -1.6px; }
-.pu-hero-layout.has-video .pu-lead { max-width: none; font-size: 17px; }
-.pu-hero-video { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 16px; background: #1c1012; box-shadow: 0 18px 40px rgba(108, 32, 37, .14); }
+.pu-hero:has(.has-video) { padding: 44px 0 52px; }
+.pu-hero:has(.has-video) .pu-wrap { max-width: 1380px; padding: 0 28px; }
+.pu-hero-layout.has-video { display: grid; grid-template-columns: minmax(340px, .9fr) minmax(0, 1.28fr); gap: 28px 40px; align-items: center; }
+.pu-hero-layout.has-video .pu-pill { padding: 9px 13px; font-size: 12.5px; }
+.pu-hero-layout.has-video h1 { max-width: none; margin-bottom: 16px; font-size: clamp(38px, 3.3vw, 54px); letter-spacing: -1.5px; }
+.pu-hero-layout.has-video .pu-lead { max-width: none; font-size: 16px; line-height: 1.5; }
+.pu-hero-layout.has-video .pu-pills { margin: 16px 0; }
+.pu-hero-video { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border: 6px solid #fff; border-radius: 22px; background: #1c1012; box-shadow: 0 26px 60px rgba(86, 19, 27, .28); }
 .pu-hero-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .pu-eyebrow { margin-bottom: 22px; color: var(--pu-burg); font-size: 13px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; }
 .pu-hero h1 { max-width: 850px; margin: 0 0 28px; color: var(--pu-ink); font-family: Georgia, "Times New Roman", serif; font-size: 76px; font-weight: 500; letter-spacing: -2.5px; line-height: .98; }
@@ -2762,9 +2766,13 @@ html:has(body.page-workshop-registration) { scroll-behavior: smooth; }
 .workshop-submit:disabled { opacity: .7; cursor: wait; }
 .workshop-submit--link { margin-top: 1.2rem; }
 
+@media (max-width: 1080px) {
+  .pu-hero-layout.has-video { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 24px; }
+}
 @media (max-width: 900px) {
+  .pu-hero:has(.has-video) .pu-wrap { padding: 0 20px; }
   .pu-hero-layout.has-video { grid-template-columns: 1fr; }
-  .pu-hero-video { max-width: 640px; }
+  .pu-hero-video { width: 100%; }
 }
 @media (max-width: 760px) {
   .pu-wrap { padding: 0 20px; }

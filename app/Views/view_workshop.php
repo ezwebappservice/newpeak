@@ -44,7 +44,7 @@ $youtubeEmbed = $workshop->youtubeEmbedUrl();
         </div>
         <?php if ($youtubeEmbed !== ''): ?>
           <div class="pu-hero-video">
-            <iframe src="<?= esc($youtubeEmbed, 'attr') ?>?rel=0" title="Understand Your Teen workshop video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="<?= esc($youtubeEmbed, 'attr') ?>?rel=0&modestbranding=1&playsinline=1" title="Understand Your Teen workshop video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
         <?php endif; ?>
       </div>
