@@ -31,8 +31,9 @@ $youtubeEmbed = $workshop->youtubeEmbedUrl();
       <div class="pu-hero-layout<?= $youtubeEmbed !== '' ? ' has-video' : '' ?>">
         <div class="pu-hero-copy">
           <div class="pu-eyebrow">Parenting Unplugged · Peak Potential Academy</div>
-          <h1>Understand<br><span class="pu-accent">Your Teen</span><br>Before the Next<br>Fight Starts.</h1>
-          <p class="pu-lead">A live, interactive workshop for parents of teenagers — on why the silence, the screen fights, and the “nothing” answers happen, and what actually helps.</p>
+          <h1>Stop Reacting.<br><span class="pu-accent">Start Connecting.</span></h1>
+          <p class="pu-subhead">Conscious Parenting: Brain-Based Tools for Real Homes.</p>
+          <p class="pu-lead">Decode the silence and screen battles. Replace daily arguments with calm boundaries and lasting trust—starting today.</p>
           <div class="pu-pills">
             <span class="pu-pill"><?= esc($eventDate) ?></span>
             <span class="pu-pill"><?= esc($eventTime) ?></span>
@@ -44,7 +45,7 @@ $youtubeEmbed = $workshop->youtubeEmbedUrl();
         </div>
         <?php if ($youtubeEmbed !== ''): ?>
           <div class="pu-hero-video">
-            <iframe src="<?= esc($youtubeEmbed, 'attr') ?>?rel=0&modestbranding=1&playsinline=1" title="Understand Your Teen workshop video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="<?= esc($youtubeEmbed, 'attr') ?>?rel=0&modestbranding=1&playsinline=1" title="Stop Reacting. Start Connecting. workshop video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
         <?php endif; ?>
       </div>

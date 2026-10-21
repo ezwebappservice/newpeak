@@ -2658,6 +2658,7 @@ html:has(body.page-workshop-registration) { scroll-behavior: smooth; }
 .pu-hero-layout.has-video { display: grid; grid-template-columns: minmax(340px, .9fr) minmax(0, 1.28fr); gap: 28px 40px; align-items: center; }
 .pu-hero-layout.has-video .pu-pill { padding: 9px 13px; font-size: 12.5px; }
 .pu-hero-layout.has-video h1 { max-width: none; margin-bottom: 16px; font-size: clamp(38px, 3.3vw, 54px); letter-spacing: -1.5px; }
+.pu-hero-layout.has-video .pu-subhead { max-width: none; margin: -4px 0 12px; font-size: 18px; }
 .pu-hero-layout.has-video .pu-lead { max-width: none; font-size: 16px; line-height: 1.5; }
 .pu-hero-layout.has-video .pu-pills { margin: 16px 0; }
 .pu-hero-video { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border: 6px solid #fff; border-radius: 22px; background: #1c1012; box-shadow: 0 26px 60px rgba(86, 19, 27, .28); }
@@ -2665,6 +2666,7 @@ html:has(body.page-workshop-registration) { scroll-behavior: smooth; }
 .pu-eyebrow { margin-bottom: 22px; color: var(--pu-burg); font-size: 13px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; }
 .pu-hero h1 { max-width: 850px; margin: 0 0 28px; color: var(--pu-ink); font-family: Georgia, "Times New Roman", serif; font-size: 76px; font-weight: 500; letter-spacing: -2.5px; line-height: .98; }
 .pu-accent { color: var(--pu-burg); }
+.pu-subhead { max-width: 760px; margin: -8px 0 16px; color: var(--pu-ink); font-size: 22px; font-weight: 700; line-height: 1.35; }
 .pu-lead { max-width: 760px; margin: 0; color: var(--pu-muted); font-size: 20px; line-height: 1.6; }
 .pu-pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0; }
 .pu-pill { padding: 11px 16px; border: 1px solid var(--pu-line); border-radius: 999px; background: #fff; font-size: 13px; font-weight: 700; }

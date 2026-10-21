@@ -27,7 +27,7 @@ $pageDescriptions = [
     'our-story'      => 'Parenting Unplugged is a live online workshop for parents of 13+ year olds who want a calmer, more confident way to navigate the teenage years.',
     'contact-us'     => 'Tell us a little about your goals, and the Peak Potential Academy team will be in touch.',
     'enquiry'        => 'Book a discovery call or demo with Peak Potential Academy. Tell us what you need and we will help you find the right next step.',
-    'workshop-registration' => 'A live, interactive workshop for parents of teenagers — on why the silence, the screen fights, and the “nothing” answers happen, and what actually helps.',
+    'workshop-registration' => 'Decode the silence and screen battles. Replace daily arguments with calm boundaries and lasting trust—starting today.',
     'privacy-policy' => 'How Peak Potential Academy collects, uses and protects your information.',
     'terms'          => 'Please read these terms carefully before using the Peak Potential Academy website or services.',
 ];

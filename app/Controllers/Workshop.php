@@ -27,7 +27,7 @@ class Workshop extends MY_Controller
             'workshop'         => $this->workshop,
             'hide_book_tab'    => true,
             'meta_title'       => 'Parenting Unplugged | Peak Potential Academy',
-            'meta_description' => 'A live, interactive workshop for parents of teenagers — on why the silence, the screen fights, and the “nothing” answers happen, and what actually helps.',
+            'meta_description' => 'Decode the silence and screen battles. Replace daily arguments with calm boundaries and lasting trust—starting today.',
         ]));
     }
 
