@@ -308,6 +308,17 @@ foreach ($countries as $country):
       </label>
     </div>
   </fieldset>
+  <fieldset>
+    <legend>Make Payment</legend>
+    <label>Make Payment <span class="text-danger">*</span>
+      <select name="payment_option" required>
+        <option value="" disabled<?= form_old_value('payment_option') === '' ? ' selected' : '' ?>>Select value</option>
+        <option value="workshop"<?= form_old_value('payment_option') === 'workshop' ? ' selected' : '' ?>>Workshop ₹599</option>
+        <option value="bootcamp"<?= form_old_value('payment_option') === 'bootcamp' ? ' selected' : '' ?>>Boot Camp ₹5,999</option>
+      </select>
+    </label>
+    <p class="discovery-form__paynote">After you submit, you will pay the selected amount securely with Razorpay.</p>
+  </fieldset>
   <?= view('includes/form_antispam_fields', ['form_key' => 'discovery_inquiry', 'compact' => true]) ?>
-  <button type="submit" class="discovery-form__submit" name="form_discovery" value="1">Send enquiry</button>
+  <button type="submit" class="discovery-form__submit" name="form_discovery" value="1">Continue to payment</button>
 <?= form_close() ?>

@@ -17,6 +17,7 @@ $routes->post('contact-us/send', 'Contact::send_email');
 $routes->get('customer-enquiry-form', 'Contact::enquiry');
 $routes->get('book-a-discovery-call', 'Contact::enquiry');
 $routes->post('enquiry/send', 'Contact::send_discovery');
+$routes->post('enquiry/verify', 'Contact::verify_payment');
 $routes->get('enquiry/thank-you', 'Contact::thank_you');
 $routes->get('workshop-registration', 'Workshop::index');
 $routes->match(['get', 'post'], 'workshop-registration/checkout', 'Workshop::checkout');

@@ -16,7 +16,7 @@
           <p>Whether you are a parent, student, educator, or professional, share your goals and challenges with us.</p>
           <div class="enquiry-intro__note">
             <strong>What happens next?</strong>
-            <span>We'll review your enquiry and contact you to arrange a convenient time to connect.</span>
+            <span>Choose Workshop or Boot Camp, complete secure payment, and we will contact you to arrange a convenient time to connect.</span>
           </div>
         </aside>
         <?= view('includes/enquiry_form', get_defined_vars()) ?>

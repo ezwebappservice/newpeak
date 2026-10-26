@@ -159,14 +159,20 @@ if (! function_exists('site_inquiry_form_data_rows')) {
             'medium'           => 'Medium of instruction',
             'topic'            => 'Topic request',
             'heard_from'       => 'Heard about workshop',
-            'amount'           => 'Amount paid',
+            'amount'           => 'Amount',
+            'payment_label'    => 'Payment for',
             'payment_id'       => 'Razorpay payment ID',
             'payment_status'   => 'Payment status',
+            'razorpay_order_id'=> 'Razorpay order ID',
         ];
 
+        $hidden = ['public_token', 'amount_paise', 'payment_option'];
         $rows = [];
 
         foreach ($data as $key => $value) {
+            if (in_array((string) $key, $hidden, true)) {
+                continue;
+            }
             if (is_array($value)) {
                 $value = implode(', ', array_map('strval', $value));
             }

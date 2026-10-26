@@ -1,9 +1,10 @@
+<?php $receipt = is_array($receipt ?? null) ? $receipt : null; ?>
 <main>
   <section class="enquiry-hero">
     <div class="container">
-      <p class="enquiry-eyebrow">Message received</p>
+      <p class="enquiry-eyebrow"><?= $receipt ? 'Payment received' : 'Message received' ?></p>
       <h1>Thank <em>you.</em></h1>
-      <p>Your message has been received. Our team will review it and contact you shortly.</p>
+      <p><?= $receipt ? 'Your payment is confirmed. Our team will review your enquiry and contact you shortly.' : 'Your message has been received. Our team will review it and contact you shortly.' ?></p>
     </div>
   </section>
 
@@ -12,6 +13,15 @@
       <article class="enquiry-thanks">
         <p class="enquiry-eyebrow">What happens next</p>
         <h2>We'll be in touch.</h2>
+        <?php if ($receipt): ?>
+        <ul class="enquiry-pay__rows">
+          <li><span>Payment for</span><?= esc($receipt['payment'] ?? '') ?></li>
+          <li><span>Amount</span><?= esc($receipt['amount'] ?? '') ?></li>
+          <?php if (($receipt['payment_id'] ?? '') !== ''): ?>
+          <li><span>Payment ID</span><?= esc($receipt['payment_id']) ?></li>
+          <?php endif; ?>
+        </ul>
+        <?php endif; ?>
         <ul>
           <li>We review the details you shared.</li>
           <li>We contact you on the email or WhatsApp number you provided.</li>
